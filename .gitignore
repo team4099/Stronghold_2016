@@ -2,6 +2,7 @@
 bin/
 build/
 dist/
+lib/
 sysProps.xml
 workbench.xmi
 
