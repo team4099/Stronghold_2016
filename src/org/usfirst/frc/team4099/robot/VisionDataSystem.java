@@ -3,6 +3,8 @@
  */
 import java.util.ArrayList;
 import java.net.Socket;
+import java.net.UnknownHostException;
+import java.io.IOException;
 
 /*
  * Interface to integrate with external imaging processing 
@@ -13,7 +15,9 @@ class VisionDataSystem
     private int port;
 
     private boolean acquiredTarget;
-    private float targetDepth;
+    private float firingAngle, firingVelocity, rotationAngle;
+
+    private Socket processorSocket;
 
     private ArrayList<Command> commandQueue;
 
@@ -22,6 +26,17 @@ class VisionDataSystem
      */
     public VisionDataSystem(float period) {
         this.commandQueue = new ArrayList<Command>();
+        try {
+            this.processorSocket = new Socket(ip, port);
+            /*
+            In stdin = new In();
+            Out stdout = new Out();
+            */
+        } catch (UnknownHostException e) {
+
+        } catch (IOException e) {
+
+        }
     }
 
     /* 
@@ -32,11 +47,32 @@ class VisionDataSystem
 
     }
     
+    /*
+     * Returns true if the bot is in range to land a shot
+     */
     public boolean targetAcquired() {
         return this.acquiredTarget;
     }
-    public float getDepth() {
-        return this.targetDepth;
+
+    /*
+     * Returns the angle the bot/shooter must rotate laterally to land the shot
+     */
+    public float rotationAngle() {
+        return this.rotationAngle;
+    }
+
+    /*
+     * Returns the angle the shooting arm must be in to land the shot
+     */
+    public float firingAngle() {
+        return this.firingAngle;
+    }
+
+    /*
+     * Return the velocity the shooter must shoot at to land the shot
+     */
+    public float firingVelocity() {
+        return this.firingVelocity;
     }
     
     public void queueCommand(Command cmd) {
