@@ -3,6 +3,7 @@ bin/
 build/
 dist/
 lib/
+javadoc/
 sysProps.xml
 workbench.xmi
 
@@ -31,5 +32,6 @@ gradle/.launch/
 .AppleDouble
 .LSOverride
 .Trashes
+*.swp
 ehthumbs.db
 Thumbs.db
