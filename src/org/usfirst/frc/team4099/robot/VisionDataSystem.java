@@ -15,7 +15,7 @@ class VisionDataSystem
     private int port;
 
     private boolean acquiredTarget;
-    private float firingAngle, firingVelocity, rotationAngle;
+    private float firingAngle, firingAcceleration, rotationAngle;
 
     private Socket processorSocket;
 
@@ -69,10 +69,10 @@ class VisionDataSystem
     }
 
     /*
-     * Return the velocity the shooter must shoot at to land the shot
+     * Return the acceleration the shooter must shoot at to land the shot
      */
-    public float firingVelocity() {
-        return this.firingVelocity;
+    public float firingAcceleration() {
+        return this.firingAcceleration;
     }
     
     public void queueCommand(Command cmd) {
