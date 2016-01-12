@@ -15,7 +15,7 @@ class VisionDataSystem
     private int port;
 
     private boolean acquiredTarget;
-    private float firingAngle, firingAcceleration, rotationAngle;
+    private float verticalAngle, firingAcceleration, lateralAngle;
 
     private Socket processorSocket;
 
@@ -55,17 +55,17 @@ class VisionDataSystem
     }
 
     /*
-     * Returns the angle the bot/shooter must rotate laterally to land the shot
+     * Returns the lateral angle the bot/shooter must rotate laterally to land the shot
      */
-    public float rotationAngle() {
-        return this.rotationAngle;
+    public float lateralAngle() {
+        return this.lateralAngle;
     }
 
     /*
-     * Returns the angle the shooting arm must be in to land the shot
+     * Returns the vertical angle the shooting arm must be in to land the shot
      */
-    public float firingAngle() {
-        return this.firingAngle;
+    public float verticalAngle() {
+        return this.verticalAngle;
     }
 
     /*
@@ -83,6 +83,8 @@ class VisionDataSystem
 /* 
  * Command class - contains information about commands to transmit to the onboard processor
  * Currently undefined - uncertain what types of commands we will actually use 
+ *
+ * We may not need this at all - this will allow us to do on-the-fly camera resetting if necessary
  */
 class Command
 {
