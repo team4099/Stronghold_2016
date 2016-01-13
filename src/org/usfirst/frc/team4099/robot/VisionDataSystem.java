@@ -5,14 +5,21 @@ import java.util.ArrayList;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /*
  * Interface to integrate with external imaging processing 
  */
 class VisionDataSystem
 {
-    private String ip;
-    private int port;
+    public static void main(String args[]) {
+        VisionDataSystem test = new VisionDataSystem(.2f);
+        test.updateVisionData();
+        System.out.printf("LA %f \nFA %f\nVA %f\n", test.getLateralAngle(), test.getFiringAcceleration(), test.getVerticalAngle());
+    }
+    private String ip = "127.0.0.1";
+    private int port = 5802;
 
     private boolean acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
@@ -26,17 +33,6 @@ class VisionDataSystem
      */
     public VisionDataSystem(float period) {
         this.commandQueue = new ArrayList<Command>();
-        try {
-            this.processorSocket = new Socket(ip, port);
-            /*
-            In stdin = new In();
-            Out stdout = new Out();
-            */
-        } catch (UnknownHostException e) {
-
-        } catch (IOException e) {
-
-        }
     }
 
     /* 
@@ -44,34 +40,58 @@ class VisionDataSystem
      * the vision processor and sends any queued commands to the vision processor
      * */ 
     public void updateVisionData() {
+        try {
+            this.processorSocket = new Socket(this.ip, this.port);
+            
+            BufferedReader stdout = new BufferedReader(new InputStreamReader(processorSocket.getInputStream()));
+            String serverResponse = stdout.readLine();
+            System.out.println(serverResponse);
+            String[] statArgs = serverResponse.split(",");
 
+            /* 
+             * Can't update data if the data doesn't exist - maybe we should set
+             * the args to a null value or throw an exception when there isn't anything to shoot? 
+             */
+            if (statArgs[0].equals("0")) {
+                this.acquiredTarget = false;
+            } else {
+                this.acquiredTarget = true;
+                this.verticalAngle = Integer.parseInt(statArgs[1]);
+                this.firingAcceleration = Integer.parseInt(statArgs[2]);
+                this.lateralAngle = Integer.parseInt(statArgs[3]);
+            }
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     /*
      * Returns true if the bot is in range to land a shot
      */
-    public boolean targetAcquired() {
+    public boolean getTargetAcquired() {
         return this.acquiredTarget;
     }
 
     /*
      * Returns the lateral angle the bot/shooter must rotate laterally to land the shot
      */
-    public float lateralAngle() {
+    public float getLateralAngle() {
         return this.lateralAngle;
     }
 
     /*
      * Returns the vertical angle the shooting arm must be in to land the shot
      */
-    public float verticalAngle() {
+    public float getVerticalAngle() {
         return this.verticalAngle;
     }
 
     /*
      * Return the acceleration the shooter must shoot at to land the shot
      */
-    public float firingAcceleration() {
+    public float getFiringAcceleration() {
         return this.firingAcceleration;
     }
     
