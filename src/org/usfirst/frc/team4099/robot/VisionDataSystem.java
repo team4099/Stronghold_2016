@@ -21,7 +21,7 @@ class VisionDataSystem
     private String ip = "127.0.0.1";
     private int port = 5802;
 
-    private boolean acquiredTarget;
+    private int acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
 
     private Socket processorSocket;
@@ -53,13 +53,16 @@ class VisionDataSystem
              * the args to a null value or throw an exception when there isn't anything to shoot? 
              */
             if (statArgs[0].equals("0")) {
-                this.acquiredTarget = false;
-            } else {
-                this.acquiredTarget = true;
+                this.acquiredTarget = 0;
+            } else if (statArgs[0].equals("1")){
+                this.acquiredTarget = 1;
+                this.lateralAngle = Integer.parseInt(statArgs[3]);
+            } else if (statArgs[0].equals("2")) { 
+                this.acquiredTarget = 2;
                 this.verticalAngle = Integer.parseInt(statArgs[1]);
                 this.firingAcceleration = Integer.parseInt(statArgs[2]);
-                this.lateralAngle = Integer.parseInt(statArgs[3]);
             }
+
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -70,7 +73,7 @@ class VisionDataSystem
     /*
      * Returns true if the bot is in range to land a shot
      */
-    public boolean getTargetAcquired() {
+    public int getTargetAcquired() {
         return this.acquiredTarget;
     }
 
