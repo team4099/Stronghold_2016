@@ -12,6 +12,8 @@
 package org.usfirst.frc.team4099.lib.input;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Gamepad extends Joystick {
 	
@@ -50,11 +52,12 @@ public class Gamepad extends Joystick {
 	/* Trigger Axes */
 	public static final int LEFT_TRIGGER_AXIS = 2;
 	public static final int RIGHT_TRIGGER_AXIS = 3;
-	
+
 	public Gamepad(int port) {
 		super(port);
 	}
-	
+
+
 	// treat these as buttons
 	public boolean isDPadUpPressed() {
 		int dir = this.getPOV();

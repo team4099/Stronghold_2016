@@ -13,10 +13,20 @@ public class ConstantsBase {
         integerConstants = new HashMap<String, Integer>();
         doubleConstants = new HashMap<String, Double>();
 
-        integerConstants.put("FRONT_LEFT_MOTOR", 3);
-        integerConstants.put("REAR_LEFT_MOTOR", 2);
-        integerConstants.put("FRONT_RIGHT_MOTOR", 1);
-        integerConstants.put("REAR_RIGHT_MOTOR", 0);
+        doubleConstants.put("ELEVATOR_P", 0.1);
+        doubleConstants.put("ELEVATOR_I", 0.0);
+        doubleConstants.put("ELEVATOR_D", 0.0);
+
+        integerConstants.put("LEFT_SHOOTER_MOTOR_PORT", 5);
+        integerConstants.put("RIGHT_SHOOTER_MOTOR_PORT", 4);
+        integerConstants.put("FRONT_LEFT_MOTOR_PORT", 3);
+        integerConstants.put("REAR_LEFT_MOTOR_PORT", 2);
+        integerConstants.put("FRONT_RIGHT_MOTOR_PORT", 1);
+        integerConstants.put("REAR_RIGHT_MOTOR_PORT", 0);
+
+        doubleConstants.put("DEADBAND_LIMIT", 0.1);
+        doubleConstants.put("SLOW_GEAR_REDUCTION_FACTOR", 2.5);
+        doubleConstants.put("FAST_GEAR_REDUCTION_FACTOR", 1.5);
         //loadConstantsFromFile(CONSTANTS_FILEPATH);
     }
 

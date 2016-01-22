@@ -1,27 +1,48 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
-import org.usfirst.frc.team4099.lib.util.ConstantsBase;
-import org.usfirst.frc.team4099.robot.RobotMap;
+import org.usfirst.frc.team4099.lib.util.GamepadUtil;
 import org.usfirst.frc.team4099.robot.commands.JoystickDrive;
 
 public class DriveTrain extends Subsystem {
 
     private RobotDrive drive;
-    private int FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR;
-    private int FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR;
+    private Motors motors;
+
+    private static double DEADBAND_LIMIT;
+    private double SLOW_GEAR_REDUCTION_FACTOR;
+    private double FAST_GEAR_REDUCTION_FACTOR;
+
+    private int FRONT_LEFT_MOTOR_PORT, REAR_LEFT_MOTOR_PORT;
+    private int FRONT_RIGHT_MOTOR_PORT, REAR_RIGHT_MOTOR_PORT;
+
+    private Talon FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR;
+    private Talon FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR;
 
     public DriveTrain() {
-        FRONT_LEFT_MOTOR = CommandBase.constants.getInteger("FRONT_LEFT_MOTOR");
-        REAR_LEFT_MOTOR = CommandBase.constants.getInteger("REAR_LEFT_MOTOR");
-        FRONT_RIGHT_MOTOR = CommandBase.constants.getInteger("FRONT_RIGHT_MOTOR");
-        REAR_RIGHT_MOTOR = CommandBase.constants.getInteger("REAR_RIGHT_MOTOR");
+        DEADBAND_LIMIT = CommandBase.constants.getDouble("DEADBAND_LIMIT");
+        SLOW_GEAR_REDUCTION_FACTOR = CommandBase.constants.getDouble("SLOW_GEAR_REDUCTION_FACTOR");
+        FAST_GEAR_REDUCTION_FACTOR = CommandBase.constants.getDouble("FAST_GEAR_REDUCTION_FACTOR");
+
+        FRONT_LEFT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_LEFT_MOTOR_PORT");
+        REAR_LEFT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_LEFT_MOTOR_PORT");
+        FRONT_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_RIGHT_MOTOR_PORT");
+        REAR_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_RIGHT_MOTOR_PORT");
+
+//        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
+//        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
+//        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
+//        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
+
+        motors = new Motors();
+        motors.addMotor("FRONT_LEFT_MOTOR", FRONT_LEFT_MOTOR);
+        motors.addMotor("REAR_LEFT_MOTOR", REAR_LEFT_MOTOR);
+        motors.addMotor("FRONT_RIGHT_MOTOR", FRONT_RIGHT_MOTOR);
+        motors.addMotor("REAR_RIGHT_MOTOR", REAR_RIGHT_MOTOR);
+
         drive = new RobotDrive(FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR, FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR);
     }
 
@@ -35,9 +56,44 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveWithGamepad(Gamepad gamepad) {
-        //double vertAxisLeft = gamepad.getLeftVerticalAxis();
-        //double horiAxisLeft = gamepad.getLeftHorizontalAxis();
-        //motors.setMotorSpeed("FRONT_LEFT", 0.5);
-        drive.tankDrive(gamepad, Gamepad.LEFT_Y_AXIS, gamepad, Gamepad.RIGHT_Y_AXIS);
+        double left = gamepad.getLeftVerticalAxis();
+        double right = gamepad.getRightVerticalAxis();
+
+        // deadband modified values
+        double f_left = GamepadUtil.deadband(left);
+        double f_right = GamepadUtil.deadband(right);
+
+        System.out.println("left: " + f_left + "  " + "right: " + f_right);
+
+        // gear modified values
+        double m_left = modifySpeed(f_left);
+        double m_right = modifySpeed(f_right);
+
+        // fix sign (motor direction)
+        m_left = -m_left;
+        m_right = -m_right;
+
+        drive.tankDrive(m_left, m_right);
+    }
+
+    private double modifySpeed(double speed) {
+        boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
+        boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
+
+        if (leftTriggerPressed && rightTriggerPressed)
+            return speed / FAST_GEAR_REDUCTION_FACTOR;
+
+        return speed / SLOW_GEAR_REDUCTION_FACTOR;
+    }
+
+    public void driveForward() {
+        motors.setMotorSpeed("FRONT_LEFT_MOTOR", 1.0);
+        motors.setMotorSpeed("REAR_LEFT_MOTOR", 1.0);
+        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 1.0);
+        motors.setMotorSpeed("REAR_RIGHT_MOTOR", 1.0);
+    }
+
+    public void setMotorSpeed(String motor, double speed) {
+        motors.setMotorSpeed(motor, speed);
     }
 }
