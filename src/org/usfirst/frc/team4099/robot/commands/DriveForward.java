@@ -13,12 +13,12 @@ public class DriveForward extends CommandBase {
     @Override
     protected void initialize() {
         setTimeout(m_timeout);
-        //requires(driveTrain);
+        requires(driveTrain);
     }
 
     @Override
     protected void execute() {
-        //driveTrain.driveForward();
+        driveTrain.driveForward();
     }
 
     @Override

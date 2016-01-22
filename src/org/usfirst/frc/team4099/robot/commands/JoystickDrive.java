@@ -9,7 +9,7 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 public class JoystickDrive extends CommandBase {
 
     public JoystickDrive() {
-        //requires(driveTrain);
+        requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -18,7 +18,7 @@ public class JoystickDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //driveTrain.driveWithGamepad(oi.getGamepad());
+        driveTrain.driveWithGamepad(oi.getGamepad());
     }
 
     // Make this return true when this Command no longer needs to run execute()

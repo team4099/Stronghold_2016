@@ -29,11 +29,11 @@ public class OI {
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
 
         /* Commands */
-//        Y_BUTTON.whileHeld(new RunShooterFullSpeed());
-//        RIGHT_BUTTON.whileHeld(new RunShooterFullSpeed());
-        Y_BUTTON.whenPressed(new ElevatorToPosition(Elevator.TOP));
-        A_BUTTON.whenPressed(new ElevatorToPosition(Elevator.BOTTOM));
-        B_BUTTON.whenPressed(new ElevatorToPosition(Elevator.MIDDLE));
+        Y_BUTTON.whileHeld(new RunShooterFullSpeed());
+        RIGHT_BUTTON.whileHeld(new RunShooterFullSpeed());
+//        Y_BUTTON.whenPressed(new ElevatorToPosition(Elevator.TOP));
+//        A_BUTTON.whenPressed(new ElevatorToPosition(Elevator.BOTTOM));
+//        B_BUTTON.whenPressed(new ElevatorToPosition(Elevator.MIDDLE));
     }
 
     public Gamepad getGamepad() {
