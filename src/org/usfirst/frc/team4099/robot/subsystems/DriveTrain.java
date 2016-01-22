@@ -32,10 +32,10 @@ public class DriveTrain extends Subsystem {
         FRONT_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_RIGHT_MOTOR_PORT");
         REAR_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_RIGHT_MOTOR_PORT");
 
-//        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
-//        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
-//        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
-//        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
+        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
+        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
+        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
+        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
 
         motors = new Motors();
         motors.addMotor("FRONT_LEFT_MOTOR", FRONT_LEFT_MOTOR);
