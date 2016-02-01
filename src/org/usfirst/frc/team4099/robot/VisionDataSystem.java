@@ -1,3 +1,5 @@
+package org.usfirst.frc.team4099.robot;
+
 /*
  * Vision subsystem - communicates with the external processor for actual data
  */

@@ -1,11 +1,15 @@
 package org.usfirst.frc.team4099.robot;
 
+import org.usfirst.frc.team4099.lib.input.Gamepad;
+import org.usfirst.frc.team4099.robot.commands.DriveBackward;
+import org.usfirst.frc.team4099.robot.commands.DriveForward;
+import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
+import org.usfirst.frc.team4099.robot.subsystems.TurnLeft;
+import org.usfirst.frc.team4099.robot.subsystems.TurnRight;
+
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team4099.lib.input.Gamepad;
-import org.usfirst.frc.team4099.robot.commands.ElevatorToPosition;
-import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
-import org.usfirst.frc.team4099.robot.subsystems.Elevator;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,6 +25,7 @@ public class OI {
     private Button RIGHT_BUTTON;
 
     public OI() {
+  
         gamepad = new Gamepad(0);
         A_BUTTON = new JoystickButton(gamepad, Gamepad.A_BUTTON);
         B_BUTTON = new JoystickButton(gamepad, Gamepad.B_BUTTON);

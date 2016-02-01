@@ -33,7 +33,7 @@ public class Motors extends Subsystem {
     }
 
     public void setMotorInversionState(String name, boolean state) {
-        getMotorByName(name).setInverted(state);
+        //getMotorByName(name).setInverted(state);
     }
 
     public void setMotorSpeed(String name, double speed) {

@@ -4,10 +4,16 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4099.lib.util.ConstantsBase;
 import org.usfirst.frc.team4099.lib.util.GamepadUtil;
+import org.usfirst.frc.team4099.robot.commands.DriveBackward;
+import org.usfirst.frc.team4099.robot.commands.DriveForward;
 import org.usfirst.frc.team4099.robot.commands.groups.TestCommandGroup;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
+import org.usfirst.frc.team4099.robot.subsystems.TurnLeft;
+import org.usfirst.frc.team4099.robot.subsystems.TurnRight;
 
 public class Robot extends IterativeRobot {
 
@@ -15,8 +21,12 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void robotInit() {
+    	
         CommandBase.init();
-
+      	SmartDashboard.putData("DriveForward", new DriveForward(5));
+    	SmartDashboard.putData("DriveBackward", new DriveBackward(5));
+    	SmartDashboard.putData("TurnRight", new TurnRight(5));
+    	SmartDashboard.putData("TurnLeft", new TurnLeft(5));
         autonomousCommand = new TestCommandGroup();
     }
 	

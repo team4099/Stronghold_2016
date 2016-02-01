@@ -87,10 +87,28 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveForward() {
-        motors.setMotorSpeed("FRONT_LEFT_MOTOR", 1.0);
-        motors.setMotorSpeed("REAR_LEFT_MOTOR", 1.0);
-        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 1.0);
-        motors.setMotorSpeed("REAR_RIGHT_MOTOR", 1.0);
+        motors.setMotorSpeed("FRONT_LEFT_MOTOR", 0.5);
+        motors.setMotorSpeed("REAR_LEFT_MOTOR", 0.5);
+        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 0.5);
+        motors.setMotorSpeed("REAR_RIGHT_MOTOR", 0.5);
+    }
+    public void driveBackward() {
+        motors.setMotorSpeed("FRONT_LEFT_MOTOR", -0.5);
+        motors.setMotorSpeed("REAR_LEFT_MOTOR", -0.5);
+        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", -0.5);
+        motors.setMotorSpeed("REAR_RIGHT_MOTOR", -0.5);
+    }
+    public void turnRight() {
+        motors.setMotorSpeed("FRONT_LEFT_MOTOR", 0.5);
+        motors.setMotorSpeed("REAR_LEFT_MOTOR", 0.5);
+        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", -0.5);
+        motors.setMotorSpeed("REAR_RIGHT_MOTOR", -0.5);
+    }
+    public void turnLeft() {
+        motors.setMotorSpeed("FRONT_LEFT_MOTOR", -0.5);
+        motors.setMotorSpeed("REAR_LEFT_MOTOR", -0.5);
+        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 0.5);
+        motors.setMotorSpeed("REAR_RIGHT_MOTOR", 0.5);
     }
 
     public void setMotorSpeed(String motor, double speed) {
