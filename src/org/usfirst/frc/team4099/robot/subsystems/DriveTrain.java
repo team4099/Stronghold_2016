@@ -32,10 +32,18 @@ public class DriveTrain extends Subsystem {
         FRONT_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_RIGHT_MOTOR_PORT");
         REAR_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_RIGHT_MOTOR_PORT");
 
-        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
-        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
-        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
-        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
+        
+
+//        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
+//        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
+//        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
+//        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
+        FAST_GEAR_REDUCTION_FACTOR = 1.05;
+        SLOW_GEAR_REDUCTION_FACTOR = 1.05;
+        FRONT_LEFT_MOTOR = 6;
+        REAR_LEFT_MOTOR = 8;
+        FRONT_RIGHT_MOTOR = 7;
+        REAR_RIGHT_MOTOR = 9;
 
         motors = new Motors();
         motors.addMotor("FRONT_LEFT_MOTOR", FRONT_LEFT_MOTOR);
@@ -70,8 +78,8 @@ public class DriveTrain extends Subsystem {
         double m_right = modifySpeed(f_right);
 
         // fix sign (motor direction)
-        m_left = -m_left;
-        m_right = -m_right;
+        m_left = m_left;
+        m_right = m_right;
 
         drive.tankDrive(m_left, m_right);
     }
