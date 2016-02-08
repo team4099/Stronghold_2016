@@ -15,11 +15,7 @@ import java.io.InputStreamReader;
  */
 class VisionDataSystem
 {
-    public static void main(String args[]) {
-        VisionDataSystem test = new VisionDataSystem(.2f);
-        test.updateVisionData();
-        System.out.printf("LA %f \nFA %f\nVA %f\n", test.getLateralAngle(), test.getFiringAcceleration(), test.getVerticalAngle());
-    }
+
     private String ip = "127.0.0.1";
     private int port = 5802;
 
