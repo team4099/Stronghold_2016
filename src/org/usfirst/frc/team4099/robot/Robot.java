@@ -15,9 +15,12 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 import org.usfirst.frc.team4099.robot.subsystems.TurnLeft;
 import org.usfirst.frc.team4099.robot.subsystems.TurnRight;
 
+import com.kauailabs.navx.frc.AHRS
+
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
+    AHRS ahrs;
 
     @Override
     public void robotInit() {
@@ -28,6 +31,15 @@ public class Robot extends IterativeRobot {
     	SmartDashboard.putData("TurnRight", new TurnRight(5));
     	SmartDashboard.putData("TurnLeft", new TurnLeft(5));
         autonomousCommand = new TestCommandGroup();
+        try {
+            /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
+            /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+            ahrs = new AHRS(SPI.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
+
     }
 	
     public void disabledInit(){
