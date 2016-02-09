@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team4099.lib.util.ConstantsBase;
-import org.usfirst.frc.team4099.lib.util.GamepadUtil;
 import org.usfirst.frc.team4099.robot.commands.DriveBackward;
 import org.usfirst.frc.team4099.robot.commands.DriveForward;
 import org.usfirst.frc.team4099.robot.commands.groups.TestCommandGroup;
@@ -19,26 +16,24 @@ import org.usfirst.frc.team4099.robot.subsystems.TurnRight;
 
 import com.kauailabs.navx.frc.AHRS;
 
+
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-    AHRS ahrs;
 
     @Override
     public void robotInit() {
-    	
         CommandBase.init();
-      	SmartDashboard.putData("DriveForward", new DriveForward(5));
-    	SmartDashboard.putData("DriveBackward", new DriveBackward(5));
-    	SmartDashboard.putData("TurnRight", new TurnRight(5));
-    	SmartDashboard.putData("TurnLeft", new TurnLeft(5));
-        autonomousCommand = new TestCommandGroup();
 
+//      	SmartDashboard.putData("DriveForward", new DriveForward(5));
+//    	SmartDashboard.putData("DriveBackward", new DriveBackward(5));
+//    	SmartDashboard.putData("TurnRight", new TurnRight(5));
+//    	SmartDashboard.putData("TurnLeft", new TurnLeft(5));
+        autonomousCommand = new TestCommandGroup();
     }
 	
     public void disabledInit(){
-        //CommandBase.driveTrain.setSafety(true);
-        ConstantsBase.reloadConstants();
+        CommandBase.driveTrain.setSafety(true);
     }
 	
 	public void disabledPeriodic() {
@@ -46,7 +41,7 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        //CommandBase.driveTrain.setSafety(false);
+        CommandBase.driveTrain.setSafety(false);
         autonomousCommand.start();
     }
 
@@ -55,7 +50,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-        //CommandBase.driveTrain.setSafety(false);
+        CommandBase.driveTrain.setSafety(false);
         // cancel any current autonomous
         if (autonomousCommand != null) autonomousCommand.cancel();
 
@@ -79,9 +74,9 @@ public class Robot extends IterativeRobot {
 //                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
 
         /* Calibrate shooter motors */
-        CommandBase.shooter.setMotorSpeed("LEFT_SHOOTER_MOTOR",
-                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
-        CommandBase.shooter.setMotorSpeed("RIGHT_SHOOTER_MOTOR",
-                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//        CommandBase.shooter.setMotorSpeed("LEFT_SHOOTER_MOTOR",
+//                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//        CommandBase.shooter.setMotorSpeed("RIGHT_SHOOTER_MOTOR",
+//                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
     }
 }

@@ -1,8 +1,10 @@
-package org.usfirst.frc.team4099.robot;
+package org.usfirst.frc.team4099.robot.subsystems;
 
 /*
  * Vision subsystem - communicates with the external processor for actual data
  */
+import edu.wpi.first.wpilibj.command.Command;
+
 import java.util.ArrayList;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -15,11 +17,13 @@ import java.io.InputStreamReader;
  */
 class Vision
 {
+    /*
     public static void main(String args[]) {
         Vision test = new Vision(.2f);
         test.updateVisionData();
         System.out.printf("LA %f \nFA %f\nVA %f\n", test.getLateralAngle(), test.getFiringAcceleration(), test.getVerticalAngle());
     }
+    */
     private String ip = "127.0.0.1";
     private int port = 5802;
 

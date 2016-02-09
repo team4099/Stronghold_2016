@@ -57,7 +57,6 @@ public class Gamepad extends Joystick {
 		super(port);
 	}
 
-
 	// treat these as buttons
 	public boolean isDPadUpPressed() {
 		int dir = this.getPOV();
