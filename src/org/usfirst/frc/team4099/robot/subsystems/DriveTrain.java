@@ -12,7 +12,6 @@ import org.usfirst.frc.team4099.robot.commands.JoystickDrive;
 public class DriveTrain extends Subsystem {
 
     private RobotDrive drive;
-    private Motors motors;
 
     private static double DEADBAND_LIMIT;
     private double SLOW_GEAR_REDUCTION_FACTOR;
@@ -40,12 +39,6 @@ public class DriveTrain extends Subsystem {
         REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
         FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
         REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
-
-        motors = new Motors();
-        motors.addMotor("FRONT_LEFT_MOTOR", FRONT_LEFT_MOTOR);
-        motors.addMotor("REAR_LEFT_MOTOR", REAR_LEFT_MOTOR);
-        motors.addMotor("FRONT_RIGHT_MOTOR", FRONT_RIGHT_MOTOR);
-        motors.addMotor("REAR_RIGHT_MOTOR", REAR_RIGHT_MOTOR);
 
         drive = new RobotDrive(FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR, FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR);
 
@@ -81,6 +74,21 @@ public class DriveTrain extends Subsystem {
         m_left = -m_left;
         m_right = -m_right;
 
+        double rcw = pJoystick->GetTwist();
+        double forwrd = pJoystick->GetY() * -1; /* Invert stick Y axis */
+        double strafe = pJoystick->GetX();
+
+        double pi = Math.PI;
+
+        /* Adjust Joystick X/Y inputs by navX MXP yaw angle */
+
+        double gyro_degrees = CommandBase.navX.getYaw();
+        double gyro_radians = gyro_degrees * pi / 180;
+        double temp = forwrd * cos(gyro_radians) +
+                strafe * sin(gyro_radians);
+        strafe = -forwrd * sin(gyro_radians) +
+                strafe * cos(gyro_radians);
+        fwd = temp;
         drive.tankDrive(m_left, m_right);
     }
 
@@ -95,13 +103,9 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveForward() {
-        motors.setMotorSpeed("FRONT_LEFT_MOTOR", 1.0);
-        motors.setMotorSpeed("REAR_LEFT_MOTOR", 1.0);
-        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 1.0);
-        motors.setMotorSpeed("REAR_RIGHT_MOTOR", 1.0);
-    }
-
-    public void setMotorSpeed(String motor, double speed) {
-        motors.setMotorSpeed(motor, speed);
+        FRONT_LEFT_MOTOR.set(1.0);
+        FRONT_RIGHT_MOTOR.set(1.0);
+        REAR_LEFT_MOTOR.set(1.0);
+        REAR_RIGHT_MOTOR.set(1.0);
     }
 }

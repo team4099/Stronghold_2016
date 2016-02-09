@@ -1,8 +1,10 @@
-package org.usfirst.frc.team4099.robot;
+package org.usfirst.frc.team4099.robot.subsystems;
 
 /*
  * Vision subsystem - communicates with the external processor for actual data
  */
+import edu.wpi.first.wpilibj.command.Command;
+
 import java.util.ArrayList;
 import java.net.Socket;
 import java.net.UnknownHostException;

@@ -7,12 +7,10 @@ import org.usfirst.frc.team4099.robot.commands.RunShooterSlowly;
 
 public class Shooter extends Subsystem {
 
-    private Motors motors;
     private int LEFT_SHOOTER_PORT, RIGHT_SHOOTER_PORT;
     private Talon LEFT_SHOOTER_MOTOR, RIGHT_SHOOTER_MOTOR;
 
     public Shooter() {
-        motors = new Motors();
 
         LEFT_SHOOTER_PORT = Constants.LEFT_SHOOTER_MOTOR_PORT;
         RIGHT_SHOOTER_PORT = Constants.RIGHT_SHOOTER_MOTOR_PORT;
@@ -20,8 +18,8 @@ public class Shooter extends Subsystem {
         LEFT_SHOOTER_MOTOR = new Talon(LEFT_SHOOTER_PORT);
         RIGHT_SHOOTER_MOTOR = new Talon(RIGHT_SHOOTER_PORT);
 
-        motors.addMotor("LEFT_SHOOTER_MOTOR", LEFT_SHOOTER_MOTOR);
-        motors.addMotor("RIGHT_SHOOTER_MOTOR", RIGHT_SHOOTER_MOTOR);
+        LEFT_SHOOTER_MOTOR.setSafetyEnabled(false);
+        RIGHT_SHOOTER_MOTOR.setSafetyEnabled(false);
     }
 
     @Override
@@ -30,16 +28,15 @@ public class Shooter extends Subsystem {
     }
 
     public void setMotorSpeed(String motor, double speed) {
-        motors.setMotorSpeed(motor, speed);
     }
 
     public void runMotorsSlowly() {
-        setMotorSpeed("LEFT_SHOOTER_MOTOR", 0.2);
-        setMotorSpeed("RIGHT_SHOOTER_MOTOR", 0.2);
+        LEFT_SHOOTER_MOTOR.set(0.2);
+        RIGHT_SHOOTER_MOTOR.set(0.2);
     }
 
     public void runMotorsShootingSpeed() {
-        setMotorSpeed("LEFT_SHOOTER_MOTOR", 1.0);
-        setMotorSpeed("RIGHT_SHOOTER_MOTOR", 1.0);
+        LEFT_SHOOTER_MOTOR.set(0.8);
+        RIGHT_SHOOTER_MOTOR.set(0.8);
     }
 }
