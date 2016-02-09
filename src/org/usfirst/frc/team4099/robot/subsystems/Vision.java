@@ -3,7 +3,7 @@ package org.usfirst.frc.team4099.robot.subsystems;
 /*
  * Vision subsystem - communicates with the external processor for actual data
  */
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 import java.util.ArrayList;
 import java.net.Socket;
@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 /*
  * Interface to integrate with external imaging processing 
  */
-class Vision
+class Vision extends Subsystem
 {
     /*
     public static void main(String args[]) {
@@ -32,13 +32,14 @@ class Vision
 
     private Socket processorSocket;
 
-    private ArrayList<Command> commandQueue;
-
     /*
      * Period is the update interval 
      */
     public Vision(float period) {
-        this.commandQueue = new ArrayList<Command>();
+    }
+    @Override
+    protected void initDefaultCommand() {
+        
     }
 
     /* 
@@ -104,9 +105,6 @@ class Vision
         return this.firingAcceleration;
     }
     
-    public void queueCommand(Command cmd) {
-        commandQueue.add(cmd);
-    }
 }
 
 
