@@ -6,11 +6,16 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class TurnAngle extends CommandBase {
 
-    double angle;
-    double startingAngle;
-    boolean turnRight;
+    private double angle;
+    private double startingAngle;
+    private boolean turnRight;
+
+    private double threshold;
+    private double incrementAmount;
 
     public TurnAngle(double angle) {
+        threshold = 2.5;
+        incrementAmount = 0.01;
         this.angle = angle;
         requires(driveTrain);
     }
@@ -26,6 +31,14 @@ public class TurnAngle extends CommandBase {
 
     @Override
     protected void execute() {
+        double x;
+        if(Math.abs(x = driveTrain.getLeftEncoderSpeed() - driveTrain.getRightEncoderSpeed()) > threshold) {
+            if(x < 0) {
+                driveTrain.drive(driveTrain.getLeftMotorSpeed() - incrementAmount, driveTrain.getRightMotorSpeed() + incrementAmount);
+            } else {
+                driveTrain.drive(driveTrain.getLeftMotorSpeed() + incrementAmount, driveTrain.getRightMotorSpeed() - incrementAmount);
+            }
+        }
     }
 
     @Override

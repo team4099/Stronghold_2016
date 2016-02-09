@@ -1,9 +1,6 @@
 
 package org.usfirst.frc.team4099.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team4099.robot.OI;
-import org.usfirst.frc.team4099.robot.Robot;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class GamepadDrive extends CommandBase {
@@ -20,10 +17,10 @@ public class GamepadDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//        driveTrain.driveWithGamepad(oi.getGamepad());
-    	if (oi.getGamepad().isDPadUpPressed() || oi.getGamepad().isDPadDownPressed()) {
-    		driveTrain.drive(oi.getGamepad().isDPadUpPressed() ? 1 : 0, oi.getGamepad().isDPadDownPressed() ? 1 : 0)
-    	} else if ( oi.getGamepad().isDPadLeftPressed() || oi.getGamepad().isDPadRightPressed()) {
+//        driveTrain.driveWithGamepad(oi.getGamepad0());
+    	if (oi.getGamepad0().isDPadUpPressed() || oi.getGamepad0().isDPadDownPressed()) {
+    		driveTrain.tankDrive(oi.getGamepad0().isDPadUpPressed() ? 1 : 0, oi.getGamepad0().isDPadDownPressed() ? 1 : 0)
+    	} else if ( oi.getGamepad0().isDPadLeftPressed() || oi.getGamepad0().isDPadRightPressed()) {
     		//turn
     	} else {
     		double left = gamepad.getLeftVerticalAxis();
@@ -44,7 +41,7 @@ public class GamepadDrive extends CommandBase {
             m_left = -m_left;
             m_right = -m_right;
             
-            driveTrain.drive(m_left, m_right);
+            driveTrain.tankDrive(m_left, m_right);
     	}
     }
 

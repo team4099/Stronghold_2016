@@ -11,7 +11,8 @@ import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
  */
 public class OI {
 
-    private Gamepad gamepad;
+    private Gamepad gamepad0;
+    private Gamepad gamepad1;
     private Button A_BUTTON;
     private Button B_BUTTON;
     private Button X_BUTTON;
@@ -19,12 +20,16 @@ public class OI {
     private Button RIGHT_BUTTON;
 
     public OI() {
-        gamepad = new Gamepad(0);
-        A_BUTTON = new JoystickButton(gamepad, Gamepad.A_BUTTON);
-        B_BUTTON = new JoystickButton(gamepad, Gamepad.B_BUTTON);
-        X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
-        Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
-        RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
+        gamepad0 = new Gamepad(0);
+
+        // TODO: make this thing do stuff like manual control for ramp
+        gamepad1 = new Gamepad(1);
+
+        A_BUTTON = new JoystickButton(gamepad0, Gamepad.A_BUTTON);
+        B_BUTTON = new JoystickButton(gamepad0, Gamepad.B_BUTTON);
+        X_BUTTON = new JoystickButton(gamepad0, Gamepad.X_BUTTON);
+        Y_BUTTON = new JoystickButton(gamepad0, Gamepad.Y_BUTTON);
+        RIGHT_BUTTON = new JoystickButton(gamepad0, Gamepad.RIGHT_SHOULDER_BUTTON);
 
         /* Commands */
         Y_BUTTON.whileHeld(new RunShooterFullSpeed());
@@ -34,8 +39,8 @@ public class OI {
 //        B_BUTTON.whenPressed(new ElevatorToPosition(Elevator.MIDDLE));
     }
 
-    public Gamepad getGamepad() {
-        return gamepad;
+    public Gamepad getGamepad0() {
+        return gamepad0;
     }
 }
 

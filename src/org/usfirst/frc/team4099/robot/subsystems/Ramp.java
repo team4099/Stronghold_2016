@@ -11,7 +11,7 @@ public class Ramp extends Subsystem {
     private AnalogPotentiometer potentiometer;
     private Talon actuatorMotor;
     private double maxHeight = 10;
-    private double zeroPoint = 0
+    private double zeroPoint = 0;
     		
     public Ramp() {
         this.actuatorMotor = new Talon(Constants.RAMP_ACTUATOR_MOTOR_PORT);

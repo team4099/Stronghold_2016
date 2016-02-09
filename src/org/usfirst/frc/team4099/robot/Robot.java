@@ -65,18 +65,18 @@ public class Robot extends IterativeRobot {
 
         /* Calibrate DriveTrain motors */
 //        CommandBase.driveTrain.setMotorSpeed("FRONT_LEFT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//                DriveTrain.deadband(CommandBase.oi.getGamepad0().getLeftVerticalAxis()));
 //        CommandBase.driveTrain.setMotorSpeed("FRONT_RIGHT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//                DriveTrain.deadband(CommandBase.oi.getGamepad0().getLeftVerticalAxis()));
 //        CommandBase.driveTrain.setMotorSpeed("REAR_LEFT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//                DriveTrain.deadband(CommandBase.oi.getGamepad0().getLeftVerticalAxis()));
 //        CommandBase.driveTrain.setMotorSpeed("REAR_RIGHT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//                DriveTrain.deadband(CommandBase.oi.getGamepad0().getLeftVerticalAxis()));
 
         /* Calibrate shooter motors */
 //        CommandBase.shooter.setMotorSpeed("LEFT_SHOOTER_MOTOR",
-//                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//                GamepadUtil.deadband(CommandBase.oi.getGamepad0().getLeftVerticalAxis()));
 //        CommandBase.shooter.setMotorSpeed("RIGHT_SHOOTER_MOTOR",
-//                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+//                GamepadUtil.deadband(CommandBase.oi.getGamepad0().getLeftVerticalAxis()));
     }
 }

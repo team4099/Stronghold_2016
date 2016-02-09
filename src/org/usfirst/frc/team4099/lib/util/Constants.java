@@ -18,10 +18,10 @@ public class Constants {
 
     public static final int LEFT_SHOOTER_MOTOR_PORT = 5;
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 4;
-    public static final int FRONT_LEFT_MOTOR_PORT = 6;
-    public static final int REAR_LEFT_MOTOR_PORT = 8;
-    public static final int FRONT_RIGHT_MOTOR_PORT = 7;
-    public static final int REAR_RIGHT_MOTOR_PORT = 9;
+    public static final int FRONT_LEFT_MOTOR_PORT = 8;
+    public static final int REAR_LEFT_MOTOR_PORT = 7;
+    public static final int FRONT_RIGHT_MOTOR_PORT = 1;
+    public static final int REAR_RIGHT_MOTOR_PORT = 0;
     public static final int RAMP_ACTUATOR_MOTOR_PORT = 0;
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
@@ -29,10 +29,5 @@ public class Constants {
 
 
     public static final int POTENTIOMETER = 0;
-
-
-
-
-
 
 }
