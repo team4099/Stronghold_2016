@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
@@ -13,35 +14,21 @@ public class DriveTrain extends Subsystem {
 
     private RobotDrive drive;
 
-    private static double DEADBAND_LIMIT;
-    private double SLOW_GEAR_REDUCTION_FACTOR;
-    private double FAST_GEAR_REDUCTION_FACTOR;
-
-    private int FRONT_LEFT_MOTOR_PORT, REAR_LEFT_MOTOR_PORT;
-    private int FRONT_RIGHT_MOTOR_PORT, REAR_RIGHT_MOTOR_PORT;
-
-    private Talon FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR;
-    private Talon FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR;
+    private Talon frontLeftMotor, rearLeftMotor;
+    private Talon frontRightMotor, rearRightMotor;
 
     private Timer printTimer;
 
+    private Encoder
+
     public DriveTrain() {
 
-        DEADBAND_LIMIT = Constants.DEADBAND_LIMIT;
-        SLOW_GEAR_REDUCTION_FACTOR = Constants.SLOW_GEAR_REDUCTION_FACTOR;
-        FAST_GEAR_REDUCTION_FACTOR = Constants.FAST_GEAR_REDUCTION_FACTOR;
+        frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
+        rearLeftMotor = new Talon(Constants.REAR_LEFT_MOTOR_PORT);
+        frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
+        rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
 
-        FRONT_LEFT_MOTOR_PORT = Constants.FRONT_LEFT_MOTOR_PORT;
-        REAR_LEFT_MOTOR_PORT = Constants.REAR_LEFT_MOTOR_PORT;
-        FRONT_RIGHT_MOTOR_PORT = Constants.FRONT_RIGHT_MOTOR_PORT;
-        REAR_RIGHT_MOTOR_PORT = Constants.REAR_RIGHT_MOTOR_PORT;
-
-        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
-        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
-        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
-        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
-
-        drive = new RobotDrive(FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR, FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR);
+        drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
         printTimer = new Timer();
         printTimer.start();
@@ -98,39 +85,39 @@ public class DriveTrain extends Subsystem {
         boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
 
         if (leftTriggerPressed && rightTriggerPressed)
-            return speed / FAST_GEAR_REDUCTION_FACTOR;
+            return speed / Constants.FAST_GEAR_REDUCTION_FACTOR;
 
-        return speed / SLOW_GEAR_REDUCTION_FACTOR;
+        return speed / Constants.SLOW_GEAR_REDUCTION_FACTOR;
     }
 
     public void driveForward() {
-        FRONT_LEFT_MOTOR.set(0.5);
-        REAR_LEFT_MOTOR.set(0.5);
-        FRONT_RIGHT_MOTOR.set(0.5);
-        REAR_RIGHT_MOTOR.set(0.5);
+        frontLeftMotor.set(0.5);
+        rearLeftMotor.set(0.5);
+        frontRightMotor.set(0.5);
+        rearRightMotor.set(0.5);
     }
     public void driveBackward() {
-        FRONT_LEFT_MOTOR.set(-0.5);
-        REAR_LEFT_MOTOR.set(-0.5);
-        FRONT_RIGHT_MOTOR.set(-0.5);
-        REAR_RIGHT_MOTOR.set(-0.5);
+        frontLeftMotor.set(-0.5);
+        rearLeftMotor.set(-0.5);
+        frontRightMotor.set(-0.5);
+        rearRightMotor.set(-0.5);
     }
     public void turnRight() {
-        FRONT_LEFT_MOTOR.set(0.5);
-        REAR_LEFT_MOTOR.set(0.5);
-        FRONT_RIGHT_MOTOR.set(-0.5);
-        REAR_RIGHT_MOTOR.set(-0.5);
+        frontLeftMotor.set(0.5);
+        rearLeftMotor.set(0.5);
+        frontRightMotor.set(-0.5);
+        rearRightMotor.set(-0.5);
     }
     public void turnLeft() {
-        FRONT_LEFT_MOTOR.set(-0.5);
-        REAR_LEFT_MOTOR.set(-0.5);
-        FRONT_RIGHT_MOTOR.set(0.5);
-        REAR_RIGHT_MOTOR.set(0.5);
+        frontLeftMotor.set(-0.5);
+        rearLeftMotor.set(-0.5);
+        frontRightMotor.set(0.5);
+        rearRightMotor.set(0.5);
     }
     public void stop() {
-        FRONT_LEFT_MOTOR.set(0.0);
-        REAR_LEFT_MOTOR.set(0.0);
-        FRONT_RIGHT_MOTOR.set(0.0);
-        REAR_RIGHT_MOTOR.set(0.0);
+        frontLeftMotor.set(0.0);
+        rearLeftMotor.set(0.0);
+        frontRightMotor.set(0.0);
+        rearRightMotor.set(0.0);
     }
 }

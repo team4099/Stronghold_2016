@@ -24,6 +24,10 @@ public class Constants {
     public static final int REAR_RIGHT_MOTOR_PORT = 9;
     public static final int RAMP_ACTUATOR_MOTOR_PORT = 0;
 
+    public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
+    public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
+
+
     public static final int POTENTIOMETER = 0;
 
 
