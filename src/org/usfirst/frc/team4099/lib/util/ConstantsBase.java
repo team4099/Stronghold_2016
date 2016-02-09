@@ -19,15 +19,23 @@ public class ConstantsBase {
 
         integerConstants.put("LEFT_SHOOTER_MOTOR_PORT", 5);
         integerConstants.put("RIGHT_SHOOTER_MOTOR_PORT", 4);
-        integerConstants.put("FRONT_LEFT_MOTOR_PORT", 3);
-        integerConstants.put("REAR_LEFT_MOTOR_PORT", 2);
-        integerConstants.put("FRONT_RIGHT_MOTOR_PORT", 1);
-        integerConstants.put("REAR_RIGHT_MOTOR_PORT", 0);
+
+        integerConstants.put("FRONT_LEFT_MOTOR_PORT", 6);
+        integerConstants.put("REAR_LEFT_MOTOR_PORT", 8);
+        integerConstants.put("FRONT_RIGHT_MOTOR_PORT", 7);
+        integerConstants.put("REAR_RIGHT_MOTOR_PORT", 9);
+
+        integerConstants.put("RAMP_ACTUATOR_MOTOR_PORT", 0);
 
         doubleConstants.put("DEADBAND_LIMIT", 0.1);
         doubleConstants.put("SLOW_GEAR_REDUCTION_FACTOR", 2.5);
         doubleConstants.put("FAST_GEAR_REDUCTION_FACTOR", 1.5);
         //loadConstantsFromFile(CONSTANTS_FILEPATH);
+
+        doubleConstants.put("RAMP_ACTUATOR_RADIUS", 3.0);
+        doubleConstants.put("DISTANCE_ACTUATOR_SHOOTER", 3.0);
+        doubleConstants.put("MOTOR_LENGTH", 0.5);
+
     }
 
     public static void loadConstantsFromFile(String filepath) {

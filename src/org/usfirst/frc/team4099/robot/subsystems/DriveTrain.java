@@ -27,15 +27,15 @@ public class DriveTrain extends Subsystem {
         SLOW_GEAR_REDUCTION_FACTOR = CommandBase.constants.getDouble("SLOW_GEAR_REDUCTION_FACTOR");
         FAST_GEAR_REDUCTION_FACTOR = CommandBase.constants.getDouble("FAST_GEAR_REDUCTION_FACTOR");
 
-//        FRONT_LEFT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_LEFT_MOTOR_PORT");
-//        REAR_LEFT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_LEFT_MOTOR_PORT");
-//        FRONT_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_RIGHT_MOTOR_PORT");
-//        REAR_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_RIGHT_MOTOR_PORT");
-//
-        FRONT_LEFT_MOTOR_PORT = 6;
-        REAR_LEFT_MOTOR_PORT = 8;
-        FRONT_RIGHT_MOTOR_PORT = 7;
-        REAR_RIGHT_MOTOR_PORT = 9;
+        FRONT_LEFT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_LEFT_MOTOR_PORT");
+        REAR_LEFT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_LEFT_MOTOR_PORT");
+        FRONT_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("FRONT_RIGHT_MOTOR_PORT");
+        REAR_RIGHT_MOTOR_PORT = CommandBase.constants.getInteger("REAR_RIGHT_MOTOR_PORT");
+
+//        FRONT_LEFT_MOTOR_PORT = 6;
+//        REAR_LEFT_MOTOR_PORT = 8;
+//        FRONT_RIGHT_MOTOR_PORT = 7;
+//        REAR_RIGHT_MOTOR_PORT = 9;
         
 
         FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
@@ -119,6 +119,13 @@ public class DriveTrain extends Subsystem {
         motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 0.5);
         motors.setMotorSpeed("REAR_RIGHT_MOTOR", 0.5);
     }
+    public void stop() {
+        motors.setMotorSpeed("FRONT_LEFT_MOTOR", 0.0);
+        motors.setMotorSpeed("REAR_LEFT_MOTOR", 0.0);
+        motors.setMotorSpeed("FRONT_RIGHT_MOTOR", 0.0);
+        motors.setMotorSpeed("REAR_RIGHT_MOTOR", 0.0);
+    }
+
 
     public void setMotorSpeed(String motor, double speed) {
         motors.setMotorSpeed(motor, speed);

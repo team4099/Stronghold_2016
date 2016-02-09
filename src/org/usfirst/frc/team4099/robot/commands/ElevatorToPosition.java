@@ -4,17 +4,17 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class ElevatorToPosition extends CommandBase {
 
-    double m_position;
+    double position;
 
     public ElevatorToPosition(double position) {
-        m_position = position;
+        this.position = position;
         requires(elevator);
     }
 
     @Override
     protected void initialize() {
-        System.out.println("trying to set position to: " + m_position);
-        elevator.setSetpoint(m_position);
+        System.out.println("trying to set position to: " + position);
+        elevator.setSetpoint(position);
     }
 
     @Override
