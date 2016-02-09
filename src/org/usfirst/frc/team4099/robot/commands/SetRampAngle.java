@@ -33,7 +33,8 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        if(goingUp) return ramp.getCurrentAngle() >= destinationAngle;
+        else return ramp.getCurrentAngle() <= destinationAngle;
     }
 
     @Override
