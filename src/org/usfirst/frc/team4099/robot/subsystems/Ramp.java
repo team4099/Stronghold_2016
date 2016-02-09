@@ -8,10 +8,14 @@ import org.usfirst.frc.team4099.lib.util.Constants;
 public class Ramp extends Subsystem {
 
     private double potentiometerDistance;
+    private AnalogoPotentiometer;
     private Talon actuatorMotor;
-
+    private double maxHeight = 10;
+    private double zeroPoint = 0
+    		
     public Ramp() {
         this.actuatorMotor = new Talon(Constants.RAMP_ACTUATOR_MOTOR_PORT);
+        this.potentiometer = new AnalogPotentiometer(Constants.POTENTIOMETER, maxHeight, zeroPoint);
     }
 
     public void setActuatorMotor(double speed) {
@@ -28,6 +32,11 @@ public class Ramp extends Subsystem {
 
         return Math.acos(Math.pow(potentiometerDistance + Constants.MOTOR_LENGTH, 2) - Math.pow(Constants.RAMP_ACTUATOR_RADIUS, 2) - Math.pow(Constants.DISTANCE_ACTUATOR_SHOOTER, 2) / (Constants.RAMP_ACTUATOR_RADIUS * Constants.DISTANCE_ACTUATOR_SHOOTER));
     }
+    
+    public double potentiometerDistance() {
+    	potentiometerDistance = potentiometer.get();
+    }
+    
     @Override
     protected void initDefaultCommand() {
     }
