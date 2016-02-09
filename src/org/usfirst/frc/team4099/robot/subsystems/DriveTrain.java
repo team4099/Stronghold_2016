@@ -3,7 +3,7 @@ package org.usfirst.frc.team4099.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team4099.lib.util.Constants;
-import org.usfirst.frc.team4099.robot.commands.JoystickDrive;
+import org.usfirst.frc.team4099.robot.commands.GamepadDrive;
 
 public class DriveTrain extends Subsystem {
 
@@ -35,7 +35,7 @@ public class DriveTrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new JoystickDrive());
+        setDefaultCommand(new GamepadDrive());
     }
 
     public void setSafety(boolean safety) {

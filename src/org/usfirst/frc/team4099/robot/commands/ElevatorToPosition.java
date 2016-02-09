@@ -7,14 +7,14 @@ public class ElevatorToPosition extends CommandBase {
     double position;
 
     public ElevatorToPosition(double position) {
-        this.position = position;
-        requires(elevator);
+//        this.position = position;
+//        requires(elevator);
     }
 
     @Override
     protected void initialize() {
-        System.out.println("trying to set position to: " + position);
-        elevator.setSetpoint(position);
+//        System.out.println("trying to set position to: " + position);
+//        elevator.setSetpoint(position);
     }
 
     @Override
@@ -24,7 +24,8 @@ public class ElevatorToPosition extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return Math.abs(elevator.getSetpoint() - elevator.getPosition()) < 0.1;
+//        return Math.abs(elevator.getSetpoint() - elevator.getPosition()) < 0.1;
+        return false;
     }
 
     @Override

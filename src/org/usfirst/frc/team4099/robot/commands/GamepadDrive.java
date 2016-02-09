@@ -25,8 +25,8 @@ public class GamepadDrive extends CommandBase {
 
 //        driveTrain.driveWithGamepad(oi.getGamepad0());
     	if (oi.getGamepad0().isDPadUpPressed() || oi.getGamepad0().isDPadDownPressed()) {
-    		driveTrain.tankDrive(oi.getGamepad0().isDPadUpPressed() ? 1 : 0, oi.getGamepad0().isDPadDownPressed() ? 1 : 0)
-    	} else if (oi.getGamepad0().isDPadLeftPressed() || ) {
+    		driveTrain.tankDrive(oi.getGamepad0().isDPadUpPressed() ? 1 : 0, oi.getGamepad0().isDPadDownPressed() ? 1 : 0);
+    	} else if (oi.getGamepad0().isDPadLeftPressed()) {
     		driveTrain.turnLeft();
     	} else if (oi.getGamepad0().isDPadRightPressed()) {
     		driveTrain.turnRight();
@@ -57,7 +57,7 @@ public class GamepadDrive extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !(oi.getGamepad0().isDPadUpPressed() || oi.getGamepad0().isDPadDownPressed() || oi.getGamepad0().isDPadLeftPressed() || oi.getGamepad0().isDPadRightPressed() || GamepadUtil.deadband(oi.getGamepad0().getLeftVerticalAxis()) != 0) || GamepadUtil.deadband(oi.getGamepad0().getRightVerticalAxis()) != 0); // if nothing is pressed stop
+        return !(oi.getGamepad0().isDPadUpPressed() || oi.getGamepad0().isDPadDownPressed() || oi.getGamepad0().isDPadLeftPressed() || oi.getGamepad0().isDPadRightPressed() || GamepadUtil.deadband(oi.getGamepad0().getLeftVerticalAxis()) != 0 || GamepadUtil.deadband(oi.getGamepad0().getRightVerticalAxis()) != 0); // if nothing is pressed stop
     }
 
     // Called once after isFinished returns true
