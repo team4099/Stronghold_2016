@@ -23,8 +23,10 @@ public class GamepadDrive extends CommandBase {
 //        driveTrain.driveWithGamepad(oi.getGamepad());
     	if (oi.getGamepad().isDPadUpPressed() || oi.getGamepad().isDPadDownPressed()) {
     		driveTrain.drive(oi.getGamepad().isDPadUpPressed() ? 1 : 0, oi.getGamepad().isDPadDownPressed() ? 1 : 0)
-    	} else if ( oi.getGamepad().isDPadLeftPressed() || oi.getGamepad().isDPadRightPressed()) {
-    		//turn
+    	} else if (oi.getGamepad().isDPadLeftPressed() || ) {
+    		driveTrain.turnLeft();
+    	} else if (oi.getGamepad().isDPadRightPressed()) {
+    		driveTrain.turnRight();
     	} else {
     		double left = gamepad.getLeftVerticalAxis();
             double right = gamepad.getRightVerticalAxis();
@@ -50,11 +52,12 @@ public class GamepadDrive extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !(oi.getGamepad().isDPadUpPressed() || oi.getGamepad().isDPadDownPressed() || oi.getGamepad().isDPadLeftPressed() || oi.getGamepad().isDPadRightPressed() || GamepadUtil.deadband(gamepad.getLeftVerticalAxis()) != 0) || GamepadUtil.deadband(gamepad.getRightVerticalAxis()) != 0); // if nothing is pressed stop
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
