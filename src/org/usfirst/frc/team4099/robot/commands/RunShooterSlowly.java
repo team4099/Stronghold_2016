@@ -18,7 +18,7 @@ public class RunShooterSlowly extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override

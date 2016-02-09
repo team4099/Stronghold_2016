@@ -2,7 +2,7 @@ package org.usfirst.frc.team4099.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team4099.lib.util.ConstantsBase;
+import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.robot.commands.RunShooterSlowly;
 
 public class Shooter extends Subsystem {
@@ -14,8 +14,8 @@ public class Shooter extends Subsystem {
     public Shooter() {
         motors = new Motors();
 
-        LEFT_SHOOTER_PORT = CommandBase.constants.getInteger("LEFT_SHOOTER_MOTOR_PORT");
-        RIGHT_SHOOTER_PORT = CommandBase.constants.getInteger("RIGHT_SHOOTER_MOTOR_PORT");
+        LEFT_SHOOTER_PORT = Constants.LEFT_SHOOTER_MOTOR_PORT;
+        RIGHT_SHOOTER_PORT = Constants.RIGHT_SHOOTER_MOTOR_PORT;
 
         LEFT_SHOOTER_MOTOR = new Talon(LEFT_SHOOTER_PORT);
         RIGHT_SHOOTER_MOTOR = new Talon(RIGHT_SHOOTER_PORT);

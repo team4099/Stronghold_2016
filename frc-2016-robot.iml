@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="FRC Plugins" level="project" />
+    <orderEntry type="library" name="navX FRC" level="project" />
   </component>
 </module>
