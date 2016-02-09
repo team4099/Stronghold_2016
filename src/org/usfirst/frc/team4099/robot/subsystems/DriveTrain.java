@@ -44,6 +44,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveWithGamepad(Gamepad gamepad) {
+    	// DEPRECATED
         double left = gamepad.getLeftVerticalAxis();
         double right = gamepad.getRightVerticalAxis();
 
@@ -78,6 +79,10 @@ public class DriveTrain extends Subsystem {
                 strafe * Math.cos(gyro_radians);
         fwd = temp;
         drive.tankDrive(m_left, m_right);
+    }
+    
+    public void drive(double leftSpeed, double rightSpeed) {
+        drive.tankDrive(leftSpeed, rightSpeed);
     }
 
     private double modifySpeed(double speed) {
