@@ -1,8 +1,6 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 import org.usfirst.frc.team4099.lib.util.Constants;
@@ -17,11 +15,12 @@ public class DriveTrain extends Subsystem {
     private double SLOW_GEAR_REDUCTION_FACTOR;
     private double FAST_GEAR_REDUCTION_FACTOR;
 
-    private int FRONT_LEFT_MOTOR_PORT, REAR_LEFT_MOTOR_PORT;
-    private int FRONT_RIGHT_MOTOR_PORT, REAR_RIGHT_MOTOR_PORT;
+    private Talon frontLeftMotor, rearLeftMotor;
+    private Talon frontRightMotor, rearRightMotor;
 
-    private Talon FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR;
-    private Talon FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR;
+
+    private Encoder leftEncoder;
+    private Encoder rightEncoder;
 
     private Timer printTimer;
 
@@ -30,17 +29,15 @@ public class DriveTrain extends Subsystem {
         SLOW_GEAR_REDUCTION_FACTOR = Constants.SLOW_GEAR_REDUCTION_FACTOR;
         FAST_GEAR_REDUCTION_FACTOR = Constants.FAST_GEAR_REDUCTION_FACTOR;
 
-        FRONT_LEFT_MOTOR_PORT = Constants.FRONT_LEFT_MOTOR_PORT;
-        REAR_LEFT_MOTOR_PORT = Constants.REAR_LEFT_MOTOR_PORT;
-        FRONT_RIGHT_MOTOR_PORT = Constants.FRONT_RIGHT_MOTOR_PORT;
-        REAR_RIGHT_MOTOR_PORT = Constants.REAR_RIGHT_MOTOR_PORT;
+        frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
+        rearLeftMotor = new Talon(Constants.REAR_LEFT_MOTOR_PORT);
+        frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
+        rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
 
-        FRONT_LEFT_MOTOR = new Talon(FRONT_LEFT_MOTOR_PORT);
-        REAR_LEFT_MOTOR = new Talon(REAR_LEFT_MOTOR_PORT);
-        FRONT_RIGHT_MOTOR = new Talon(FRONT_RIGHT_MOTOR_PORT);
-        REAR_RIGHT_MOTOR = new Talon(REAR_RIGHT_MOTOR_PORT);
+        leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
 
-        drive = new RobotDrive(FRONT_LEFT_MOTOR, REAR_LEFT_MOTOR, FRONT_RIGHT_MOTOR, REAR_RIGHT_MOTOR);
+        drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
         printTimer = new Timer();
         printTimer.start();
@@ -96,9 +93,102 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveForward() {
-        FRONT_LEFT_MOTOR.set(1.0);
-        FRONT_RIGHT_MOTOR.set(1.0);
-        REAR_LEFT_MOTOR.set(1.0);
-        REAR_RIGHT_MOTOR.set(1.0);
+        frontLeftMotor.set(1.0);
+        frontRightMotor.set(1.0);
+        rearLeftMotor.set(1.0);
+        rearRightMotor.set(1.0);
+    }
+
+
+    /**
+     * Sets motor speeds by side (can be used for turning, etc)
+     * @param leftSpeed The speed to set the left motors to
+     * @param rightSpeed The speed to set the left motors to
+     */
+    public void drive(double leftSpeed, double rightSpeed) {
+        frontLeftMotor.set(leftSpeed);
+        rearLeftMotor.set(leftSpeed);
+        frontRightMotor.set(rightSpeed);
+        rearRightMotor.set(rightSpeed);
+    }
+
+    /**
+     * Drives forward at 0.5 speed
+     */
+//    public void driveForward() {
+//        frontLeftMotor.set(0.5);
+//        rearLeftMotor.set(0.5);
+//        frontRightMotor.set(0.5);
+//        rearRightMotor.set(0.5);
+//    }
+//
+    /**
+     * Drives backwards at 0.5 speed
+     */
+    public void driveBackward() {
+        frontLeftMotor.set(-0.5);
+        rearLeftMotor.set(-0.5);
+        frontRightMotor.set(-0.5);
+        rearRightMotor.set(-0.5);
+    }
+
+    /**
+     * Pivots right at 0.5 speed
+     */
+    public void turnRight() {
+        frontLeftMotor.set(0.5);
+        rearLeftMotor.set(0.5);
+        frontRightMotor.set(-0.5);
+        rearRightMotor.set(-0.5);
+    }
+
+    /**
+     * Pivots left at 0.5 speed
+     */
+    public void turnLeft() {
+        frontLeftMotor.set(-0.5);
+        rearLeftMotor.set(-0.5);
+        frontRightMotor.set(0.5);
+        rearRightMotor.set(0.5);
+    }
+
+    /**
+     * Stops the motors on the drive train
+     */
+    public void stop() {
+        frontLeftMotor.set(0.0);
+        rearLeftMotor.set(0.0);
+        frontRightMotor.set(0.0);
+        rearRightMotor.set(0.0);
+    }
+
+    /**
+     * Gets the motor speed as reported by the encoder
+     * @return The speed returned by the left gearbox encoder
+     */
+    public double getLeftEncoderSpeed() {
+        return leftEncoder.getRate();
+    }
+
+    /**
+     * Gets the motor speed as reported by the encoder
+     * @return The speed returned by the right gearbox encoder
+     */
+    public double getRightEncoderSpeed() {
+        return rightEncoder.getRate();
+    }
+
+    /**
+     * @return Returns what speed the left motors were set to
+     */
+    public double getLeftMotorSpeed() {
+        return frontLeftMotor.get();
+    }
+
+    /**
+     * @return Returns what speed the right motors were set to
+     */
+    public double getRightMotorSpeed() {
+        return frontRightMotor.get();
     }
 }
