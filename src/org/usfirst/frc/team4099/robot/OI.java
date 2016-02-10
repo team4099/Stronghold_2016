@@ -42,5 +42,6 @@ public class OI {
     public Gamepad getGamepad0() {
         return gamepad0;
     }
+    public Gamepad getGamepad1() { return gamepad1; }
 }
 

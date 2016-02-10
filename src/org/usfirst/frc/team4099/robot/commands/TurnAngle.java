@@ -13,6 +13,10 @@ public class TurnAngle extends CommandBase {
     private double threshold;
     private double incrementAmount;
 
+    /**
+     * @param angle The amount to turn in degrees
+     *              TODO: figure out if this is really degrees or it is radians
+     */
     public TurnAngle(double angle) {
         threshold = 2.5;
         incrementAmount = 0.01;

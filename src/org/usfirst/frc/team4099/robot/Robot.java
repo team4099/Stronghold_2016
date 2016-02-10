@@ -6,16 +6,10 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team4099.robot.commands.DriveBackward;
-import org.usfirst.frc.team4099.robot.commands.DriveForward;
 import org.usfirst.frc.team4099.robot.commands.GamepadDrive;
 import org.usfirst.frc.team4099.robot.commands.groups.TestCommandGroup;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
-import org.usfirst.frc.team4099.robot.subsystems.TurnLeft;
-import org.usfirst.frc.team4099.robot.subsystems.TurnRight;
 
-import com.kauailabs.navx.frc.AHRS;
 
 
 public class Robot extends IterativeRobot {
@@ -34,24 +28,29 @@ public class Robot extends IterativeRobot {
 //    	SmartDashboard.putData("TurnLeft", new TurnLeft(5));
         autonomousCommand = new TestCommandGroup();
     }
-	
+
+    @Override
     public void disabledInit(){
         CommandBase.driveTrain.setSafety(true);
     }
-	
+
+    @Override
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+//		Scheduler.getInstance().run();
 	}
 
+    @Override
     public void autonomousInit() {
         CommandBase.driveTrain.setSafety(false);
         autonomousCommand.start();
     }
 
+    @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
+    @Override
     public void teleopInit() {
         CommandBase.driveTrain.setSafety(false);
         // cancel any current autonomous
@@ -59,10 +58,17 @@ public class Robot extends IterativeRobot {
         gamepadDrive = new GamepadDrive();
     }
 
+    @Override
     public void teleopPeriodic() {
         gamepadDrive.start();
     }
-    
+
+    @Override
+    public void testInit() {
+
+    }
+
+    @Override
     public void testPeriodic() {
         LiveWindow.run();
 

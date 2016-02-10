@@ -9,11 +9,19 @@ public class SetRampAngle extends CommandBase {
     boolean goingUp;
     double maxSpeed;
 
+    /**
+     * @param angleToSetTo The angle at which to set the ramp to
+     */
     public SetRampAngle(double angleToSetTo) {
         this.destinationAngle = angleToSetTo;
         this.maxSpeed = 0.5;
         requires(ramp);
     }
+
+    /**
+     * @param angleToSetTo The angle at which to set the ramp to
+     * @param maxSpeed The max speed with which to run the motor
+     */
     public SetRampAngle(double angleToSetTo, double maxSpeed) {
         this.maxSpeed = Math.abs(maxSpeed);
         this.destinationAngle = angleToSetTo;
@@ -40,6 +48,7 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void end() {
+        // If it is going down, apply a quick burst going up to hold it in place (Karl)
         if(!goingUp) {
             ramp.setActuatorMotor(0.5);
             try {

@@ -32,18 +32,20 @@ class Vision extends Subsystem
 
     private Socket processorSocket;
 
-    /*
-     * Period is the update interval 
+    /**
+     * @param period The update interval
      */
     public Vision(float period) {
     }
+
+
     @Override
     protected void initDefaultCommand() {
         
     }
 
-    /* 
-     * Everytime this command is called, method checks for new vision data from 
+    /**
+     * Every time this command is called, method checks for new vision data from
      * the vision processor and sends any queued commands to the vision processor
      * */ 
     public void updateVisionData() {
@@ -77,29 +79,29 @@ class Vision extends Subsystem
         }
     }
     
-    /*
-     * Returns true if the bot is in range to land a shot
+    /**
+     * @return true if the bot is in range to land a shot
      */
     public int getTargetAcquired() {
         return this.acquiredTarget;
     }
 
-    /*
-     * Returns the lateral angle the bot/shooter must rotate laterally to land the shot
+    /**
+     * @return the lateral angle the bot/shooter must rotate laterally to land the shot
      */
     public float getLateralAngle() {
         return this.lateralAngle;
     }
 
-    /*
-     * Returns the vertical angle the shooting arm must be in to land the shot
+    /**
+     * @return the vertical angle the shooting arm must be in to land the shot
      */
     public float getVerticalAngle() {
         return this.verticalAngle;
     }
 
-    /*
-     * Return the acceleration the shooter must shoot at to land the shot
+    /**
+     * @return the acceleration the shooter must shoot at to land the shot
      */
     public float getFiringAcceleration() {
         return this.firingAcceleration;

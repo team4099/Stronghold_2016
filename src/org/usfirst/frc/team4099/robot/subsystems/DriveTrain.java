@@ -79,21 +79,31 @@ public class DriveTrain extends Subsystem {
 //        fwd = temp;
 //        drive.tankDrive(m_left, m_right);
 //    }
-    
+
+    /**
+     * Runs TankDrive with two speeds - one for each side
+     * @param leftSpeed The speed to set the left motors to in TankDrive
+     * @param rightSpeed The speed to set the right motors to in TankDrive
+     */
     public void tankDrive(double leftSpeed, double rightSpeed) {
         drive.tankDrive(leftSpeed, rightSpeed);
     }
 
-    private double modifySpeed(double speed) {
-        boolean leftTriggerPressed = CommandBase.oi.getGamepad0().isLeftTriggerPressed();
-        boolean rightTriggerPressed = CommandBase.oi.getGamepad0().isRightTriggerPressed();
+//    private double modifySpeed(double speed) {
+//        boolean leftTriggerPressed = CommandBase.oi.getGamepad0().isLeftTriggerPressed();
+//        boolean rightTriggerPressed = CommandBase.oi.getGamepad0().isRightTriggerPressed();
+//
+//        if (leftTriggerPressed && rightTriggerPressed)
+//            return speed / Constants.FAST_GEAR_REDUCTION_FACTOR;
+//
+//        return speed / Constants.SLOW_GEAR_REDUCTION_FACTOR;
+//    }
 
-        if (leftTriggerPressed && rightTriggerPressed)
-            return speed / Constants.FAST_GEAR_REDUCTION_FACTOR;
-
-        return speed / Constants.SLOW_GEAR_REDUCTION_FACTOR;
-    }
-
+    /**
+     * Sets motor speeds by side (can be used for turning, etc)
+     * @param leftSpeed The speed to set the left motors to
+     * @param rightSpeed The speed to set the left motors to
+     */
     public void drive(double leftSpeed, double rightSpeed) {
         frontLeftMotor.set(leftSpeed);
         rearLeftMotor.set(leftSpeed);
@@ -101,6 +111,9 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(rightSpeed);
     }
 
+    /**
+     * Drives forward at 0.5 speed
+     */
     public void driveForward() {
         frontLeftMotor.set(0.5);
         rearLeftMotor.set(0.5);
@@ -108,6 +121,9 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(0.5);
     }
 
+    /**
+     * Drives backwards at 0.5 speed
+     */
     public void driveBackward() {
         frontLeftMotor.set(-0.5);
         rearLeftMotor.set(-0.5);
@@ -115,6 +131,9 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(-0.5);
     }
 
+    /**
+     * Pivots right at 0.5 speed
+     */
     public void turnRight() {
         frontLeftMotor.set(0.5);
         rearLeftMotor.set(0.5);
@@ -122,6 +141,9 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(-0.5);
     }
 
+    /**
+     * Pivots left at 0.5 speed
+     */
     public void turnLeft() {
         frontLeftMotor.set(-0.5);
         rearLeftMotor.set(-0.5);
@@ -129,6 +151,9 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(0.5);
     }
 
+    /**
+     * Stops the motors on the drive train
+     */
     public void stop() {
         frontLeftMotor.set(0.0);
         rearLeftMotor.set(0.0);
@@ -136,18 +161,32 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(0.0);
     }
 
+    /**
+     * Gets the motor speed as reported by the encoder
+     * @return The speed returned by the left gearbox encoder
+     */
     public double getLeftEncoderSpeed() {
         return leftEncoder.getRate();
     }
 
+    /**
+     * Gets the motor speed as reported by the encoder
+     * @return The speed returned by the right gearbox encoder
+     */
     public double getRightEncoderSpeed() {
         return rightEncoder.getRate();
     }
 
+    /**
+     * @return Returns what speed the left motors were set to
+     */
     public double getLeftMotorSpeed() {
         return frontLeftMotor.get();
     }
 
+    /**
+     * @return Returns what speed the right motors were set to
+     */
     public double getRightMotorSpeed() {
         return frontRightMotor.get();
     }
