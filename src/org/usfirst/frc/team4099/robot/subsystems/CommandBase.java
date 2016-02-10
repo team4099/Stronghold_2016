@@ -19,6 +19,7 @@ public abstract class CommandBase extends Command {
 //    public static final Elevator elevator = null;/* = new Elevator();*/
     public static AHRS ahrs;
     public static Potentiometer potentiometer;
+    public static final Vision vision = new Vision(0.25f);
 
     public static void init() {
         oi = new OI();

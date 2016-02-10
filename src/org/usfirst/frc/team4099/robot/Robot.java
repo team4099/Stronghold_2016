@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4099.robot.commands.DriveBackward;
 import org.usfirst.frc.team4099.robot.commands.DriveForward;
+import org.usfirst.frc.team4099.robot.commands.GamepadDrive;
 import org.usfirst.frc.team4099.robot.commands.groups.TestCommandGroup;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 import org.usfirst.frc.team4099.robot.subsystems.TurnLeft;
@@ -20,9 +21,11 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
+    Command gamepadDrive;
 
     @Override
     public void robotInit() {
+        DriverStation.reportError("In robotInit()", true);
         CommandBase.init();
 
 //      	SmartDashboard.putData("DriveForward", new DriveForward(5));
@@ -53,11 +56,11 @@ public class Robot extends IterativeRobot {
         CommandBase.driveTrain.setSafety(false);
         // cancel any current autonomous
         if (autonomousCommand != null) autonomousCommand.cancel();
-
+        gamepadDrive = new GamepadDrive();
     }
 
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        gamepadDrive.start();
     }
     
     public void testPeriodic() {
