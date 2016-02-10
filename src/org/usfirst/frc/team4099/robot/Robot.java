@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team4099.robot.commands.groups.TestCommandGroup;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class Robot extends IterativeRobot {
@@ -15,7 +14,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         CommandBase.init();
 
-        autonomousCommand = new TestCommandGroup();
     }
 	
     public void disabledInit(){
@@ -28,7 +26,6 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         CommandBase.driveTrain.setSafety(false);
-        autonomousCommand.start();
     }
 
     public void autonomousPeriodic() {

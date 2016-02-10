@@ -2,22 +2,16 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class DriveBackward extends CommandBase {
-	private double m_timeout;
-
-    public DriveBackward(double time) {
-        m_timeout = time;
-    }
+public class Kick extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(m_timeout);
-        requires(driveTrain);
+        setTimeout(1.0);
+        shooter.kick();
     }
 
     @Override
     protected void execute() {
-        driveTrain.driveBackward();
     }
 
     @Override
@@ -26,8 +20,12 @@ public class DriveBackward extends CommandBase {
     }
 
     @Override
-    protected void end() {}
+    protected void end() {
+        shooter.resetKicker();
+    }
 
     @Override
-    protected void interrupted() {}
+    protected void interrupted() {
+        shooter.resetKicker();
+    }
 }

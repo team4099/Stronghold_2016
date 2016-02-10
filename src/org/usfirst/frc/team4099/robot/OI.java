@@ -3,6 +3,9 @@ package org.usfirst.frc.team4099.robot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
+import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
+import org.usfirst.frc.team4099.robot.commands.ChangeRampHeight;
+import org.usfirst.frc.team4099.robot.commands.Kick;
 import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
 
 /**
@@ -27,11 +30,12 @@ public class OI {
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
 
         /* Commands */
-        Y_BUTTON.whileHeld(new RunShooterFullSpeed());
-        RIGHT_BUTTON.whileHeld(new RunShooterFullSpeed());
-//        Y_BUTTON.whenPressed(new ElevatorToPosition(Elevator.TOP));
-//        A_BUTTON.whenPressed(new ElevatorToPosition(Elevator.BOTTOM));
-//        B_BUTTON.whenPressed(new ElevatorToPosition(Elevator.MIDDLE));
+        B_BUTTON.whileHeld(new RunShooterFullSpeed());
+
+        Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
+        A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
+
+        X_BUTTON.whenPressed(new Kick());
     }
 
     public Gamepad getGamepad() {

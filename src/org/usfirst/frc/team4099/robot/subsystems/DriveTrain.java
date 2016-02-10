@@ -74,21 +74,14 @@ public class DriveTrain extends Subsystem {
         m_left = -m_left;
         m_right = -m_right;
 
-        double rcw = pJoystick->GetTwist();
-        double forwrd = pJoystick->GetY() * -1; /* Invert stick Y axis */
-        double strafe = pJoystick->GetX();
-
+        /*
         double pi = Math.PI;
+        double gyro_angle = CommandBase.navX.getAngle();
 
-        /* Adjust Joystick X/Y inputs by navX MXP yaw angle */
+        m_left += gyro_angle * Constants.GYRO_GAIN_LEFT;
+        m_right -= gyro_angle * Constants.GYRO_GAIN_RIGHT;
+        */
 
-        double gyro_degrees = CommandBase.navX.getYaw();
-        double gyro_radians = gyro_degrees * pi / 180;
-        double temp = forwrd * cos(gyro_radians) +
-                strafe * sin(gyro_radians);
-        strafe = -forwrd * sin(gyro_radians) +
-                strafe * cos(gyro_radians);
-        fwd = temp;
         drive.tankDrive(m_left, m_right);
     }
 
