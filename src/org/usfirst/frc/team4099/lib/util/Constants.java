@@ -20,13 +20,11 @@ public class Constants {
     public static final int FRONT_RIGHT_MOTOR_PORT = 1;
     public static final int REAR_RIGHT_MOTOR_PORT = 0;
     public static final int LINEAR_ACTUATOR_PORT = 5;
+    public static final int KICKER_PORT = 3;
+    public static final int POTENTIOMETER_PORT = 3; // duplicate; see what happens later
 
     public static final double GYRO_GAIN_LEFT = 0.1;
     public static final double GYRO_GAIN_RIGHT = 0.1;
-
-    public static final int KICKER_PORT = 3;
-
-    public static final int POTENTIOMETER = 3;
 
     public static final double RAMP_ACTUATOR_RADIUS = 3.0;
     public static final double DISTANCE_ACTUATOR_SHOOTER = 3.0;

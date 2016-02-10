@@ -54,6 +54,6 @@ public class Shooter extends Subsystem {
     }
 
     public void resetKicker() {
-        KICKER.setAngle(100);
+        KICKER.setAngle(110);
     }
 }
