@@ -68,9 +68,12 @@ public class GamepadDrive extends CommandBase {
 //            double m_right = f_right;
 
             // fix sign (motor direction)
+            // No longer necessary - only needed because the motors were wired backwards
+            /*
             m_left = -m_left;
             m_right = -m_right;
-            
+            */
+
             driveTrain.tankDrive(m_left, m_right);
     	}
     }
