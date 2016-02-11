@@ -36,11 +36,17 @@ public class TurnAngle extends CommandBase {
     @Override
     protected void execute() {
         double x;
-        if(Math.abs(x = driveTrain.getLeftEncoderSpeed() - driveTrain.getRightEncoderSpeed()) > threshold) {
+        double leftEncoderSpeed = driveTrain.getLeftEncoderSpeed();
+        double rightEncoderSpeed = driveTrain.getRightEncoderSpeed();
+
+        if(Math.abs(x = Math.abs(leftEncoderSpeed) - Math.abs(rightEncoderSpeed)) > threshold) {
+            int leftDirection = (int) (leftEncoderSpeed / Math.abs(leftEncoderSpeed));
+            int rightDirection = (int) (rightEncoderSpeed / Math.abs(rightEncoderSpeed));
+
             if(x < 0) {
-                driveTrain.drive(driveTrain.getLeftMotorSpeed() - incrementAmount, driveTrain.getRightMotorSpeed() + incrementAmount);
+                driveTrain.drive(driveTrain.getLeftMotorSpeed() - leftDirection * incrementAmount, driveTrain.getRightMotorSpeed() + rightDirection * incrementAmount);
             } else {
-                driveTrain.drive(driveTrain.getLeftMotorSpeed() + incrementAmount, driveTrain.getRightMotorSpeed() - incrementAmount);
+                driveTrain.drive(driveTrain.getLeftMotorSpeed() + leftDirection * incrementAmount, driveTrain.getRightMotorSpeed() - rightDirection * incrementAmount);
             }
         }
     }
