@@ -14,6 +14,7 @@ public abstract class CommandBase extends Command {
     public static final DriveTrain driveTrain = new DriveTrain();
     public static final Shooter shooter = new Shooter();
     public static final Ramp ramp = new Ramp();
+    public static final Intake intake = new Intake();
     public static Potentiometer potentiometer;
     public static AHRS navX;
 
