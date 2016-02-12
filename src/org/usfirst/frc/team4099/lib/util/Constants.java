@@ -22,8 +22,8 @@ public class Constants {
     public static final int LINEAR_ACTUATOR_PORT = 5;
     public static final int KICKER_PORT = 3;
     public static final int POTENTIOMETER_PORT = 3; // duplicate; see what happens later
-    public static final int INTAKE_MOTOR_PORT = 4;
-    public static final int INTAKE_SWITCH_PORT = 6;
+    public static final int INTAKE_MOTOR_PORT = 6;
+//    public static final int INTAKE_SWITCH_PORT = 6;
 
     public static final double GYRO_GAIN_LEFT = 0.1;
     public static final double GYRO_GAIN_RIGHT = 0.1;

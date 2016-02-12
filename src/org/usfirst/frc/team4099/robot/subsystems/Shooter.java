@@ -11,24 +11,26 @@ public class Shooter extends Subsystem {
     private int LEFT_SHOOTER_PORT, RIGHT_SHOOTER_PORT;
     private Talon LEFT_SHOOTER_MOTOR, RIGHT_SHOOTER_MOTOR;
 
+    /*
     private int KICKER_PORT;
     private Servo KICKER;
+    */
 
     public Shooter() {
 
         LEFT_SHOOTER_PORT = Constants.LEFT_SHOOTER_MOTOR_PORT;
         RIGHT_SHOOTER_PORT = Constants.RIGHT_SHOOTER_MOTOR_PORT;
-        KICKER_PORT = Constants.KICKER_PORT;
+        //KICKER_PORT = Constants.KICKER_PORT;
 
         LEFT_SHOOTER_MOTOR = new Talon(LEFT_SHOOTER_PORT);
         RIGHT_SHOOTER_MOTOR = new Talon(RIGHT_SHOOTER_PORT);
 
-        KICKER = new Servo(KICKER_PORT);
+//        KICKER = new Servo(KICKER_PORT);
 
         LEFT_SHOOTER_MOTOR.setSafetyEnabled(false);
         RIGHT_SHOOTER_MOTOR.setSafetyEnabled(false);
 
-        resetKicker();
+        //resetKicker();
     }
 
     @Override
@@ -40,8 +42,8 @@ public class Shooter extends Subsystem {
     }
 
     public void runMotorsSlowly() {
-        LEFT_SHOOTER_MOTOR.set(0.2);
-        RIGHT_SHOOTER_MOTOR.set(-0.2);
+        LEFT_SHOOTER_MOTOR.set(-0.2);
+        RIGHT_SHOOTER_MOTOR.set(0.2);
     }
 
     public void runMotorsShootingSpeed() {
@@ -49,6 +51,7 @@ public class Shooter extends Subsystem {
         RIGHT_SHOOTER_MOTOR.set(-0.8);
     }
 
+    /*
     public void kick() {
         KICKER.setAngle(0);
     }
@@ -56,4 +59,5 @@ public class Shooter extends Subsystem {
     public void resetKicker() {
         KICKER.setAngle(110);
     }
+    */
 }

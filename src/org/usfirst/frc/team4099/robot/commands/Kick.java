@@ -3,15 +3,19 @@ package org.usfirst.frc.team4099.robot.commands;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class Kick extends CommandBase {
+    public Kick() {
+        requires(kicker);
+    }
 
     @Override
     protected void initialize() {
         setTimeout(1.0);
-        shooter.kick();
+        kicker.kick();
     }
 
     @Override
     protected void execute() {
+        return;
     }
 
     @Override
@@ -21,11 +25,11 @@ public class Kick extends CommandBase {
 
     @Override
     protected void end() {
-        shooter.resetKicker();
+        kicker.resetKicker();
     }
 
     @Override
     protected void interrupted() {
-        shooter.resetKicker();
+        kicker.resetKicker();
     }
 }

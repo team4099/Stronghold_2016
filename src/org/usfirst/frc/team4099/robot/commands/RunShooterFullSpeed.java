@@ -9,7 +9,9 @@ public class RunShooterFullSpeed extends CommandBase {
     }
 
     @Override
-    protected void initialize() {}
+    protected void initialize() {
+        setTimeout(1.0);
+    }
 
     @Override
     protected void execute() {
@@ -18,11 +20,12 @@ public class RunShooterFullSpeed extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     @Override
-    protected void end() {}
+    protected void end() {
+    }
 
     @Override
     protected void interrupted() {}

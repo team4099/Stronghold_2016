@@ -15,6 +15,7 @@ public abstract class CommandBase extends Command {
     public static final Shooter shooter = new Shooter();
     public static final Ramp ramp = new Ramp();
     public static final Intake intake = new Intake();
+    public static final Kicker kicker = new Kicker();
     public static Potentiometer potentiometer;
     public static AHRS navX;
 

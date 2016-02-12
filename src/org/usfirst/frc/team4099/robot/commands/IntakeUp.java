@@ -12,20 +12,22 @@ public class IntakeUp extends CommandBase {
 
     @Override
     protected void initialize() {
+        setTimeout(1.0);
     }
 
     @Override
     protected void execute() {
-        intake.moveWithTrigger(oi.getGamepad());
+        intake.setMotorSpeed(-.50);
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     @Override
     protected void end() {
+        intake.setMotorSpeed(0);
     }
 
     @Override

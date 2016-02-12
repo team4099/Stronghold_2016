@@ -68,8 +68,10 @@ public class DriveTrain extends Subsystem {
         double m_right = modifySpeed(f_right);
 
         // fix sign (motor direction)
+        /*
         m_left = -m_left;
         m_right = -m_right;
+        */
 
         /*
         double pi = Math.PI;

@@ -7,6 +7,7 @@ import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
 import org.usfirst.frc.team4099.robot.commands.ChangeRampHeight;
 import org.usfirst.frc.team4099.robot.commands.Kick;
 import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
+import org.usfirst.frc.team4099.robot.commands.IntakeUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,8 +35,12 @@ public class OI {
 
         Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
+        Gamepad gamepad2 = new Gamepad(1);
+        Button fireButton = new JoystickButton(gamepad2, 2);
+        fireButton.whileHeld(new Kick());
 
-        X_BUTTON.whenPressed(new Kick());
+        //RIGHT_BUTTON.whenPressed(new IntakeUp());
+        X_BUTTON.whenPressed(new IntakeUp());
     }
 
     public Gamepad getGamepad() {

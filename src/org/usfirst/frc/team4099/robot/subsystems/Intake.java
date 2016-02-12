@@ -10,25 +10,17 @@ import org.usfirst.frc.team4099.robot.commands.IntakeUp;
 
 
 public class Intake extends Subsystem {
-    private Talon INTAKE_MOTOR;
+    private Talon intakeMotor;
 
     public Intake() {
-        INTAKE_MOTOR = new Talon(Constants.INTAKE_MOTOR_PORT);
+        intakeMotor = new Talon(Constants.INTAKE_MOTOR_PORT);
     }
 
-    // Temporary - we will have it activate on limit switch once thats wired up
-    public void moveWithTrigger(Gamepad gamepad) {
-        double speed = GamepadUtil.deadband(gamepad.getLeftTrigger());
-        move(speed);
-    }
-
-    public void move(double speed) {
-        INTAKE_MOTOR.set(speed);
+    public void setMotorSpeed(double speed) {
+        intakeMotor.set(speed);
     }
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new IntakeUp());
-    
     }
 }
