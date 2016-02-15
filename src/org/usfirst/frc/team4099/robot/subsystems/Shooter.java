@@ -42,8 +42,8 @@ public class Shooter extends Subsystem {
     }
 
     public void runMotorsSlowly() {
-        LEFT_SHOOTER_MOTOR.set(-0.2);
-        RIGHT_SHOOTER_MOTOR.set(0.2);
+        LEFT_SHOOTER_MOTOR.set(-0.1);
+        RIGHT_SHOOTER_MOTOR.set(0.1);
     }
 
     public void runMotorsShootingSpeed() {
