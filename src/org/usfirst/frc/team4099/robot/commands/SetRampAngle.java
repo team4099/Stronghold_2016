@@ -37,7 +37,7 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void execute() {
-
+    	
     }
 
     @Override
@@ -52,7 +52,7 @@ public class SetRampAngle extends CommandBase {
         if(!goingUp) {
             ramp.setActuatorMotor(0.5);
             try {
-                Thread.sleep(125);
+                Thread.sleep(125);  //DANGER DANGER 
                 ramp.setActuatorMotor(0);
             } catch (InterruptedException e) {
                 ramp.setActuatorMotor(0);

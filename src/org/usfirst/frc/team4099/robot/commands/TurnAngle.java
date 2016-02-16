@@ -1,7 +1,5 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class TurnAngle extends CommandBase {
@@ -10,16 +8,19 @@ public class TurnAngle extends CommandBase {
     private double startingAngle;
     private boolean turnRight;
 
-    private double threshold;
+    private double encoderThreshold;
     private double incrementAmount;
+    
+    private double angleThreshold;
 
     /**
      * @param angle The amount to turn in degrees
      *              TODO: figure out if this is really degrees or it is radians
      */
     public TurnAngle(double angle) {
-        threshold = 2.5;
+        encoderThreshold = 2.5;
         incrementAmount = 0.01;
+        angleThreshold = 3;
         this.angle = angle;
         requires(driveTrain);
     }
@@ -36,10 +37,11 @@ public class TurnAngle extends CommandBase {
     @Override
     protected void execute() {
         double x;
+        /*
         double leftEncoderSpeed = driveTrain.getLeftEncoderSpeed();
         double rightEncoderSpeed = driveTrain.getRightEncoderSpeed();
 
-        if(Math.abs(x = Math.abs(leftEncoderSpeed) - Math.abs(rightEncoderSpeed)) > threshold) {
+        if(Math.abs(x = Math.abs(leftEncoderSpeed) - Math.abs(rightEncoderSpeed)) > encoderThreshold) {
             int leftDirection = (int) (leftEncoderSpeed / Math.abs(leftEncoderSpeed));
             int rightDirection = (int) (rightEncoderSpeed / Math.abs(rightEncoderSpeed));
 
@@ -48,16 +50,21 @@ public class TurnAngle extends CommandBase {
             } else {
                 driveTrain.drive(driveTrain.getLeftMotorSpeed() + leftDirection * incrementAmount, driveTrain.getRightMotorSpeed() - rightDirection * incrementAmount);
             }
-        }
+        }*/
+        //^^^UNCOMMENT ONCE ENCODERS ARE PLUGGED IN
+        driveTrain.drive(-0.3,-0.3);        
     }
 
     @Override
     protected boolean isFinished() {
-        if(turnRight) {
-            return navX.getAngle() >= startingAngle + angle;
-        } else {
-            return navX.getAngle() <= startingAngle + angle;
-        }
+    	
+    	return Math.abs(navX.getAngle() - (startingAngle + angle)%360) <= angleThreshold;
+    	
+//        if(turnRight) {
+//            return navX.getAngle() >= (startingAngle + angle)%360;
+//        } else {
+//            return navX.getAngle() <= (startingAngle + angle)%360;
+//        }
     }
 
     @Override
