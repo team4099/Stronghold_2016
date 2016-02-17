@@ -1,12 +1,10 @@
 package org.usfirst.frc.team4099.robot;
 
 import org.usfirst.frc.team4099.lib.input.Gamepad;
+import org.usfirst.frc.team4099.lib.util.AxisButton;
+import org.usfirst.frc.team4099.lib.util.DPadButton;
 import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
-import org.usfirst.frc.team4099.robot.commands.ChangeRampHeight;
-import org.usfirst.frc.team4099.robot.commands.IntakeUp;
-import org.usfirst.frc.team4099.robot.commands.Kick;
-import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
-import org.usfirst.frc.team4099.robot.commands.SetRampAngle;
+import org.usfirst.frc.team4099.robot.commands.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -23,6 +21,8 @@ public class OI {
     private Button X_BUTTON;
     private Button Y_BUTTON;
     private Button RIGHT_BUTTON;
+    private DPadButton UP_BUTTON;
+    private DPadButton DOWN_BUTTON;
     
     private Button START_BUTTON;
 
@@ -33,6 +33,9 @@ public class OI {
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
+
+        UP_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
+        DOWN_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_SOUTH);
         
         START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
 
@@ -46,6 +49,9 @@ public class OI {
         fireButton.whileHeld(new Kick());
 
         START_BUTTON.whenPressed(new SetRampAngle(45));
+
+        UP_BUTTON.whileHeld(new DriveForward());
+        DOWN_BUTTON.whileHeld(new DriveBackward());
         
         //RIGHT_BUTTON.whenPressed(new IntakeUp());
         X_BUTTON.whenPressed(new IntakeUp());
