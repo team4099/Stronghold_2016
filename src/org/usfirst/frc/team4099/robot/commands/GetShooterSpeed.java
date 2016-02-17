@@ -6,26 +6,22 @@ import org.usfirst.frc.team4099.robot.OI;
 import org.usfirst.frc.team4099.robot.Robot;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class LimitUp extends CommandBase {
-    public LimitUp() {
-        requires(intake);
+public class GetShooterSpeed extends CommandBase {
+	private int count = 0;
+    public GetShooterSpeed() {
+        requires(shooter);
     }
 
     @Override
     protected void initialize() {
-        //setTimeout(0.9);
+        setTimeout(2);
     }
 
     @Override
     protected void execute() {
-    	if (!limitSwitch.get()) {
-    		intake.setMotorSpeed(-.5);
-    		Timer.delay(.9)
-    	} else {
-    		intake.setMotorSpeed(0);
-    		Timer.delay(.9)
-    	}
-        
+        if (photoInterrupter.get()) {
+        	count++;
+        }
     }
 
     @Override
@@ -35,9 +31,7 @@ public class LimitUp extends CommandBase {
 
     @Override
     protected void end() {
-        intake.setMotorSpeed(0.5);
-        Timer.delay(0.1);
-        intake.setMotorSpeed(0);
+        return (count*120);
     }
 
     @Override

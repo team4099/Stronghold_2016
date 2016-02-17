@@ -18,6 +18,7 @@ public abstract class CommandBase extends Command {
     public static final Kicker kicker = new Kicker();
     public static Potentiometer potentiometer;
     public static DigitalInput limitSwitch;
+    public static DigialInput photoInterrupter;
     public static AHRS navX;
 
     public static void init() {
@@ -31,6 +32,7 @@ public abstract class CommandBase extends Command {
         }
         oi = new OI();
         potentiometer = new AnalogPotentiometer(0, 360, 30);
-        limitSwitch = new DigitalInput(LIMIT_PORT)
+        limitSwitch = new DigitalInput(LIMIT_PORT);
+        photoInterrupter = new DigitalInput(PHOTO_PORT);
     }
 }
