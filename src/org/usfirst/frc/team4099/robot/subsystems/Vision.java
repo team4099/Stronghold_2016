@@ -20,12 +20,10 @@ class Vision
     private float verticalAngle, firingAcceleration, lateralAngle;
 
     public Vision() {
-        this.acquiredTarget = false;
     }
 
     /* 
-     * Everytime this command is called, method checks for new vision data from 
-     * the vision processor 
+     * Checks for new vision data from the vision processor 
      * */ 
     public void updateVisionData() {
         try {
