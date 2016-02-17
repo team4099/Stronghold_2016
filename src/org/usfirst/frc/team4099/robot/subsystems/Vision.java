@@ -40,6 +40,7 @@ class Vision
                 this.acquiredTarget = true;
                 this.lateralAngle = angle_args[0];
                 this.verticalAngle = angle_args[1];
+            }
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
