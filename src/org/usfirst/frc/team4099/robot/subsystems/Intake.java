@@ -22,5 +22,6 @@ public class Intake extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
+    	setDefaultCommand(new LimitUp());
     }
 }

@@ -34,4 +34,5 @@ public class Constants {
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
     public static final int POTENTIOMETER_PORT = 2;
+    public static final int LIMIT_PORT;
 }
