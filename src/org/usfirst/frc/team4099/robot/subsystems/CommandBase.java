@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import org.usfirst.frc.team4099.robot.OI;
 import edu.wpi.first.wpilibj.SPI;
 
@@ -16,9 +17,10 @@ public abstract class CommandBase extends Command {
     public static final Ramp ramp = new Ramp();
     public static final Intake intake = new Intake();
     public static final Kicker kicker = new Kicker();
+    public static final Vision vision = new Vision();
     public static Potentiometer potentiometer;
     public static DigitalInput limitSwitch;
-    public static DigialInput photoInterrupter;
+    public static DigitalInput photoInterrupter;
     public static AHRS navX;
 
     public static void init() {
@@ -32,7 +34,7 @@ public abstract class CommandBase extends Command {
         }
         oi = new OI();
         potentiometer = new AnalogPotentiometer(0, 360, 30);
-        limitSwitch = new DigitalInput(LIMIT_PORT);
-        photoInterrupter = new DigitalInput(PHOTO_PORT);
+        limitSwitch = new DigitalInput(Constants.LIMIT_PORT);
+        photoInterrupter = new DigitalInput(Constants.PHOTO_PORT);
     }
 }

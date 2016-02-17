@@ -5,6 +5,7 @@
 
 package org.usfirst.frc.team4099.robot.subsystems;
 import org.usfirst.frc.team4099.lib.util.Constants;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
 import java.io.BufferedReader;
@@ -14,7 +15,7 @@ import java.net.URL;
 /*
  * Interface to integrate with external imaging processing 
  */
-class Vision
+public class Vision extends Subsystem
 {
     private boolean acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
