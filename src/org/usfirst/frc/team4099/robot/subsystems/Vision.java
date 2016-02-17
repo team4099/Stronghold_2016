@@ -16,7 +16,7 @@ import java.net.URL;
  */
 class Vision
 {
-    private int acquiredTarget;
+    private boolean acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
 
     public Vision() {
@@ -38,8 +38,8 @@ class Vision
                 this.acquiredTarget = false;
             } else {
                 this.acquiredTarget = true;
-                this.lateralAngle = angle_args[0];
-                this.verticalAngle = angle_args[1];
+                this.lateralAngle = Float.parseFloat(angle_args[0]);
+                this.verticalAngle = Float.parseFloat(angle_args[1]);
             }
             in.close();
         } catch (Exception e) {
@@ -50,7 +50,7 @@ class Vision
     /*
      * Returns true if the bot is in range to land a shot
      */
-    public int getTargetAcquired() {
+    public boolean getTargetAcquired() {
         return this.acquiredTarget;
     }
 
