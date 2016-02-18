@@ -26,7 +26,7 @@ public class RunShooterTBH extends CommandBase {
     @Override
     protected void execute() {
     	currentPwr += (targetSpeed - currentSpeed)*gain;
-    	shooter.prepShoot(currentPwr);
+    	//shooter.prepShoot(currentPwr);
     	// get current speed here
     	if ((int) Math.signum(targetSpeed-currentSpeed) != prevError) {
     		prevError = (int) Math.signum(targetSpeed-currentSpeed);

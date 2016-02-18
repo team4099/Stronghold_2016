@@ -15,13 +15,15 @@ import java.net.URL;
 /*
  * Interface to integrate with external imaging processing 
  */
-public class Vision extends Subsystem
-{
+public class Vision extends Subsystem  {
     private boolean acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
 
     public Vision() {
     }
+
+    @Override
+    protected void initDefaultCommand() {}
 
     /* 
      * Checks for new vision data from the vision processor 

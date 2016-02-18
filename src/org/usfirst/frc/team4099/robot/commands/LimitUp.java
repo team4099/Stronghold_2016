@@ -20,10 +20,10 @@ public class LimitUp extends CommandBase {
     protected void execute() {
     	if (!limitSwitch.get()) {
     		intake.setMotorSpeed(-.5);
-    		Timer.delay(.9)
+    		Timer.delay(.9);
     	} else {
     		intake.setMotorSpeed(0);
-    		Timer.delay(.9)
+    		Timer.delay(.9);
     	}
         
     }

@@ -12,7 +12,6 @@ public class Constants {
     public static final double SLOW_GEAR_REDUCTION_FACTOR = 2;
     public static final double FAST_GEAR_REDUCTION_FACTOR = 1.5;
 
-
     public static final int LEFT_SHOOTER_MOTOR_PORT = 9;
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 2;
     public static final int FRONT_LEFT_MOTOR_PORT = 8;
@@ -36,6 +35,6 @@ public class Constants {
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
     public static final int POTENTIOMETER_PORT = 2;
-    public static final int LIMIT_PORT;
-    public static final int PHOTO_PORT;
+    public static final int LIMIT_PORT = -1;
+    public static final int PHOTO_PORT = -1;
 }
