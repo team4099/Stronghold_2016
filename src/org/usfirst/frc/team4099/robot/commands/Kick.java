@@ -14,9 +14,7 @@ public class Kick extends CommandBase {
     }
 
     @Override
-    protected void execute() {
-        return;
-    }
+    protected void execute() {}
 
     @Override
     protected boolean isFinished() {

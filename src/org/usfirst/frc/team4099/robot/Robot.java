@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import org.usfirst.frc.team4099.lib.util.GamepadUtil;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
+import org.usfirst.frc.team4099.robot.subsystems.DriveTrain;
 
 public class Robot extends IterativeRobot {
 
@@ -45,21 +47,17 @@ public class Robot extends IterativeRobot {
     
     public void testPeriodic() {
         LiveWindow.run();
+    }
 
-        /* Calibrate DriveTrain motors */
-//        CommandBase.driveTrain.setMotorSpeed("FRONT_LEFT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
-//        CommandBase.driveTrain.setMotorSpeed("FRONT_RIGHT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
-//        CommandBase.driveTrain.setMotorSpeed("REAR_LEFT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
-//        CommandBase.driveTrain.setMotorSpeed("REAR_RIGHT_MOTOR",
-//                DriveTrain.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+    public void testInit() {
+        runInitialCalibration();
+    }
 
-        /* Calibrate shooter motors */
-//        CommandBase.shooter.setMotorSpeed("LEFT_SHOOTER_MOTOR",
-//                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
-//        CommandBase.shooter.setMotorSpeed("RIGHT_SHOOTER_MOTOR",
-//                GamepadUtil.deadband(CommandBase.oi.getGamepad().getLeftVerticalAxis()));
+    private void runInitialCalibration() {
+        /* Orient to field */
+    }
+
+    private void runMotorControllerCalibration() {
+
     }
 }

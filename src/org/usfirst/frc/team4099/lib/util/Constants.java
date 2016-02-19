@@ -2,6 +2,7 @@ package org.usfirst.frc.team4099.lib.util;
 
 public class Constants {
 
+
     private Constants() {}
 
     public static final double ELEVATOR_P = 0.1;
@@ -11,6 +12,7 @@ public class Constants {
     public static final double DEADBAND_LIMIT = 0.1;
     public static final double SLOW_GEAR_REDUCTION_FACTOR = 2;
     public static final double FAST_GEAR_REDUCTION_FACTOR = 1.5;
+    public static final double MID_GEAR_REDUCTION_FACTOR = 1.75;
 
     public static final int LEFT_SHOOTER_MOTOR_PORT = 9;
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 2;
@@ -37,4 +39,7 @@ public class Constants {
     public static final int POTENTIOMETER_PORT = 2;
     public static final int LIMIT_PORT = -1;
     public static final int PHOTO_PORT = -1;
+
+    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 0; // TBD
+    public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 0; // TBD
 }

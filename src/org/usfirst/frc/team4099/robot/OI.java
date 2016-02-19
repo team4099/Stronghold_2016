@@ -8,6 +8,7 @@ import org.usfirst.frc.team4099.robot.commands.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.team4099.robot.commands.groups.Shoot;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,21 +41,15 @@ public class OI {
         START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
 
         /* Commands */
-        B_BUTTON.whileHeld(new RunShooterFullSpeed());
+        B_BUTTON.whenPressed(new Shoot());
 
         Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
-        Gamepad gamepad2 = new Gamepad(1);
-        Button fireButton = new JoystickButton(gamepad2, 2);
-        fireButton.whileHeld(new Kick());
 
         START_BUTTON.whenPressed(new SetRampAngle(45));
 
         UP_BUTTON.whileHeld(new DriveForward());
         DOWN_BUTTON.whileHeld(new DriveBackward());
-        
-        //RIGHT_BUTTON.whenPressed(new IntakeUp());
-        X_BUTTON.whenPressed(new IntakeUp());
     }
 
     public Gamepad getGamepad() {

@@ -13,11 +13,11 @@ public class DriveTrain extends Subsystem {
 
     private static double DEADBAND_LIMIT;
     private double SLOW_GEAR_REDUCTION_FACTOR;
+    private double MID_GEAR_REDUCTION_FACTOR;
     private double FAST_GEAR_REDUCTION_FACTOR;
 
     private Talon frontLeftMotor, rearLeftMotor;
     private Talon frontRightMotor, rearRightMotor;
-
 
     private Encoder leftEncoder;
     private Encoder rightEncoder;
@@ -27,6 +27,7 @@ public class DriveTrain extends Subsystem {
     public DriveTrain() {
         DEADBAND_LIMIT = Constants.DEADBAND_LIMIT;
         SLOW_GEAR_REDUCTION_FACTOR = Constants.SLOW_GEAR_REDUCTION_FACTOR;
+        MID_GEAR_REDUCTION_FACTOR = Constants.MID_GEAR_REDUCTION_FACTOR;
         FAST_GEAR_REDUCTION_FACTOR = Constants.FAST_GEAR_REDUCTION_FACTOR;
 
         frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
@@ -92,10 +93,18 @@ public class DriveTrain extends Subsystem {
         boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
         boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
 
-        if (leftTriggerPressed && rightTriggerPressed)
-            return speed / FAST_GEAR_REDUCTION_FACTOR;
+        int gearMode = 0;
+        if (leftTriggerPressed)
+            gearMode++;
+        if (rightTriggerPressed)
+            gearMode++;
 
-        return speed / SLOW_GEAR_REDUCTION_FACTOR;
+        if (gearMode == 2)
+            return speed / FAST_GEAR_REDUCTION_FACTOR;
+        else if (gearMode == 1)
+            return speed / MID_GEAR_REDUCTION_FACTOR;
+        else
+            return speed / SLOW_GEAR_REDUCTION_FACTOR;
     }
 
     public void driveForward() {

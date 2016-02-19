@@ -2,31 +2,32 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class RunShooterFullSpeed extends CommandBase {
+// TODO: ignore command if the ramp is in an invalid position
 
-    public RunShooterFullSpeed() {
-        requires(shooter);
-    }
+public class IntakeBall extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(3.0);
+        requires(intake);
     }
 
     @Override
     protected void execute() {
-        shooter.runMotorsShootingSpeed();
+        intake.raiseIntake();
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return intake.hasHitUpperLimit();
     }
 
     @Override
     protected void end() {
+        intake.stopIntake();
     }
 
     @Override
-    protected void interrupted() {}
+    protected void interrupted() {
+        intake.stopIntake();
+    }
 }
