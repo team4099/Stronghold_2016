@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4099.robot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class SetRampAngle extends CommandBase {
@@ -31,13 +33,13 @@ public class SetRampAngle extends CommandBase {
     @Override
     protected void initialize() {
         this.goingUp = destinationAngle > ramp.getCurrentAngle();
-        if(goingUp) ramp.setActuatorMotor(maxSpeed);
-        else ramp.setActuatorMotor(-maxSpeed);
+        //if(goingUp) ramp.setActuatorMotor(maxSpeed);
+        //else ramp.setActuatorMotor(-maxSpeed);
     }
 
     @Override
     protected void execute() {
-
+    	SmartDashboard.putNumber("pot", ramp.potentiometerDistance());
     }
 
     @Override
@@ -50,16 +52,16 @@ public class SetRampAngle extends CommandBase {
     protected void end() {
         // If it is going down, apply a quick burst going up to hold it in place (Karl)
         if(!goingUp) {
-            ramp.setActuatorMotor(0.5);
+            //ramp.setActuatorMotor(0.5);
             try {
                 Thread.sleep(125);
-                ramp.setActuatorMotor(0);
+                //ramp.setActuatorMotor(0);
             } catch (InterruptedException e) {
-                ramp.setActuatorMotor(0);
+                //ramp.setActuatorMotor(0);
                 DriverStation.reportError("ye interrupted my sleep", true);
             }
         }
-        ramp.setActuatorMotor(0);
+       // ramp.setActuatorMotor(0);
     }
 
     @Override

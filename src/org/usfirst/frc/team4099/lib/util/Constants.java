@@ -47,6 +47,6 @@ public class Constants {
     public static final int INTAKE_TRIPWIRE_PORT = 7;
     
     public static final int POTENTIOMETER_PORT = 2;
-    public static final double POT_MULTIPLIER = 30;
-    public static final double POT_STARTER = 10;
+    public static final double POT_MULTIPLIER = -1176.192446;
+    public static final double POT_STARTER = 313.776;
 }

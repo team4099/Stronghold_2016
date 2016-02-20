@@ -58,7 +58,7 @@ public class OI {
         Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
 
-        START_BUTTON.whenPressed(new SetRampAngle(45));
+        START_BUTTON.whenPressed(new SetRampAngle(1000));
 
         /*
         UP_BUTTON.whileHeld(new DriveForward());

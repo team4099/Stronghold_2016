@@ -3,6 +3,8 @@ package org.usfirst.frc.team4099.robot.commands;
 import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 public class ChangeRampHeight extends CommandBase {
 
     private RampMoveEnum dir;
@@ -19,6 +21,7 @@ public class ChangeRampHeight extends CommandBase {
 
     @Override
     protected void execute() {
+    	//DriverStation.reportError(Double.toString(ramp.potentiometerDistance())+"\n", false);
         if (dir == RampMoveEnum.DOWN)
             ramp.setMotorSpeed(1.0);
         else if (dir == RampMoveEnum.UP)
