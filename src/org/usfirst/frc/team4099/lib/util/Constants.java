@@ -42,4 +42,6 @@ public class Constants {
 
     public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 0; // TBD
     public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 0; // TBD
+
+    public static final double RAMP_ANGLE_TOLERANCE = 0.1;
 }

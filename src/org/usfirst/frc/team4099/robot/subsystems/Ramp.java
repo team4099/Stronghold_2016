@@ -1,11 +1,13 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.Scheduler;
 import org.usfirst.frc.team4099.lib.util.Constants;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team4099.robot.commands.BurstUp;
 
 public class Ramp extends Subsystem {
 
@@ -16,10 +18,9 @@ public class Ramp extends Subsystem {
     
     private double potMultiplier = 30; //change multiplier value for potentiometer
 
-
     public Ramp() {
         this.actuatorMotor = new Talon(Constants.LINEAR_ACTUATOR_PORT);
-        this.potentiometer = new AnalogPotentiometer(Constants.POTENTIOMETER_PORT,potMultiplier,10);
+        this.potentiometer = new AnalogPotentiometer(Constants.POTENTIOMETER_PORT, potMultiplier, 10);
     }
 
     public void setActuatorMotor(double speed) {
@@ -41,20 +42,27 @@ public class Ramp extends Subsystem {
     }
 
     public double potentiometerDistance() {
-        return potMultiplier-potentiometer.get();
+        return potMultiplier - potentiometer.get();
     }
 
     @Override
     protected void initDefaultCommand() {
+
     }
 
-    public void setMotorSpeed(double speed) {
-        actuatorMotor.set(speed);
+    public void burstUp() {
+        Scheduler.getInstance().add(new BurstUp());
     }
 
-    public void setAngle(double angle) {
+    public void stopRamp() {
+        actuatorMotor.set(0);
     }
 
+    public void moveDown() {
+        actuatorMotor.set(-0.9);
+    }
 
-
+    public void moveUp() {
+        actuatorMotor.set(1.0);
+    }
 }

@@ -1,7 +1,8 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
+import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
+import org.usfirst.frc.team4099.lib.util.Util;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class SetRampAngle extends CommandBase {
@@ -40,29 +41,23 @@ public class SetRampAngle extends CommandBase {
     @Override
     protected void execute() {
         if (direction == RampMoveEnum.DOWN) {
-
+            ramp.moveDown();
+        } else {
+            ramp.moveUp();
         }
     }
 
     @Override
     protected boolean isFinished() {
-        return ramp.getCurrentAngle() == destinationAngle;
+        return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
     }
 
     @Override
     protected void end() {
-        // If it is going down, apply a quick burst going up to hold it in place (Karl)
-        if(!goingUp) {
-            ramp.setActuatorMotor(0.5);
-            try {
-                Thread.sleep(125);  //DANGER DANGER 
-                ramp.setActuatorMotor(0);
-            } catch (InterruptedException e) {
-                ramp.setActuatorMotor(0);
-                DriverStation.reportError("ye interrupted my sleep", true);
-            }
-        }
-        ramp.setActuatorMotor(0);
+        if (direction == RampMoveEnum.DOWN)
+            ramp.burstUp();
+        else
+            ramp.stopRamp();
     }
 
     @Override

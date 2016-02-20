@@ -4,6 +4,6 @@ public class Util {
     private Util() {}
 
     public static boolean withinRange(double value, double target, double tolerance) {
-        return false;
+        return Math.abs(value - target) <= tolerance;
     }
 }

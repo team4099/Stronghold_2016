@@ -13,4 +13,7 @@ public class Attack3 extends Joystick {
         super(port);
     }
 
+    public boolean isIndexTriggerPressed() {
+        return getRawButton(INDEX_TRIGGER);
+    }
 }
