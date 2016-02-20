@@ -17,7 +17,7 @@ public class Ramp extends Subsystem {
 
     public Ramp() {
         this.actuatorMotor = new Talon(Constants.LINEAR_ACTUATOR_PORT);
-        this.potentiometer = new AnalogPotentiometer(Constants.POTENTIOMETER_PORT);
+        this.potentiometer = new AnalogPotentiometer(Constants.POTENTIOMETER_PORT, Constants.POT_MULTIPLIER, Constants.POT_STARTER);
     }
 
     public void setActuatorMotor(double speed) {
