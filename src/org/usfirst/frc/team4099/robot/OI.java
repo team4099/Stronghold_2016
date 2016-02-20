@@ -1,13 +1,19 @@
 package org.usfirst.frc.team4099.robot;
 
+import org.usfirst.frc.team4099.lib.input.Attack3;
+import org.usfirst.frc.team4099.lib.input.Gamepad;
+import org.usfirst.frc.team4099.lib.util.AxisButton;
+import org.usfirst.frc.team4099.lib.util.DPadButton;
+import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
+import org.usfirst.frc.team4099.robot.commands.*;
+import org.usfirst.frc.team4099.lib.util.IOButton;
+import org.usfirst.frc.team4099.lib.util.Constants;
+
+import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.team4099.lib.input.Gamepad;
-import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
-import org.usfirst.frc.team4099.robot.commands.ChangeRampHeight;
-import org.usfirst.frc.team4099.robot.commands.Kick;
-import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
-import org.usfirst.frc.team4099.robot.commands.IntakeUp;
+import org.usfirst.frc.team4099.robot.commands.groups.Shoot;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,6 +27,13 @@ public class OI {
     private Button X_BUTTON;
     private Button Y_BUTTON;
     private Button RIGHT_BUTTON;
+    private DPadButton UP_BUTTON;
+    private DPadButton DOWN_BUTTON;
+//    private IOButton TRIPWIRE_SWITCH;
+
+    private Attack3 flightStick;
+
+    private Button START_BUTTON;
 
     public OI() {
         gamepad = new Gamepad(0);
@@ -28,19 +41,29 @@ public class OI {
         B_BUTTON = new JoystickButton(gamepad, Gamepad.B_BUTTON);
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
+
+//        TRIPWIRE_SWITCH = new IOButton(CommandBase.tripwireSwitch, true);
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
 
-        /* Commands */
-        B_BUTTON.whileHeld(new RunShooterFullSpeed());
+        UP_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
+        DOWN_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_SOUTH);
+        
+        START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
 
+        X_BUTTON.whenPressed(new IntakeUp());
+        /* Commands */
+        B_BUTTON.whenPressed(new Shoot());
+
+//        TRIPWIRE_SWITCH.whenPressed(new IntakeUp());
         Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
-        Gamepad gamepad2 = new Gamepad(1);
-        Button fireButton = new JoystickButton(gamepad2, 2);
-        fireButton.whileHeld(new Kick());
 
-        //RIGHT_BUTTON.whenPressed(new IntakeUp());
-        X_BUTTON.whenPressed(new IntakeUp());
+        START_BUTTON.whenPressed(new SetRampAngle(45));
+
+        /*
+        UP_BUTTON.whileHeld(new DriveForward());
+        DOWN_BUTTON.whileHeld(new DriveBackward());
+        */
     }
 
     public Gamepad getGamepad() {

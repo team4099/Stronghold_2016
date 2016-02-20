@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team4099.robot.OI;
 import org.usfirst.frc.team4099.robot.Robot;
@@ -13,11 +14,12 @@ public class IntakeUp extends CommandBase {
     @Override
     protected void initialize() {
         setTimeout(1.0);
+//        setTimeout(5.0);
     }
 
     @Override
     protected void execute() {
-        intake.setMotorSpeed(-.50);
+        intake.setMotorSpeed(-.40);
     }
 
     @Override
@@ -27,6 +29,8 @@ public class IntakeUp extends CommandBase {
 
     @Override
     protected void end() {
+        intake.setMotorSpeed(.5);
+        Timer.delay(.125);
         intake.setMotorSpeed(0);
     }
 

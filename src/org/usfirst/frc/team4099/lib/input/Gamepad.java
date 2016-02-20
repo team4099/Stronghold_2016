@@ -21,8 +21,8 @@ public class Gamepad extends Joystick {
 	public static final int LEFT_X_AXIS = 0;
 	public static final int LEFT_Y_AXIS = 1;
 	
-	public static final int RIGHT_X_AXIS = 3;
-	public static final int RIGHT_Y_AXIS = 4;
+	public static final int RIGHT_X_AXIS = 4;
+	public static final int RIGHT_Y_AXIS = 5;
 	
 	/* Joystick Click (Buttons) */
 	public static final int LEFT_JOYSTICK_BUTTON = 11;
@@ -35,8 +35,11 @@ public class Gamepad extends Joystick {
 
 	public static final int Y_BUTTON = 4;
 	
+	public static final int BACK_BUTTON = 7;
+	public static final int START_BUTTON = 8;
+	
 	/* DPAD */
-	public static final int DPAD_NORTH = 0;
+	public static final int DPAD_NORTH = 360;
 	public static final int DPAD_NORTHEAST = 45;
 	public static final int DPAD_EAST = 90;
 	public static final int DPAD_SOUTHEAST = 135;
