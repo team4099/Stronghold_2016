@@ -10,16 +10,19 @@ public class TurnAngle extends CommandBase {
     private double startingAngle;
     private boolean turnRight;
 
-    private double threshold;
+    private double encoderThreshold;
     private double incrementAmount;
+    
+    private double angleThreshold;
 
     /**
      * @param angle The amount to turn in degrees
      *              TODO: figure out if this is really degrees or it is radians
      */
     public TurnAngle(double angle) {
-        threshold = 2.5;
+        encoderThreshold = 2.5;
         incrementAmount = 0.01;
+        angleThreshold = 3;
         this.angle = angle;
         requires(driveTrain);
     }
@@ -39,7 +42,7 @@ public class TurnAngle extends CommandBase {
         double leftEncoderSpeed = driveTrain.getLeftEncoderSpeed();
         double rightEncoderSpeed = driveTrain.getRightEncoderSpeed();
 
-        if(Math.abs(x = Math.abs(leftEncoderSpeed) - Math.abs(rightEncoderSpeed)) > threshold) {
+        if(Math.abs(x = Math.abs(leftEncoderSpeed) - Math.abs(rightEncoderSpeed)) > encoderThreshold) {
             int leftDirection = (int) (leftEncoderSpeed / Math.abs(leftEncoderSpeed));
             int rightDirection = (int) (rightEncoderSpeed / Math.abs(rightEncoderSpeed));
 
@@ -53,11 +56,7 @@ public class TurnAngle extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        if(turnRight) {
-            return navX.getAngle() >= startingAngle + angle;
-        } else {
-            return navX.getAngle() <= startingAngle + angle;
-        }
+    	return Math.abs(navX.getAngle() - (startingAngle + angle)%360) <= angleThreshold;
     }
 
     @Override

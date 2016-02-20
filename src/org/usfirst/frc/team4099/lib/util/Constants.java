@@ -39,11 +39,14 @@ public class Constants {
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
-    public static final int POTENTIOMETER_PORT = 2;
     public static final int LIMIT_PORT = -1;
     public static final int PHOTO_PORT = -1;
 
     public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 0; // TBD
     public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 0; // TBD
     public static final int INTAKE_TRIPWIRE_PORT = 7;
+    
+    public static final int POTENTIOMETER_PORT = 2;
+    public static final double POT_MULTIPLIER = 30;
+    public static final double POT_STARTER = 10;
 }

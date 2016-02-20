@@ -1,10 +1,11 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
+import org.usfirst.frc.team4099.lib.util.Constants;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team4099.lib.util.Constants;
 
 public class Ramp extends Subsystem {
 
@@ -12,9 +13,11 @@ public class Ramp extends Subsystem {
     private Talon actuatorMotor;
     private double maxHeight = 10;
     private double zeroPoint = 0;
+    
 
     public Ramp() {
         this.actuatorMotor = new Talon(Constants.LINEAR_ACTUATOR_PORT);
+        this.potentiometer = new AnalogPotentiometer(Constants.POTENTIOMETER_PORT, Constants.POT_MULTIPLIER, Constants.POT_STARTER);
     }
 
     public void setActuatorMotor(double speed) {
@@ -40,13 +43,10 @@ public class Ramp extends Subsystem {
     protected void initDefaultCommand() {
     }
 
+    
     public void setMotorSpeed(double speed) {
         actuatorMotor.set(speed);
     }
-
-    public void setAngle(double angle) {
-    }
-
 
 
 }
