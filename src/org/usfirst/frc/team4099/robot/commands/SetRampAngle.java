@@ -1,12 +1,13 @@
 package org.usfirst.frc.team4099.robot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class SetRampAngle extends CommandBase {
 
     double destinationAngle;
-    boolean goingUp;
+    RampMoveEnum direction;
     double maxSpeed;
 
     /**
@@ -30,20 +31,22 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void initialize() {
-        this.goingUp = destinationAngle > ramp.getCurrentAngle();
-        if(goingUp) ramp.setActuatorMotor(maxSpeed);
-        else ramp.setActuatorMotor(-maxSpeed);
+        if (destinationAngle > ramp.getCurrentAngle())
+            direction = RampMoveEnum.UP;
+        else
+            direction = RampMoveEnum.DOWN;
     }
 
     @Override
     protected void execute() {
-    	
+        if (direction == RampMoveEnum.DOWN) {
+
+        }
     }
 
     @Override
     protected boolean isFinished() {
-        if(goingUp) return ramp.getCurrentAngle() >= destinationAngle;
-        else return ramp.getCurrentAngle() <= destinationAngle;
+        return ramp.getCurrentAngle() == destinationAngle;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot;
 
+import org.usfirst.frc.team4099.lib.input.Attack3;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 import org.usfirst.frc.team4099.lib.util.AxisButton;
 import org.usfirst.frc.team4099.lib.util.DPadButton;
@@ -24,7 +25,9 @@ public class OI {
     private Button RIGHT_BUTTON;
     private DPadButton UP_BUTTON;
     private DPadButton DOWN_BUTTON;
-    
+
+    private Attack3 flightStick;
+
     private Button START_BUTTON;
 
     public OI() {
