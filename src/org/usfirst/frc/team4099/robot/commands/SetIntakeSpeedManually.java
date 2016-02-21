@@ -1,15 +1,13 @@
 package org.usfirst.frc.team4099.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.usfirst.frc.team4099.lib.input.Attack3;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class SetIntakeSpeed extends CommandBase {
+public class SetIntakeSpeedManually extends CommandBase {
 
-    private double speed;
-
-    public SetIntakeSpeed(double speed) {
+    public SetIntakeSpeedManually() {
         requires(intake);
-        this.speed = speed;
     }
 
     @Override
@@ -20,7 +18,7 @@ public class SetIntakeSpeed extends CommandBase {
 
     @Override
     protected void execute() {
-        intake.setMotorSpeed(speed);
+        intake.setMotorSpeed(oi.getFlightStick().getRawAxis(1));
     }
 
     @Override

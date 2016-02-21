@@ -6,7 +6,6 @@ import org.usfirst.frc.team4099.lib.util.DPadButton;
 import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
 import org.usfirst.frc.team4099.robot.commands.*;
 
-import org.usfirst.frc.team4099.robot.commands.groups.MoveIntakeManually;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team4099.robot.commands.groups.Shoot;
@@ -49,7 +48,7 @@ public class OI {
         
         START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
 
-        ATTACK_BUTTON_8 = new JoystickButton(flightStick, 7);
+        ATTACK_BUTTON_8 = new JoystickButton(flightStick, 0);
 
         X_BUTTON.whenPressed(new IntakeUp());
         /* Commands */
@@ -61,7 +60,7 @@ public class OI {
 
         START_BUTTON.whenPressed(new SetRampAngle(1000));
 
-        ATTACK_BUTTON_8.whileHeld(new MoveIntakeManually(flightStick));
+//        ATTACK_BUTTON_8.whileHeld(new SetIntakeSpeedManually(flightStick.getRawAxis(1)));
 
         /*
         UP_BUTTON.whileHeld(new DriveForward());
@@ -71,6 +70,9 @@ public class OI {
 
     public Gamepad getGamepad() {
         return gamepad;
+    }
+    public Attack3 getFlightStick() {
+        return flightStick;
     }
 }
 
