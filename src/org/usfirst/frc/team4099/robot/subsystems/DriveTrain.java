@@ -85,8 +85,8 @@ public class DriveTrain extends Subsystem {
         drive.tankDrive(m_left, m_right);
     }
     
-    private void arcadeDrive(Gamepad gamepad) {
-    	drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()), GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
+    public void arcadeDrive(Gamepad gamepad) {
+    	drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()) / 1.5, GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
     }
 
     private double modifySpeed(double speed) {
