@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 import org.usfirst.frc.team4099.lib.util.Constants;
@@ -24,6 +25,10 @@ public class DriveTrain extends Subsystem {
 
     private Timer printTimer;
 
+    private double integralError = 0;
+    private double derivError = 0;
+    private double lastError = 0;
+
     public DriveTrain() {
         DEADBAND_LIMIT = Constants.DEADBAND_LIMIT;
         SLOW_GEAR_REDUCTION_FACTOR = Constants.SLOW_GEAR_REDUCTION_FACTOR;
@@ -35,8 +40,10 @@ public class DriveTrain extends Subsystem {
         frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
         rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
 
-        //leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
-        //rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        leftEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
+        rightEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
 
         drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
@@ -114,7 +121,6 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(1.0);
     }
 
-
     /**
      * Sets motor speeds by side (can be used for turning, etc)
      * @param leftSpeed The speed to set the left motors to
@@ -130,13 +136,13 @@ public class DriveTrain extends Subsystem {
     /**
      * Drives forward at 0.5 speed
      */
-//    public void driveForward() {
-//        frontLeftMotor.set(0.5);
-//        rearLeftMotor.set(0.5);
-//        frontRightMotor.set(0.5);
-//        rearRightMotor.set(0.5);
-//    }
-//
+    public void driveForwardHalf() {
+        frontLeftMotor.set(0.5);
+        rearLeftMotor.set(0.5);
+        frontRightMotor.set(0.5);
+        rearRightMotor.set(0.5);
+    }
+
     /**
      * Drives backwards at 0.5 speed
      */
@@ -189,5 +195,35 @@ public class DriveTrain extends Subsystem {
 
     public double getRightMotorSpeed() {
         return frontRightMotor.get();
+    }
+
+    public void resetDistance() {
+        rightEncoder.reset();
+        leftEncoder.reset();
+        integralError = 0;
+        derivError = 0;
+        lastError = 0;
+    }
+
+    public double getDistanceTravelled() {
+        return (rightEncoder.getDistance() + leftEncoder.getDistance()) / 2.0;
+    }
+
+    public void driveDistance(double distance) {
+        resetDistance();
+
+        double error = distance - getDistanceTravelled();
+        derivError = error - lastError;
+
+        double K_p = Constants.DRIVE_GAIN_KP;
+        double K_i = Constants.DRIVE_GAIN_KI;
+        double K_d = Constants.DRIVE_GAIN_KD;
+
+        double output = K_p * error + K_i * integralError + K_d * derivError;
+
+        drive.tankDrive(output, output);
+
+        lastError = error;
+        integralError += error;
     }
 }

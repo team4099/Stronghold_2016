@@ -36,11 +36,17 @@ public class Constants {
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
     public static final int POTENTIOMETER_PORT = 2;
-    public static final int LIMIT_PORT = -1;
-    public static final int PHOTO_PORT = -1;
+    public static final int LIMIT_PORT = 3;
+    public static final int PHOTO_PORT = 4;
 
     public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 0; // TBD
-    public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 0; // TBD
+    public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 1; // TBD
 
     public static final double RAMP_ANGLE_TOLERANCE = 0.1;
+
+    public static final double DRIVE_GAIN_KP = 0.1;
+    public static final double DRIVE_GAIN_KI = 0.000;
+    public static final double DRIVE_GAIN_KD = 0.000;
+
+    public static final double DISTANCE_PER_PULSE = 0.001;
 }

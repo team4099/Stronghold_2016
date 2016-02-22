@@ -2,9 +2,8 @@ package org.usfirst.frc.team4099.robot;
 
 import org.usfirst.frc.team4099.lib.input.Attack3;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
-import org.usfirst.frc.team4099.lib.util.AxisButton;
 import org.usfirst.frc.team4099.lib.util.DPadButton;
-import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
+import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.robot.commands.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -25,6 +24,9 @@ public class OI {
     private Button RIGHT_BUTTON;
     private DPadButton UP_BUTTON;
     private DPadButton DOWN_BUTTON;
+    private Button SHOOT_BUTTON;
+    private Button RAISE_SHOOTER_BUTTON;
+    private Button LOWER_SHOOTER_BUTTON;
 
     private Attack3 flightStick;
 
@@ -32,32 +34,40 @@ public class OI {
 
     public OI() {
         gamepad = new Gamepad(0);
+        flightStick = new Attack3(1);
+
         A_BUTTON = new JoystickButton(gamepad, Gamepad.A_BUTTON);
         B_BUTTON = new JoystickButton(gamepad, Gamepad.B_BUTTON);
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
-
         UP_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
         DOWN_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_SOUTH);
-        
         START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
 
-        /* Commands */
+        SHOOT_BUTTON = new JoystickButton(flightStick, Attack3.INDEX_TRIGGER);
+
+
+        /** COMMANDS */
+        // gamepad
         B_BUTTON.whenPressed(new Shoot());
-
-        Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
-        A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
-
+        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.UP));
+        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.DOWN));
         START_BUTTON.whenPressed(new SetRampAngle(45));
+        UP_BUTTON.whileHeld(new ControlIntake(Direction.UP));
+        DOWN_BUTTON.whileHeld(new ControlIntake(Direction.DOWN));
 
-        UP_BUTTON.whileHeld(new ControlIntake(true));
-        DOWN_BUTTON.whileHeld(new ControlIntake(false));
+        // flight stick
+
 
     }
 
     public Gamepad getGamepad() {
         return gamepad;
+    }
+
+    public Attack3 getFlightStick() {
+        return flightStick;
     }
 }
 

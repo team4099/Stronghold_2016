@@ -13,12 +13,11 @@ public class SetIntakeSpeedManually extends CommandBase {
     @Override
     protected void initialize() {
         setTimeout(0.001);
-//        setTimeout(5.0);
     }
 
     @Override
     protected void execute() {
-        intake.setMotorSpeed(oi.getFlightStick().getRawAxis(1));
+        intake.controlManually();
     }
 
     @Override
@@ -28,12 +27,11 @@ public class SetIntakeSpeedManually extends CommandBase {
 
     @Override
     protected void end() {
-//        intake.setMotorSpeed(.5);
-//        Timer.delay(.125);
         intake.setMotorSpeed(0);
     }
 
     @Override
     protected void interrupted(){
+        intake.setMotorSpeed(0);
     }
 }

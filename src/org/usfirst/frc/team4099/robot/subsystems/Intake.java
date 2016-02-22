@@ -18,6 +18,14 @@ public class Intake extends Subsystem {
         //lowerLimitSwitch = new DigitalInput(Constants.INTAKE_LOWER_LIMIT_SWITCH_PORT);
     }
 
+    public void controlManually() {
+        double speed = CommandBase.oi.getFlightStick().getZAxis();
+        if (!hasHitLowerLimit() && !hasHitLowerLimit())
+            intakeMotor.set(speed);
+        else
+            stopIntake();
+    }
+
     public void setMotorSpeed(double speed) {
         intakeMotor.set(speed);
     }

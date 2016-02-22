@@ -1,8 +1,12 @@
 package org.usfirst.frc.team4099.robot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4099.lib.util.Constants;
+import org.usfirst.frc.team4099.lib.util.Direction;
+import org.usfirst.frc.team4099.lib.util.Util;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class SetRampAngle extends CommandBase {
@@ -17,6 +21,7 @@ public class SetRampAngle extends CommandBase {
     public SetRampAngle(double angleToSetTo) {
         this.destinationAngle = angleToSetTo;
         this.maxSpeed = 0.5;
+        this.goingUp = destinationAngle > ramp.getCurrentAngle();
         requires(ramp);
     }
 
@@ -25,17 +30,12 @@ public class SetRampAngle extends CommandBase {
      * @param maxSpeed The max speed with which to run the motor
      */
     public SetRampAngle(double angleToSetTo, double maxSpeed) {
+        this(angleToSetTo);
         this.maxSpeed = Math.abs(maxSpeed);
-        this.destinationAngle = angleToSetTo;
-        requires(ramp);
     }
 
     @Override
-    protected void initialize() {
-        this.goingUp = destinationAngle > ramp.getCurrentAngle();
-        //if(goingUp) ramp.setActuatorMotor(maxSpeed);
-        //else ramp.setActuatorMotor(-maxSpeed);
-    }
+    protected void initialize() {}
 
     @Override
     protected void execute() {
@@ -44,24 +44,14 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        if(goingUp) return ramp.getCurrentAngle() >= destinationAngle;
-        else return ramp.getCurrentAngle() <= destinationAngle;
+        return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
     }
 
     @Override
     protected void end() {
-        // If it is going down, apply a quick burst going up to hold it in place (Karl)
         if(!goingUp) {
-            //ramp.setActuatorMotor(0.5);
-            try {
-                Thread.sleep(125);
-                //ramp.setActuatorMotor(0);
-            } catch (InterruptedException e) {
-                //ramp.setActuatorMotor(0);
-                DriverStation.reportError("ye interrupted my sleep", true);
-            }
+            Scheduler.getInstance().add(new BurstUp());
         }
-       // ramp.setActuatorMotor(0);
     }
 
     @Override
