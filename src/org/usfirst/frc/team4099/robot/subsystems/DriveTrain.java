@@ -85,8 +85,8 @@ public class DriveTrain extends Subsystem {
         drive.tankDrive(m_left, m_right);
     }
     
-    private void arcadeDrive(Gamepad gamepad) {
-    	drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()), GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
+    public void arcadeDrive(Gamepad gamepad) {
+    	drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()) / 1.5, -0.2 * GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
     }
 
     private double modifySpeed(double speed) {
@@ -99,7 +99,7 @@ public class DriveTrain extends Subsystem {
         if (rightTriggerPressed)
             gearMode++;
 
-        if (gearMode == 2)
+        if (gearMode == 0)
             return speed / FAST_GEAR_REDUCTION_FACTOR;
         else if (gearMode == 1)
             return speed / MID_GEAR_REDUCTION_FACTOR;

@@ -2,14 +2,15 @@ package org.usfirst.frc.team4099.robot;
 
 import org.usfirst.frc.team4099.lib.input.Attack3;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
-import org.usfirst.frc.team4099.lib.util.AxisButton;
 import org.usfirst.frc.team4099.lib.util.DPadButton;
+import org.usfirst.frc.team4099.lib.util.IOButton;
 import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
 import org.usfirst.frc.team4099.robot.commands.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team4099.robot.commands.groups.Shoot;
+import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,6 +26,8 @@ public class OI {
     private Button RIGHT_BUTTON;
     private DPadButton UP_BUTTON;
     private DPadButton DOWN_BUTTON;
+    private Button ATTACK_BUTTON_8;
+    private IOButton TRIPWIRE_SWITCH;
 
     private Attack3 flightStick;
 
@@ -32,10 +35,14 @@ public class OI {
 
     public OI() {
         gamepad = new Gamepad(0);
+        flightStick = new Attack3(1);
+
         A_BUTTON = new JoystickButton(gamepad, Gamepad.A_BUTTON);
         B_BUTTON = new JoystickButton(gamepad, Gamepad.B_BUTTON);
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
+
+        TRIPWIRE_SWITCH = new IOButton(CommandBase.tripwireSwitch, true);
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
 
         UP_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
@@ -43,20 +50,31 @@ public class OI {
         
         START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
 
+        ATTACK_BUTTON_8 = new JoystickButton(flightStick, 0);
+
+        X_BUTTON.whenPressed(new IntakeUp());
         /* Commands */
         B_BUTTON.whenPressed(new Shoot());
 
+        TRIPWIRE_SWITCH.whenPressed(new IntakeUp());
         Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
 
-        START_BUTTON.whenPressed(new SetRampAngle(45));
+        START_BUTTON.whenPressed(new SetRampAngle(1000));
 
+//        ATTACK_BUTTON_8.whileHeld(new SetIntakeSpeedManually(flightStick.getRawAxis(1)));
+
+        /*
         UP_BUTTON.whileHeld(new DriveForward());
         DOWN_BUTTON.whileHeld(new DriveBackward());
+        */
     }
 
     public Gamepad getGamepad() {
         return gamepad;
+    }
+    public Attack3 getFlightStick() {
+        return flightStick;
     }
 }
 

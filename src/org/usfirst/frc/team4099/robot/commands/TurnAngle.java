@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4099.robot.commands;
 
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class TurnAngle extends CommandBase {
@@ -37,7 +39,6 @@ public class TurnAngle extends CommandBase {
     @Override
     protected void execute() {
         double x;
-        /*
         double leftEncoderSpeed = driveTrain.getLeftEncoderSpeed();
         double rightEncoderSpeed = driveTrain.getRightEncoderSpeed();
 
@@ -50,21 +51,12 @@ public class TurnAngle extends CommandBase {
             } else {
                 driveTrain.drive(driveTrain.getLeftMotorSpeed() + leftDirection * incrementAmount, driveTrain.getRightMotorSpeed() - rightDirection * incrementAmount);
             }
-        }*/
-        //^^^UNCOMMENT ONCE ENCODERS ARE PLUGGED IN
-        driveTrain.drive(-0.3,-0.3);        
+        }
     }
 
     @Override
     protected boolean isFinished() {
-    	
     	return Math.abs(navX.getAngle() - (startingAngle + angle)%360) <= angleThreshold;
-    	
-//        if(turnRight) {
-//            return navX.getAngle() >= (startingAngle + angle)%360;
-//        } else {
-//            return navX.getAngle() <= (startingAngle + angle)%360;
-//        }
     }
 
     @Override

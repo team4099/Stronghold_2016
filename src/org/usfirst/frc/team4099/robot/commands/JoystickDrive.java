@@ -18,6 +18,7 @@ public class JoystickDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+//        driveTrain.arcadeDrive(oi.getGamepad());
         driveTrain.driveWithGamepad(oi.getGamepad());
     }
 

@@ -1,14 +1,14 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import org.usfirst.frc.team4099.lib.util.Constants;
-import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
-import org.usfirst.frc.team4099.lib.util.Util;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class SetRampAngle extends CommandBase {
 
     double destinationAngle;
-    RampMoveEnum direction;
+    boolean goingUp;
     double maxSpeed;
 
     /**
@@ -32,32 +32,36 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void initialize() {
-        if (destinationAngle > ramp.getCurrentAngle())
-            direction = RampMoveEnum.UP;
-        else
-            direction = RampMoveEnum.DOWN;
+        this.goingUp = destinationAngle > ramp.getCurrentAngle();
+        //if(goingUp) ramp.setActuatorMotor(maxSpeed);
+        //else ramp.setActuatorMotor(-maxSpeed);
     }
 
     @Override
     protected void execute() {
-        if (direction == RampMoveEnum.DOWN) {
-            ramp.moveDown();
-        } else {
-            ramp.moveUp();
-        }
+    	SmartDashboard.putNumber("pot", ramp.potentiometerDistance());
     }
 
     @Override
     protected boolean isFinished() {
-        return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
+        if(goingUp) return ramp.getCurrentAngle() >= destinationAngle;
+        else return ramp.getCurrentAngle() <= destinationAngle;
     }
 
     @Override
     protected void end() {
-        if (direction == RampMoveEnum.DOWN)
-            ramp.burstUp();
-        else
-            ramp.stopRamp();
+        // If it is going down, apply a quick burst going up to hold it in place (Karl)
+        if(!goingUp) {
+            //ramp.setActuatorMotor(0.5);
+            try {
+                Thread.sleep(125);
+                //ramp.setActuatorMotor(0);
+            } catch (InterruptedException e) {
+                //ramp.setActuatorMotor(0);
+                DriverStation.reportError("ye interrupted my sleep", true);
+            }
+        }
+       // ramp.setActuatorMotor(0);
     }
 
     @Override
