@@ -2,32 +2,33 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class RunShooterFullSpeed extends CommandBase {
+/** Keep the intake on the ground... */
 
-    public RunShooterFullSpeed() {
-        requires(shooter);
-    }
+public class PassiveIntake extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(3.0);
+        requires(intake);
     }
 
     @Override
     protected void execute() {
-        shooter.runMotorsShootingSpeed();
+        if (!intake.hasHitLowerLimit())
+            intake.lowerIntake();
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return intake.hasHitLowerLimit();
     }
 
     @Override
     protected void end() {
-        shooter.stopMotors();
+        intake.stopIntake();
     }
 
     @Override
-    protected void interrupted() {}
+    protected void interrupted() {
+        intake.stopIntake();
+    }
 }

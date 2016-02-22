@@ -2,9 +2,9 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class RunShooterSlowly extends CommandBase {
+public class RunShooterSlowlyBackwards extends CommandBase {
 
-    public RunShooterSlowly() {
+    public RunShooterSlowlyBackwards() {
         requires(shooter);
     }
 
@@ -13,7 +13,7 @@ public class RunShooterSlowly extends CommandBase {
 
     @Override
     protected void execute() {
-        shooter.runMotorsSlowly();
+        shooter.runMotorsSlowlyBackwards();
     }
 
     @Override

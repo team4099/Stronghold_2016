@@ -1,23 +1,18 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-import org.usfirst.frc.team4099.lib.input.Attack3;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class SetIntakeSpeedManually extends CommandBase {
-
-    public SetIntakeSpeedManually() {
-        requires(intake);
-    }
+public class BurstUp extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(0.001);
+        requires(ramp);
+        setTimeout(0.15);
     }
 
     @Override
     protected void execute() {
-        intake.controlManually();
+        ramp.moveUp();
     }
 
     @Override
@@ -27,11 +22,11 @@ public class SetIntakeSpeedManually extends CommandBase {
 
     @Override
     protected void end() {
-        intake.setMotorSpeed(0);
+        ramp.stopRamp();
     }
 
     @Override
-    protected void interrupted(){
-        intake.setMotorSpeed(0);
+    protected void interrupted() {
+        ramp.stopRamp();
     }
 }
