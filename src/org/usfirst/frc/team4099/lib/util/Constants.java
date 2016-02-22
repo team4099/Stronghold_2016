@@ -35,15 +35,16 @@ public class Constants {
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
-    public static final int POTENTIOMETER_PORT = 2;
     public static final int LIMIT_PORT = 3;
     public static final int PHOTO_PORT = 4;
 
     public static final int INTAKE_TRIPWIRE_PORT = 9;
     
     public static final int POTENTIOMETER_PORT = 2;
-    public static final double POT_MULTIPLIER = 1;
-    public static final double POT_STARTER = 0;
+    public static final double RAMP_POT_SLOPE = -321.7675770722;
+    public static final double RAMP_POT_CONSTANT = 232.1482053;
+    public static final double RAMP_UPPER_LIMIT = 50;
+    public static final double RAMP_LOWER_LIMIT = 10;
 
 //    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 1; // TBD
 
@@ -54,4 +55,5 @@ public class Constants {
     public static final double DRIVE_GAIN_KD = 0.000;
 
     public static final double DISTANCE_PER_PULSE = 0.001;
+
 }

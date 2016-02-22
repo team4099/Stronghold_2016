@@ -1,11 +1,8 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4099.lib.util.Constants;
-import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.lib.util.Util;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
@@ -39,7 +36,10 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void execute() {
-        SmartDashboard.putNumber("pot", ramp.potentiometerDistance());
+        if (goingUp)
+            ramp.moveUp();
+        else
+            ramp.moveDown();
     }
 
     @Override

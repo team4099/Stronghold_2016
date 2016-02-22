@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot.commands;
 
+import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
@@ -30,10 +31,15 @@ public class ChangeRampHeight extends CommandBase {
     }
 
     private boolean isTooFar() {
-//        if(dir == Direction.DOWN) return ramp.potentiometerDistance() < -16;
-//        else if(dir == Direction.UP) return ramp.potentiometerDistance() > 40;
-//        else return true;
-        return false;
+        if (dir == Direction.UP) {
+            if (ramp.getCurrentAngle() < Constants.RAMP_UPPER_LIMIT)
+                return false;
+        } else {
+            if (ramp.getCurrentAngle() > Constants.RAMP_LOWER_LIMIT)
+                return false;
+        }
+
+        return true;
     }
 
     @Override

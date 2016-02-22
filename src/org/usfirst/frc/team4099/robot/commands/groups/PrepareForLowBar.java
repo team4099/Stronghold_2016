@@ -7,6 +7,6 @@ import org.usfirst.frc.team4099.robot.commands.SetRampAngle;
 public class PrepareForLowBar extends CommandGroup {
     public PrepareForLowBar() {
         addParallel(new PassiveIntake());
-        addParallel(new SetRampAngle(0));
+        addParallel(new SetRampAngle(10));
     }
 }

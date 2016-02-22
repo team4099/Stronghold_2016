@@ -19,16 +19,9 @@ public abstract class CommandBase extends Command {
     public static Intake intake = new Intake();
     public static Kicker kicker = new Kicker();
     public static Vision vision = new Vision();
-    public static Potentiometer potentiometer;
-    public static DigitalInput limitSwitch;
-    public static DigitalInput photoInterrupter;
     public static AHRS navX;
 
     public static void init() {
-        //potentiometer = new AnalogPotentiometer(0, 360, 30);
-        //limitSwitch = new DigitalInput(Constants.LIMIT_PORT);
-        //photoInterrupter = new DigitalInput(Constants.PHOTO_PORT);
-
         try {
             navX = new AHRS(SPI.Port.kMXP);
         } catch (RuntimeException ex ) {

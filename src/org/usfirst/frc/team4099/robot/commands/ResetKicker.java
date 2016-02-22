@@ -4,9 +4,13 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class ResetKicker extends CommandBase {
 
+    public ResetKicker() {
+        requires(kicker);
+    }
+
     @Override
     protected void initialize() {
-        requires(kicker);
+
     }
 
     @Override

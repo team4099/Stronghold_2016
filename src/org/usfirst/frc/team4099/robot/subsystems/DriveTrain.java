@@ -40,10 +40,10 @@ public class DriveTrain extends Subsystem {
         frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
         rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
 
-        leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
-        rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
-        leftEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
-        rightEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
+        //leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        //rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        //leftEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
+        //rightEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
 
         drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
