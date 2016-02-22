@@ -24,6 +24,7 @@ public abstract class CommandBase extends Command {
     public static void init() {
         try {
             navX = new AHRS(SPI.Port.kMXP);
+            navX.reset();
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }

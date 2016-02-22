@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team4099.lib.util.Constants;
+import org.usfirst.frc.team4099.robot.commands.ControlIntake;
 import org.usfirst.frc.team4099.robot.commands.SetIntakeSpeedManually;
 
 
@@ -20,7 +21,7 @@ public class Intake extends Subsystem {
     }
 
     public void controlManually() {
-        double speed = CommandBase.oi.getFlightStick().getZAxisValue();
+        double speed = CommandBase.oi.getFlightStick().getYAxisValue();
         if (!hasHitLowerLimit() && !hasHitLowerLimit())
             intakeMotor.set(speed);
         else
@@ -44,11 +45,13 @@ public class Intake extends Subsystem {
     }
 
     public boolean hasHitUpperLimit() {
-        return upperLimitSwitch.get();
+        return false;
+//        return upperLimitSwitch.get();
     }
 
     public boolean hasHitLowerLimit() {
-        return lowerLimitSwitch.get();
+        return false;
+//        return lowerLimitSwitch.get();
     }
 
     @Override

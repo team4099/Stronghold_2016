@@ -75,21 +75,19 @@ public class DriveTrain extends Subsystem {
         double m_left = modifySpeed(f_left);
         double m_right = modifySpeed(f_right);
 
-        // fix sign (motor direction)
-        /*
+        // fix sign (motor direction) (inverted for tryouts)
         m_left = -m_left;
         m_right = -m_right;
-        */
 
         /*
         double pi = Math.PI;
         double gyro_angle = CommandBase.navX.getAngle();
 
-        m_left += gyro_angle * Constants.GYRO_GAIN_LEFT;
-        m_right -= gyro_angle * Constants.GYRO_GAIN_RIGHT;
+        m_left += gyro_angle * 0.1;//Constants.GYRO_GAIN_LEFT;
+        m_right -= gyro_angle * 0.1;//Constants.GYRO_GAIN_RIGHT;
         */
 
-        drive.tankDrive(m_left, m_right);
+        drive.tankDrive(m_right, m_left);
     }
     
     public void arcadeDrive(Gamepad gamepad) {
@@ -107,11 +105,11 @@ public class DriveTrain extends Subsystem {
             gearMode++;
 
         if (gearMode == 0)
-            return speed / FAST_GEAR_REDUCTION_FACTOR;
+            return speed / SLOW_GEAR_REDUCTION_FACTOR;
         else if (gearMode == 1)
             return speed / MID_GEAR_REDUCTION_FACTOR;
         else
-            return speed / SLOW_GEAR_REDUCTION_FACTOR;
+            return speed / FAST_GEAR_REDUCTION_FACTOR;
     }
 
     public void driveForward() {

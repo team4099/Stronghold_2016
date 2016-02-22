@@ -23,6 +23,10 @@ public class Attack3 extends Joystick {
         return getRawAxis(Z_AXIS);
     }
 
+    public double getYAxisValue() {
+        return getRawAxis(Y_AXIS);
+    }
+
     public int isButton3Pressed() {
         return BUTTON_3;
     }

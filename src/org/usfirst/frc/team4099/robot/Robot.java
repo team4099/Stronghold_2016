@@ -20,7 +20,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
         CommandBase.init();
-
     }
 	
     public void disabledInit(){
@@ -48,7 +47,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        System.out.println("Pot: " + CommandBase.ramp.getCurrentAngle());
     }
     
     public void testPeriodic() {

@@ -4,13 +4,15 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class RunShooterFullSpeed extends CommandBase {
 
-    public RunShooterFullSpeed() {
+    private double m_timeout;
+    public RunShooterFullSpeed(double timeout) {
+        m_timeout = timeout;
         requires(shooter);
     }
 
     @Override
     protected void initialize() {
-        setTimeout(3.0);
+        setTimeout(m_timeout);
     }
 
     @Override
