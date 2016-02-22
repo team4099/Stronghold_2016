@@ -13,7 +13,7 @@ public class IntakeUp extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(1.0);
+        setTimeout(1.3);
 //        setTimeout(5.0);
     }
 

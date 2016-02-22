@@ -25,6 +25,7 @@ public class RunShooterFullSpeed extends CommandBase {
 
     @Override
     protected void end() {
+        shooter.stopMotors();
     }
 
     @Override

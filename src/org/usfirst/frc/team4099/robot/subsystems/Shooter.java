@@ -35,7 +35,12 @@ public class Shooter extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new RunShooterSlowly());
+//        setDefaultCommand(new RunShooterSlowly());
+    }
+
+    public void stopMotors() {
+        LEFT_SHOOTER_MOTOR.set(0);
+        RIGHT_SHOOTER_MOTOR.set(0);
     }
 
     public void setMotorSpeed(String motor, double speed) {

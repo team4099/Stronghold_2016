@@ -21,6 +21,7 @@ public class Gamepad extends Joystick {
 	public static final int LEFT_X_AXIS = 0;
 	public static final int LEFT_Y_AXIS = 1;
 	
+    // 4 and 5 for real driver station, 3 and 4 for qdriverstation
 	public static final int RIGHT_X_AXIS = 4;
 	public static final int RIGHT_Y_AXIS = 5;
 	

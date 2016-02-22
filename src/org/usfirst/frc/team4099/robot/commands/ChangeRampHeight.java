@@ -16,7 +16,7 @@ public class ChangeRampHeight extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(0.0001);
+        setTimeout(0.01);
     }
 
     @Override

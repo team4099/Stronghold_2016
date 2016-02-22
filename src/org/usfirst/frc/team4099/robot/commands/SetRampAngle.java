@@ -39,7 +39,7 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void execute() {
-    	SmartDashboard.putNumber("pot", ramp.potentiometerDistance());
+        SmartDashboard.putNumber("pot", ramp.potentiometerDistance());
     }
 
     @Override
