@@ -35,8 +35,8 @@ public class DriveTrain extends Subsystem {
         frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
         rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
 
-        leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
-        rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        //leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        //rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
 
         drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
@@ -157,9 +157,6 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(-0.5);
     }
 
-    /**
-     * Pivots left at 0.5 speed
-     */
     public void turnLeft() {
         frontLeftMotor.set(-0.5);
         rearLeftMotor.set(-0.5);
@@ -167,9 +164,6 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(0.5);
     }
 
-    /**
-     * Stops the motors on the drive train
-     */
     public void stop() {
         frontLeftMotor.set(0.0);
         rearLeftMotor.set(0.0);
@@ -177,10 +171,6 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(0.0);
     }
 
-    /**
-     * Gets the motor speed as reported by the encoder
-     * @return The speed returned by the left gearbox encoder
-     */
     public double getLeftEncoderSpeed() {
         return leftEncoder.getRate();
     }
@@ -193,16 +183,10 @@ public class DriveTrain extends Subsystem {
         return rightEncoder.getRate();
     }
 
-    /**
-     * @return Returns what speed the left motors were set to
-     */
     public double getLeftMotorSpeed() {
         return frontLeftMotor.get();
     }
 
-    /**
-     * @return Returns what speed the right motors were set to
-     */
     public double getRightMotorSpeed() {
         return frontRightMotor.get();
     }
