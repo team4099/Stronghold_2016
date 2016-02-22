@@ -10,9 +10,9 @@ public class Constants {
     public static final double ELEVATOR_D = 0.0;
 
     public static final double DEADBAND_LIMIT = 0.1;
-    public static final double SLOW_GEAR_REDUCTION_FACTOR = 1.1;
+    public static final double SLOW_GEAR_REDUCTION_FACTOR = 2;
     public static final double FAST_GEAR_REDUCTION_FACTOR = 1.1;
-    public static final double MID_GEAR_REDUCTION_FACTOR = 1.75;
+    public static final double MID_GEAR_REDUCTION_FACTOR = 1.4;
 
     public static final int LEFT_SHOOTER_MOTOR_PORT = 4;
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 5;
@@ -44,7 +44,7 @@ public class Constants {
 
     public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 0; // TBD
     public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 0; // TBD
-    public static final int INTAKE_TRIPWIRE_PORT = 7;
+    public static final int INTAKE_TRIPWIRE_PORT = 9;
     
     public static final int POTENTIOMETER_PORT = 2;
     public static final double POT_MULTIPLIER = -1176.192446;

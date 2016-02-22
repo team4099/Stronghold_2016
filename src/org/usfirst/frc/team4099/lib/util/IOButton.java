@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.lib.util;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.DigitalInput;
 
@@ -18,6 +19,7 @@ public class IOButton extends Button {
 
     @Override
     public boolean get() {
+//        DriverStation.reportError(Boolean.toString(input.get()) + "\n", false);
         return input.get() ^ inverted;
     }
 }

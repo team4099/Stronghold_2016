@@ -3,12 +3,14 @@ package org.usfirst.frc.team4099.robot;
 import org.usfirst.frc.team4099.lib.input.Attack3;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 import org.usfirst.frc.team4099.lib.util.DPadButton;
+import org.usfirst.frc.team4099.lib.util.IOButton;
 import org.usfirst.frc.team4099.lib.util.RampMoveEnum;
 import org.usfirst.frc.team4099.robot.commands.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team4099.robot.commands.groups.Shoot;
+import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -25,7 +27,7 @@ public class OI {
     private DPadButton UP_BUTTON;
     private DPadButton DOWN_BUTTON;
     private Button ATTACK_BUTTON_8;
-//    private IOButton TRIPWIRE_SWITCH;
+    private IOButton TRIPWIRE_SWITCH;
 
     private Attack3 flightStick;
 
@@ -40,7 +42,7 @@ public class OI {
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
 
-//        TRIPWIRE_SWITCH = new IOButton(CommandBase.tripwireSwitch, true);
+        TRIPWIRE_SWITCH = new IOButton(CommandBase.tripwireSwitch, true);
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
 
         UP_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
@@ -54,7 +56,7 @@ public class OI {
         /* Commands */
         B_BUTTON.whenPressed(new Shoot());
 
-//        TRIPWIRE_SWITCH.whenPressed(new IntakeUp());
+        TRIPWIRE_SWITCH.whenPressed(new IntakeUp());
         Y_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(RampMoveEnum.DOWN));
 

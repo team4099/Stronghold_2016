@@ -21,7 +21,8 @@ public class ChangeRampHeight extends CommandBase {
 
     @Override
     protected void execute() {
-//    	DriverStation.reportError(Boolean.toString(isTooFar()), false);
+    	DriverStation.reportError(Boolean.toString(isTooFar()) + "\n", false);
+        DriverStation.reportError(Double.toString(ramp.potentiometerDistance()) + "\n", false);
         if (dir == RampMoveEnum.DOWN && !isTooFar())
             ramp.setMotorSpeed(1.0);
         else if (dir == RampMoveEnum.UP && !isTooFar())
@@ -29,9 +30,10 @@ public class ChangeRampHeight extends CommandBase {
     }
 
     private boolean isTooFar() {
-        if(dir == RampMoveEnum.DOWN) return ramp.potentiometerDistance() < -16;
-        else if(dir == RampMoveEnum.UP) return ramp.potentiometerDistance() > 50;
-        else return true;
+//        if(dir == RampMoveEnum.DOWN) return ramp.potentiometerDistance() < -16;
+//        else if(dir == RampMoveEnum.UP) return ramp.potentiometerDistance() > 40;
+//        else return true;
+        return false;
     }
 
     @Override
