@@ -57,10 +57,10 @@ public class Ramp extends Subsystem {
     }
 
     public void moveDown() {
-        actuatorMotor.set(-0.9);
+        actuatorMotor.set(1.0);
     }
 
     public void moveUp() {
-        actuatorMotor.set(1.0);
+        actuatorMotor.set(-1.0);
     }
 }

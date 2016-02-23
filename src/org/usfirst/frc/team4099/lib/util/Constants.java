@@ -44,7 +44,7 @@ public class Constants {
     public static final double RAMP_POT_SLOPE = -321.7675770722;
     public static final double RAMP_POT_CONSTANT = 232.1482053;
     public static final double RAMP_UPPER_LIMIT = 50;
-    public static final double RAMP_LOWER_LIMIT = 3;
+    public static final double RAMP_LOWER_LIMIT = 2;
 
 //    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 1; // TBD
 

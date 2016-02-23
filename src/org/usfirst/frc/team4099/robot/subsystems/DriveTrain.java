@@ -76,8 +76,8 @@ public class DriveTrain extends Subsystem {
         double m_right = modifySpeed(f_right);
 
         // fix sign (motor direction) (inverted for tryouts)
-        m_left = -m_left;
-        m_right = -m_right;
+        m_left = m_left;
+        m_right = m_right;
 
         /*
         double pi = Math.PI;
@@ -98,7 +98,7 @@ public class DriveTrain extends Subsystem {
         boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
         boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
 
-        int gearMode = 0;
+        int gearMode = 2;
         if (leftTriggerPressed)
             gearMode++;
         if (rightTriggerPressed)

@@ -3,6 +3,7 @@ package org.usfirst.frc.team4099.robot.commands;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.usfirst.frc.team4099.lib.util.Constants;
+import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.lib.util.Util;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
@@ -37,14 +38,24 @@ public class SetRampAngle extends CommandBase {
     @Override
     protected void execute() {
         if (goingUp)
-            ramp.moveUp();
+            ramp.setMotorSpeed(-1.0);
         else
-            ramp.moveDown();
+            ramp.setMotorSpeed(1.0);
     }
+    
+    private boolean isTooFar() {
+        if (goingUp) {
+            if (ramp.getCurrentAngle() < Constants.RAMP_UPPER_LIMIT)
+                return false;
+        } else {
+            if (ramp.getCurrentAngle() > Constants.RAMP_LOWER_LIMIT)
+                return false;
+        }
 
-    @Override
-    protected boolean isFinished() {
-        //return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
+        return true;
+    }
+    
+    private boolean reachedAngle() {
     	if (goingUp) {
     		return ramp.getCurrentAngle() > destinationAngle;
     	} else {
@@ -53,10 +64,18 @@ public class SetRampAngle extends CommandBase {
     }
 
     @Override
+    protected boolean isFinished() {
+        //return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
+    	
+    	return reachedAngle() || isTooFar();
+    }
+
+    @Override
     protected void end() {
         if(!goingUp) {
             Scheduler.getInstance().add(new BurstUp());
         }
+        ramp.setMotorSpeed(0);
     }
 
     @Override
