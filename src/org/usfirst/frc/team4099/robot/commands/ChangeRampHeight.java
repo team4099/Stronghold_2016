@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.DriverStation;
 
 public class ChangeRampHeight extends CommandBase {
 
-    private Direction dir;
+    private Direction.Ramp dir;
 
-    public ChangeRampHeight(Direction direction) {
+    public ChangeRampHeight(Direction.Ramp direction) {
         dir = direction;
         requires(ramp);
     }
@@ -29,15 +29,15 @@ public class ChangeRampHeight extends CommandBase {
 //;
         System.out.println("Ramp Angle: " +  ramp.getCurrentAngle());
 
-        if (dir == Direction.DOWN && !isTooFar())
+        if (dir == Direction.Ramp.DOWN && !isTooFar())
             ramp.setMotorSpeed(1.0);
-        else if (dir == Direction.UP && !isTooFar())
+        else if (dir == Direction.Ramp.UP && !isTooFar())
             ramp.setMotorSpeed(-1.0);
     }
 
     private boolean isTooFar() {
 
-        if (dir == Direction.UP) {
+        if (dir == Direction.Ramp.UP) {
             if (ramp.getCurrentAngle() < Constants.RAMP_UPPER_LIMIT)
                 return false;
         } else {

@@ -5,9 +5,9 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class ControlIntake extends CommandBase {
 
-    private Direction direction;
+    private Direction.Intake direction;
 
-    public ControlIntake(Direction direction) {
+    public ControlIntake(Direction.Intake direction) {
         this.direction = direction;
     }
 
@@ -19,7 +19,7 @@ public class ControlIntake extends CommandBase {
 
     @Override
     protected void execute() {
-        if (direction == Direction.UP) // go up
+        if (direction == Direction.Intake.UP) // go up
             intake.raiseIntake();
         else
             intake.lowerIntake();

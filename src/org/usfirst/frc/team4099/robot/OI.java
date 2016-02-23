@@ -63,8 +63,8 @@ public class OI {
         // gamepad
         X_BUTTON.whenPressed(new AlignForShot());
         B_BUTTON.whenPressed(new Shoot());
-        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.UP));
-        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.DOWN));
+        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
+        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
         START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
         BACK_BUTTON.whenPressed(new PrepareForLowBar());
         EAST_BUTTON.whileHeld(new TurnRight());

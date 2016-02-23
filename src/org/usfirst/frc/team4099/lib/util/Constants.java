@@ -3,6 +3,8 @@ package org.usfirst.frc.team4099.lib.util;
 public class Constants {
 
 
+    public static final double ANGLE_TOLERANCE = 1.0;
+
     private Constants() {}
 
     public static final double ELEVATOR_P = 0.1;

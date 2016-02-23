@@ -5,15 +5,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team4099.lib.util.GamepadUtil;
-import org.usfirst.frc.team4099.robot.commands.TurnAngle;
+import org.usfirst.frc.team4099.robot.commands.TurnAngleBangBang;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
-import org.usfirst.frc.team4099.robot.subsystems.DriveTrain;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class Robot extends IterativeRobot {
 
@@ -66,7 +59,7 @@ public class Robot extends IterativeRobot {
 
     public void testInit() {
         //runInitialCalibration();
-        Scheduler.getInstance().add(new TurnAngle(90));
+        Scheduler.getInstance().add(new TurnAngleBangBang(90, false));
     }
 
     private void runInitialCalibration() {

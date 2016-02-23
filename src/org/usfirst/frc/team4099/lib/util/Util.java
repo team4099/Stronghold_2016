@@ -6,4 +6,8 @@ public class Util {
     public static boolean withinRange(double value, double target, double tolerance) {
         return Math.abs(value - target) <= tolerance;
     }
+
+    public static double mod(double value, double modulus) {
+        return (((value % modulus) + modulus) % modulus);
+    }
 }
