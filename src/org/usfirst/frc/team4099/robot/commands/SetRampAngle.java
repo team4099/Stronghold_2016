@@ -43,16 +43,15 @@ public class SetRampAngle extends CommandBase {
     public SetRampAngle(double angleToSetTo, double maxSpeed) {
         this(angleToSetTo);
         if (aimassist) {
-            this.destinationAngle = CommandBase.vision.getVerticalAngle();
+            this.destinationAngle = ramp.getCurrentAngle() + CommandBase.vision.getVerticalAngle();
         }
         this.maxSpeed = Math.abs(maxSpeed);
     }
 
     @Override
     protected void initialize() {
-        this.destinationAngle = CommandBase.vision.getVerticalAngle();
+        this.destinationAngle = ramp.getCurrentAngle() + CommandBase.vision.getVerticalAngle();
         this.goingUp = destinationAngle > ramp.getCurrentAngle();
-
     }
 
     @Override

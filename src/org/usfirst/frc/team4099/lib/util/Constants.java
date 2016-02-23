@@ -5,9 +5,9 @@ public class Constants {
 
 
     private Constants() {}
-    public static final double DPAD_MOVE_SPEED = 0.5;
-    public static final double DPAD_TURN_SPEED = 0.5;
-    public static final double ANGLE_TOLERANCE = 1.0;
+    public static final double DPAD_MOVE_SPEED = 0.7;
+    public static final double DPAD_TURN_SPEED = 0.7;
+    public static final double ANGLE_TOLERANCE = 10.0;
 
     public static final double ELEVATOR_P = 0.1;
     public static final double ELEVATOR_I = 0.0;
@@ -35,7 +35,7 @@ public class Constants {
     public static final double DISTANCE_ACTUATOR_SHOOTER = 3.0;
     public static final double MOTOR_LENGTH = 0.5;
 
-    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.210:5000/get_angle";
+    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:5000/get_angle";
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};

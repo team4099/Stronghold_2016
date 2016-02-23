@@ -8,12 +8,28 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 public class TurnAngleBangBang extends CommandBase {
 
     public double destAngle;
+    public boolean isDestination;
+    public boolean aimassist = false;
     public Direction.Rotation rotate;
 
+    /* Vision */
+    public TurnAngleBangBang() {
+        this(0, false);
+        aimassist = true;
+    }
+
     public TurnAngleBangBang(double angle, boolean isDestination) {
-        if (!isDestination)
-            angle = Util.mod(CommandBase.navX.getAngle() + angle, 360);
         destAngle = angle;
+        isDestination = isDestination;
+       requires(driveTrain);
+    }
+
+    @Override
+    protected void initialize() {
+        if (aimassist)
+            this.destAngle = CommandBase.vision.getLateralAngle();
+        if (!isDestination)
+            destAngle = Util.mod(CommandBase.navX.getAngle() + destAngle, 360);
         double currentAngle = navX.getAngle();
         double oppositeAngle = Util.mod(180 + currentAngle, 360);
         if (currentAngle < 180) {
@@ -29,11 +45,7 @@ public class TurnAngleBangBang extends CommandBase {
                 rotate = Direction.Rotation.CLOCKWISE;
             }
         }
-        requires(driveTrain);
-    }
 
-    @Override
-    protected void initialize() {
         System.out.println("Trying to turn to " + destAngle + " degrees.");
     }
 

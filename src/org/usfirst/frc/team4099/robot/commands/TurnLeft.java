@@ -12,7 +12,7 @@ public class TurnLeft extends CommandBase {
 
     @Override
     protected void initialize() {
-
+        setTimeout(0.1);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class TurnLeft extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     @Override

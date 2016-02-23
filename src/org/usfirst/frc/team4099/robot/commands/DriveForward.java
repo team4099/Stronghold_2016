@@ -13,6 +13,7 @@ public class DriveForward extends CommandBase {
 
     @Override
     protected void initialize() {
+        setTimeout(0.1);
     }
 
     @Override
@@ -22,16 +23,14 @@ public class DriveForward extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     @Override
     protected void end() {
-        driveTrain.stop();
     }
 
     @Override
     protected void interrupted() {
-        driveTrain.stop();
     }
 }
