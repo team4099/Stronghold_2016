@@ -55,5 +55,7 @@ public class Constants {
     public static final double DRIVE_GAIN_KD = 0.000;
 
     public static final double DISTANCE_PER_PULSE = 0.001;
+    
+    public static final int DEFAULT_RAMP_ANGLE = 19;
 
 }

@@ -61,7 +61,7 @@ public class OI {
         B_BUTTON.whenPressed(new Shoot());
         Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(Direction.DOWN));
-        START_BUTTON.whenPressed(new SetRampAngle(45));
+        START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
 
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
         UP_BUTTON.whileHeld(new ControlIntake(Direction.UP));
