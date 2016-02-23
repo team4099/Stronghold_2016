@@ -6,10 +6,19 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class TurnAngleHeadass extends CommandBase {
 
-    private double destAngle;
+	private double startingAngle;
+    private double turnAngle;
+    private double angleThreshold;
+    private boolean turnRight;
 
-    public TurnAngleHeadass(double destination) {
-        destAngle = destination;
+    public TurnAngleHeadass(double angle) {
+        turnAngle = angle;
+        angleThreshold = 3;
+        startingAngle = navX.getAngle();
+        if (turnAngle>=0) 
+        	turnRight = true;
+        else
+        	turnRight = false;
         requires(driveTrain);
     }
 
@@ -19,12 +28,16 @@ public class TurnAngleHeadass extends CommandBase {
 
     @Override
     protected void execute() {
-        driveTrain.turnRight(0.3);
+    	if (turnRight)
+    		driveTrain.turnRight(0.5);
+    	else
+    		driveTrain.turnLeft(0.5);
     }
 
     @Override
     protected boolean isFinished() {
-        return Util.withinRange(CommandBase.navX.getAngle(), destAngle, Constants.ANGLE_TOLERANCE);
+        //return Util.withinRange(CommandBase.navX.getAngle(), destAngle, Constants.ANGLE_TOLERANCE);
+    	return Math.abs(navX.getAngle() - (startingAngle + turnAngle)%360) <= angleThreshold;
     }
 
     @Override
