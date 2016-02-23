@@ -44,7 +44,12 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
+        //return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
+    	if (goingUp) {
+    		return ramp.getCurrentAngle() > destinationAngle;
+    	} else {
+    		return ramp.getCurrentAngle() < destinationAngle;
+    	}
     }
 
     @Override
