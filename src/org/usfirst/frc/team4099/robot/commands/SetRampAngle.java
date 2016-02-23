@@ -14,11 +14,13 @@ public class SetRampAngle extends CommandBase {
     double destinationAngle;
     boolean goingUp;
     double maxSpeed;
+    boolean aimassist = false;
 
     /*
      * Grabbing vision data
      */
     public SetRampAngle() {
+        this.aimassist = true;
         this.maxSpeed = 0.5;
         requires(ramp);
     }
@@ -40,6 +42,9 @@ public class SetRampAngle extends CommandBase {
      */
     public SetRampAngle(double angleToSetTo, double maxSpeed) {
         this(angleToSetTo);
+        if (aimassist) {
+            this.destinationAngle = CommandBase.vision.getVerticalAngle();
+        }
         this.maxSpeed = Math.abs(maxSpeed);
     }
 

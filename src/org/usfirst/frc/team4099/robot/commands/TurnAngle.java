@@ -12,9 +12,14 @@ public class TurnAngle extends CommandBase {
 
     private double encoderThreshold;
     private double incrementAmount;
+    private boolean aimassist = false;
     
     private double angleThreshold;
 
+    public TurnAngle() {
+        this(0);
+        this.aimassist = true;
+    }
     /**
      * @param angle The amount to turn in degrees
      *              TODO: figure out if this is really degrees or it is radians
@@ -29,6 +34,9 @@ public class TurnAngle extends CommandBase {
 
     @Override
     protected void initialize() {
+        if (aimassist) {
+            this.angle = CommandBase.vision.getLateralAngle();
+        }
         System.out.println("trying to turn angle: " + angle);
         startingAngle = navX.getAngle();
         turnRight = angle > 0;
@@ -38,6 +46,7 @@ public class TurnAngle extends CommandBase {
 
     @Override
     protected void execute() {
+        System.out.println("Current angle: " + navX.getAngle() + " Dest: " + angle);
         double x;
         double leftEncoderSpeed = driveTrain.getLeftEncoderSpeed();
         double rightEncoderSpeed = driveTrain.getRightEncoderSpeed();
