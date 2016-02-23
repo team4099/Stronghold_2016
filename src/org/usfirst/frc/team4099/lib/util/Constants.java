@@ -11,8 +11,8 @@ public class Constants {
 
     public static final double DEADBAND_LIMIT = 0.1;
     public static final double SLOW_GEAR_REDUCTION_FACTOR = 2;
-    public static final double FAST_GEAR_REDUCTION_FACTOR = 1.5;
-    public static final double MID_GEAR_REDUCTION_FACTOR = 1.75;
+    public static final double FAST_GEAR_REDUCTION_FACTOR = 1.05;
+    public static final double MID_GEAR_REDUCTION_FACTOR = 1.5;
 
     public static final int FRONT_LEFT_MOTOR_PORT = 0;
     public static final int REAR_LEFT_MOTOR_PORT = 1;

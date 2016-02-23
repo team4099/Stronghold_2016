@@ -2,17 +2,19 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class BurstUp extends CommandBase {
+public class TurnRight extends CommandBase {
+
+    public TurnRight() {
+        requires(driveTrain);
+    }
 
     @Override
     protected void initialize() {
-        requires(ramp);
-        setTimeout(0.05);
     }
 
     @Override
     protected void execute() {
-        ramp.moveUp();
+        driveTrain.turnRight();
     }
 
     @Override
@@ -22,11 +24,11 @@ public class BurstUp extends CommandBase {
 
     @Override
     protected void end() {
-        ramp.stopRamp();
+        driveTrain.stop();
     }
 
     @Override
     protected void interrupted() {
-        ramp.stopRamp();
+        driveTrain.stop();
     }
 }

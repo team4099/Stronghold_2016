@@ -23,7 +23,7 @@ public class Shooter extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-//        setDefaultCommand(new RunShooterSlowly());
+        setDefaultCommand(new RunShooterSlowlyBackwards());
     }
 
     public void stopMotors() {

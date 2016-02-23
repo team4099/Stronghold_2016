@@ -8,7 +8,7 @@ import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
 public class Shoot extends CommandGroup {
 
     public Shoot() {
-        addParallel(new RunShooterFullSpeed(3.0));
+        addParallel(new RunShooterFullSpeed(4.0));
         addSequential(new WaitCommand(2.5));
         addParallel(new Kick());
     }

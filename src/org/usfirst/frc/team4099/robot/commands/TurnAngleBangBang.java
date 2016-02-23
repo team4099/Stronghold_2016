@@ -2,31 +2,34 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class BurstUp extends CommandBase {
+public class TurnAngleBangBang extends CommandBase {
+
+    public TurnAngleBangBang(double destinationAngle) {
+
+    }
 
     @Override
     protected void initialize() {
-        requires(ramp);
-        setTimeout(0.05);
+
     }
 
     @Override
     protected void execute() {
-        ramp.moveUp();
+
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     @Override
     protected void end() {
-        ramp.stopRamp();
+
     }
 
     @Override
     protected void interrupted() {
-        ramp.stopRamp();
+
     }
 }

@@ -3,6 +3,7 @@ package org.usfirst.frc.team4099.robot.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.GamepadUtil;
@@ -20,14 +21,16 @@ public class DriveTrain extends Subsystem {
     private Talon frontLeftMotor, rearLeftMotor;
     private Talon frontRightMotor, rearRightMotor;
 
-    private Encoder leftEncoder;
-    private Encoder rightEncoder;
+    public Encoder leftEncoder;
+    public Encoder rightEncoder;
 
     private Timer printTimer;
 
     private double integralError = 0;
     private double derivError = 0;
     private double lastError = 0;
+
+    private boolean reversed = false;
 
     public DriveTrain() {
         DEADBAND_LIMIT = Constants.DEADBAND_LIMIT;
@@ -40,10 +43,10 @@ public class DriveTrain extends Subsystem {
         frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
         rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
 
-        //leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
-        //rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
-        //leftEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
-        //rightEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
+        leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
+        leftEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
+        rightEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
 
         drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
@@ -72,30 +75,32 @@ public class DriveTrain extends Subsystem {
         double m_left = modifySpeed(f_left);
         double m_right = modifySpeed(f_right);
 
-        // fix sign (motor direction) (inverted for tryouts)
-        m_left = m_left;
-        m_right = m_right;
-
-        /*
         double pi = Math.PI;
         double gyro_angle = CommandBase.navX.getAngle();
 
-        m_left += gyro_angle * 0.1;//Constants.GYRO_GAIN_LEFT;
-        m_right -= gyro_angle * 0.1;//Constants.GYRO_GAIN_RIGHT;
-        */
+        //m_left += gyro_angle * 0.1;//Constants.GYRO_GAIN_LEFT;
+        //m_right -= gyro_angle * 0.1;//Constants.GYRO_GAIN_RIGHT;
 
-        drive.tankDrive(m_right, m_left);
+        if (isInReverse())
+            drive.tankDrive(-m_left, -m_right);
+        else
+            drive.tankDrive(m_right, m_left);
     }
     
     public void arcadeDrive(Gamepad gamepad) {
     	drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()) / 1.5, -0.2 * GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
     }
 
+    public boolean isInReverse() {
+        return reversed;
+    }
+
     private double modifySpeed(double speed) {
         boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
         boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
 
-        int gearMode = 2;
+        int gearMode = 0;
+
         if (leftTriggerPressed)
             gearMode++;
         if (rightTriggerPressed)
@@ -107,13 +112,6 @@ public class DriveTrain extends Subsystem {
             return speed / MID_GEAR_REDUCTION_FACTOR;
         else
             return speed / FAST_GEAR_REDUCTION_FACTOR;
-    }
-
-    public void driveForward() {
-        frontLeftMotor.set(1.0);
-        frontRightMotor.set(1.0);
-        rearLeftMotor.set(1.0);
-        rearRightMotor.set(1.0);
     }
 
     /**
@@ -128,48 +126,24 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(rightSpeed);
     }
 
-    /**
-     * Drives forward at 0.5 speed
-     */
-    public void driveForwardHalf() {
-        frontLeftMotor.set(0.5);
-        rearLeftMotor.set(0.5);
-        frontRightMotor.set(0.5);
-        rearRightMotor.set(0.5);
+    public void driveForward() {
+        drive.tankDrive(0.7, 0.7);
     }
 
-    /**
-     * Drives backwards at 0.5 speed
-     */
     public void driveBackward() {
-        frontLeftMotor.set(-0.5);
-        rearLeftMotor.set(-0.5);
-        frontRightMotor.set(-0.5);
-        rearRightMotor.set(-0.5);
+        drive.tankDrive(-0.7, -0.7);
     }
 
-    /**
-     * Pivots right at 0.5 speed
-     */
     public void turnRight() {
-        frontLeftMotor.set(0.5);
-        rearLeftMotor.set(0.5);
-        frontRightMotor.set(-0.5);
-        rearRightMotor.set(-0.5);
+        drive.tankDrive(0.6, -0.6);
     }
 
     public void turnLeft() {
-        frontLeftMotor.set(-0.5);
-        rearLeftMotor.set(-0.5);
-        frontRightMotor.set(0.5);
-        rearRightMotor.set(0.5);
+        drive.tankDrive(-0.6, 0.6);
     }
 
     public void stop() {
-        frontLeftMotor.set(0.0);
-        rearLeftMotor.set(0.0);
-        frontRightMotor.set(0.0);
-        rearRightMotor.set(0.0);
+        drive.tankDrive(0.0, 0.0);
     }
 
     public double getLeftEncoderSpeed() {

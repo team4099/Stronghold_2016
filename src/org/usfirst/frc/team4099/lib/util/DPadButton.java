@@ -4,9 +4,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 
-/**
- * Created by plato2000 on 2/17/16.
- */
 public class DPadButton extends Button {
 
     private Gamepad gamepad;

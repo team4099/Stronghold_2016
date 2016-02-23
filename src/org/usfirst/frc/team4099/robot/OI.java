@@ -26,18 +26,18 @@ public class OI {
     private Button X_BUTTON;
     private Button Y_BUTTON;
     private Button RIGHT_BUTTON;
-    private DPadButton UP_BUTTON;
-    private DPadButton DOWN_BUTTON;
     private Button SHOOT_BUTTON;
     private Button RAISE_SHOOTER_BUTTON;
     private Button LOWER_SHOOTER_BUTTON;
+    private DPadButton EAST_BUTTON, WEST_BUTTON;
+    private DPadButton NORTH_BUTTON, SOUTH_BUTTON;
+    private Button START_BUTTON, BACK_BUTTON;
+
     private IOButton TRIPWIRE_BUTTON;
 
     private Attack3 flightStick;
 
-    private Button START_BUTTON;
 
-    private DPadButton EAST_BUTTON, WEST_BUTTON;
 
     public OI() {
         gamepad = new Gamepad(0);
@@ -48,15 +48,16 @@ public class OI {
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
-        UP_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
-        DOWN_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_SOUTH);
+        NORTH_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
+        SOUTH_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_SOUTH);
 
         EAST_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_EAST);
         WEST_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_WEST);
         START_BUTTON = new JoystickButton(gamepad, Gamepad.START_BUTTON);
+        BACK_BUTTON = new JoystickButton(gamepad, Gamepad.BACK_BUTTON);
         SHOOT_BUTTON = new JoystickButton(flightStick, Attack3.INDEX_TRIGGER);
-        TRIPWIRE_BUTTON = new IOButton(new DigitalInput(Constants.INTAKE_TRIPWIRE_PORT), false);
 
+        TRIPWIRE_BUTTON = new IOButton(new DigitalInput(Constants.INTAKE_TRIPWIRE_PORT), false);
 
         /** COMMANDS */
         // gamepad
@@ -65,10 +66,13 @@ public class OI {
         Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(Direction.DOWN));
         START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
+        BACK_BUTTON.whenPressed(new PrepareForLowBar());
+        EAST_BUTTON.whileHeld(new TurnRight());
+        WEST_BUTTON.whileHeld(new TurnLeft());
+        NORTH_BUTTON.whileHeld(new DriveForward());
+        SOUTH_BUTTON.whileHeld(new DriveBackward());
 
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
-        UP_BUTTON.whileHeld(new ControlIntake(Direction.UP));
-        DOWN_BUTTON.whileHeld(new ControlIntake(Direction.DOWN));
 
         // flight stick
     }

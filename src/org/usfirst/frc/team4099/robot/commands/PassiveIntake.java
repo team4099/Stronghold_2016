@@ -6,9 +6,11 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class PassiveIntake extends CommandBase {
 
+    public PassiveIntake() {
+        requires(intake);
+    }
     @Override
     protected void initialize() {
-        requires(intake);
     }
 
     @Override

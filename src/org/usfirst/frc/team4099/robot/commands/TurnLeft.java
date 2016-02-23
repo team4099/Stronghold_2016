@@ -15,21 +15,19 @@ public class TurnLeft extends CommandBase {
 
     @Override
     protected void execute() {
-
+        driveTrain.turnLeft();
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     @Override
     protected void end() {
-
     }
 
     @Override
     protected void interrupted() {
-
     }
 }

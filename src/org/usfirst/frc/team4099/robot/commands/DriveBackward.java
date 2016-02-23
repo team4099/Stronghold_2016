@@ -2,9 +2,6 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-/**
- * Created by plato2000 on 2/17/16.
- */
 public class DriveBackward extends CommandBase {
     public DriveBackward() {
         requires(driveTrain);
@@ -12,7 +9,7 @@ public class DriveBackward extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(0.01);
+        setTimeout(0.1);
     }
 
     @Override
