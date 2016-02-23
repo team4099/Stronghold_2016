@@ -24,10 +24,6 @@ public class ChangeRampHeight extends CommandBase {
 
     @Override
     protected void execute() {
-//    	DriverStation.reportError(Boolean.toString(isTooFar()) + "\n", false);
-//        DriverStation.reportError(Double.toString(ramp.potentiometerDistance()) + "\n", false);
-//;
-        System.out.println("Ramp Angle: " +  ramp.getCurrentAngle());
 
         if (dir == Direction.Ramp.DOWN && !isTooFar())
             ramp.setMotorSpeed(1.0);
@@ -36,7 +32,6 @@ public class ChangeRampHeight extends CommandBase {
     }
 
     private boolean isTooFar() {
-
         if (dir == Direction.Ramp.UP) {
             if (ramp.getCurrentAngle() < Constants.RAMP_UPPER_LIMIT)
                 return false;

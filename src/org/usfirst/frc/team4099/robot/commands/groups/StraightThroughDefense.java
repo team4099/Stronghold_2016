@@ -9,8 +9,7 @@ import org.usfirst.frc.team4099.robot.commands.RunShooterFullSpeed;
 public class StraightThroughDefense extends CommandGroup {
 
     public StraightThroughDefense() {
-        addParallel(new DriveForward(2));
-//        addSequential(new WaitCommand(1.5));
-//        addParallel(new Kick());
+        addSequential(new DriveForward(1.0));
+        addSequential(new WaitCommand(2.0));
     }
 }

@@ -4,31 +4,25 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class DriveForward extends CommandBase {
 
-    double timeout;
+    private double m_speed;
 
-    public DriveForward() {
-        timeout = 0.1;
-        requires(driveTrain);
-    }
-
-    public DriveForward(double timeout) {
-        this.timeout = timeout;
+    public DriveForward(double speed) {
+        m_speed = speed;
         requires(driveTrain);
     }
 
     @Override
     protected void initialize() {
-        setTimeout(timeout);
     }
 
     @Override
     protected void execute() {
-        driveTrain.driveForward();
+        driveTrain.driveForward(m_speed);
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     @Override
@@ -38,6 +32,6 @@ public class DriveForward extends CommandBase {
 
     @Override
     protected void interrupted() {
-        end();
+        driveTrain.stop();
     }
 }

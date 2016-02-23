@@ -114,11 +114,6 @@ public class DriveTrain extends Subsystem {
             return speed / FAST_GEAR_REDUCTION_FACTOR;
     }
 
-    /**
-     * Sets motor speeds by side (can be used for turning, etc)
-     * @param leftSpeed The speed to set the left motors to
-     * @param rightSpeed The speed to set the left motors to
-     */
     public void drive(double leftSpeed, double rightSpeed) {
         frontLeftMotor.set(leftSpeed);
         rearLeftMotor.set(leftSpeed);
@@ -126,20 +121,20 @@ public class DriveTrain extends Subsystem {
         rearRightMotor.set(rightSpeed);
     }
 
-    public void driveForward() {
-        drive.tankDrive(0.7, 0.7);
+    public void driveForward(double speed) {
+        drive.tankDrive(speed, speed);
     }
 
-    public void driveBackward() {
-        drive.tankDrive(-0.7, -0.7);
+    public void driveBackward(double speed) {
+        drive.tankDrive(-speed, -speed);
     }
 
-    public void turnRight() {
-        drive.tankDrive(0.6, -0.6);
+    public void turnRight(double speed) {
+        drive.tankDrive(speed, -speed);
     }
 
-    public void turnLeft() {
-        drive.tankDrive(-0.6, 0.6);
+    public void turnLeft(double speed) {
+        drive.tankDrive(-speed, speed);
     }
 
     public void stop() {

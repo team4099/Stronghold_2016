@@ -40,9 +40,9 @@ public class TurnAngleBangBang extends CommandBase {
     @Override
     protected void execute() {
         if (rotate == Direction.Rotation.CLOCKWISE) {
-            driveTrain.turnRight();
+            driveTrain.turnRight(0.5);
         } else {
-            driveTrain.turnLeft();
+            driveTrain.turnLeft(0.5);
         }
     }
 

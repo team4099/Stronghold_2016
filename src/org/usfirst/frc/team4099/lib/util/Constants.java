@@ -3,9 +3,11 @@ package org.usfirst.frc.team4099.lib.util;
 public class Constants {
 
 
-    public static final double ANGLE_TOLERANCE = 1.0;
 
     private Constants() {}
+    public static final double DPAD_MOVE_SPEED = 0.5;
+    public static final double DPAD_TURN_SPEED = 0.5;
+    public static final double ANGLE_TOLERANCE = 1.0;
 
     public static final double ELEVATOR_P = 0.1;
     public static final double ELEVATOR_I = 0.0;

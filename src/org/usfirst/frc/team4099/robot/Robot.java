@@ -48,9 +48,10 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("gyroangle", CommandBase.navX.getAngle());
-        SmartDashboard.putNumber("rightencoder", CommandBase.driveTrain.rightEncoder.get());
-        SmartDashboard.putNumber("leftencoder", CommandBase.driveTrain.leftEncoder.get());
+        SmartDashboard.putNumber("gyro angle", CommandBase.navX.getAngle());
+        SmartDashboard.putNumber("right encoder", CommandBase.driveTrain.rightEncoder.get());
+        SmartDashboard.putNumber("left encoder", CommandBase.driveTrain.leftEncoder.get());
+        SmartDashboard.putNumber("ramp angle", CommandBase.ramp.getCurrentAngle());
     }
     
     public void testPeriodic() {

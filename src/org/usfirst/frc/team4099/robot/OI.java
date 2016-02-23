@@ -27,16 +27,14 @@ public class OI {
     private Button Y_BUTTON;
     private Button RIGHT_BUTTON;
     private Button SHOOT_BUTTON;
-    private Button RAISE_SHOOTER_BUTTON;
-    private Button LOWER_SHOOTER_BUTTON;
     private DPadButton EAST_BUTTON, WEST_BUTTON;
     private DPadButton NORTH_BUTTON, SOUTH_BUTTON;
     private Button START_BUTTON, BACK_BUTTON;
-
     private IOButton TRIPWIRE_BUTTON;
 
     private Attack3 flightStick;
-
+    private Button RAISE_SHOOTER_BUTTON;
+    private Button LOWER_SHOOTER_BUTTON;
 
 
     public OI() {
@@ -67,14 +65,15 @@ public class OI {
         A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
         START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
         BACK_BUTTON.whenPressed(new PrepareForLowBar());
-        EAST_BUTTON.whileHeld(new TurnRight());
-        WEST_BUTTON.whileHeld(new TurnLeft());
-        NORTH_BUTTON.whileHeld(new DriveForward());
-        SOUTH_BUTTON.whileHeld(new DriveBackward());
+        EAST_BUTTON.whileHeld(new TurnRight(Constants.DPAD_TURN_SPEED));
+        WEST_BUTTON.whileHeld(new TurnLeft(Constants.DPAD_TURN_SPEED));
+        NORTH_BUTTON.whileHeld(new DriveForward(Constants.DPAD_MOVE_SPEED));
+        SOUTH_BUTTON.whileHeld(new DriveBackward(Constants.DPAD_MOVE_SPEED));
 
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
 
         // flight stick
+        RAISE_SHOOTER_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
     }
 
     public Gamepad getGamepad() {

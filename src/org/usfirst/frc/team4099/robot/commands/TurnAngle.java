@@ -40,8 +40,10 @@ public class TurnAngle extends CommandBase {
         System.out.println("trying to turn angle: " + angle);
         startingAngle = navX.getAngle();
         turnRight = angle > 0;
-        if(turnRight) driveTrain.turnRight();
-        else driveTrain.turnLeft();
+        if (turnRight)
+            driveTrain.turnRight(0.5);
+        else
+            driveTrain.turnLeft(0.5);
     }
 
     @Override

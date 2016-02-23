@@ -4,7 +4,9 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class TurnRight extends CommandBase {
 
-    public TurnRight() {
+    private double m_speed;
+    public TurnRight(double speed) {
+        m_speed = speed;
         requires(driveTrain);
     }
 
@@ -14,7 +16,7 @@ public class TurnRight extends CommandBase {
 
     @Override
     protected void execute() {
-        driveTrain.turnRight();
+        driveTrain.turnRight(m_speed);
     }
 
     @Override
