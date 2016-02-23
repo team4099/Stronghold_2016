@@ -43,6 +43,7 @@ public class Vision extends Subsystem {
                 this.acquiredTarget = true;
                 this.lateralAngle = Float.parseFloat(angle_args[0]);
                 this.verticalAngle = Float.parseFloat(angle_args[1]);
+                System.out.println("Vision angles: " + this.lateralAngle + " " + this.verticalAngle);
             }
             in.close();
         } catch (Exception e) {

@@ -8,6 +8,7 @@ import org.usfirst.frc.team4099.lib.util.DPadButton;
 import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.lib.util.IOButton;
 import org.usfirst.frc.team4099.robot.commands.*;
+import org.usfirst.frc.team4099.robot.commands.groups.*;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -56,8 +57,10 @@ public class OI {
         SHOOT_BUTTON = new JoystickButton(flightStick, Attack3.INDEX_TRIGGER);
         TRIPWIRE_BUTTON = new IOButton(new DigitalInput(Constants.INTAKE_TRIPWIRE_PORT), false);
 
+
         /** COMMANDS */
         // gamepad
+        X_BUTTON.whenPressed(new AlignForShot());
         B_BUTTON.whenPressed(new Shoot());
         Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(Direction.DOWN));

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team4099.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.Direction;
@@ -12,6 +14,15 @@ public class SetRampAngle extends CommandBase {
     double destinationAngle;
     boolean goingUp;
     double maxSpeed;
+
+    /*
+     * Grabbing vision data
+     */
+    public SetRampAngle() {
+        this.maxSpeed = 0.5;
+        requires(ramp);
+    }
+        
 
     /**
      * @param angleToSetTo The angle at which to set the ramp to
@@ -33,10 +44,18 @@ public class SetRampAngle extends CommandBase {
     }
 
     @Override
-    protected void initialize() {}
+    protected void initialize() {
+        this.destinationAngle = CommandBase.vision.getVerticalAngle();
+        this.goingUp = destinationAngle > ramp.getCurrentAngle();
+
+    }
 
     @Override
     protected void execute() {
+        DriverStation.reportError("Going up: " + this.goingUp + "\n", false);
+        System.out.println("Ramp Angle: " +  ramp.getCurrentAngle() + " Dest: " + destinationAngle);
+
+
         if (goingUp)
             ramp.setMotorSpeed(-1.0);
         else

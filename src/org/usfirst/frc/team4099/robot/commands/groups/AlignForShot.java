@@ -10,8 +10,9 @@ public class AlignForShot extends CommandGroup {
 
     public AlignForShot() {
         addSequential(new UpdateVision());
-        addSequential(new TurnAngle(CommandBase.vision.getLateralAngle()));
-        addParallel(new SetRampAngle(CommandBase.vision.getVerticalAngle()));
-        //addSequential(new Shoot()); // moved to new command group ShootWithAimAssist
+
+//        addSequential(new TurnAngle(CommandBase.vision.getLateralAngle()));
+        addSequential(new SetRampAngle());
+//          addSequential(new Shoot()); // moved to new command group ShootWithAimAssist
     }
 }

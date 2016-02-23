@@ -3,6 +3,7 @@ package org.usfirst.frc.team4099.robot.commands;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class UpdateVision extends CommandBase {
+    private boolean finish = false;
     public UpdateVision() {
         requires(vision);
     }
@@ -14,15 +15,18 @@ public class UpdateVision extends CommandBase {
     @Override
     protected void execute() {
         vision.updateVisionData();
+        finish = true;
     }
 
     @Override
     protected boolean isFinished() {
-        return true;
+        return finish;
     }
 
     @Override
     protected void end() {
+
+
     }
 
     @Override

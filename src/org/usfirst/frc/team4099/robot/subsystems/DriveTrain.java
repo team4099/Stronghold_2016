@@ -68,9 +68,6 @@ public class DriveTrain extends Subsystem {
         double f_left = GamepadUtil.deadband(left);
         double f_right = GamepadUtil.deadband(right);
 
-        if (printTimer.hasPeriodPassed(1.0))
-            System.out.println("left: " + f_left + "  " + "right: " + f_right);
-
         // gear modified values
         double m_left = modifySpeed(f_left);
         double m_right = modifySpeed(f_right);

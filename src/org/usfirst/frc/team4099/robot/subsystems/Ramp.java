@@ -28,7 +28,7 @@ public class Ramp extends Subsystem {
     }
 
     public double getCurrentAngle() {
-    	SmartDashboard.putNumber("Potentiometer", potentiometer.get());
+//    	SmartDashboard.putNumber("Potentiometer", potentiometer.get());
       /*
         arccos ( (p^2 - r^2 - t^2) / rt )
         where p is the distance from the actuator motor rod to the actuator connector point

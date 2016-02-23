@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4099.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
@@ -22,8 +24,11 @@ public class ChangeRampHeight extends CommandBase {
 
     @Override
     protected void execute() {
-    	DriverStation.reportError(Boolean.toString(isTooFar()) + "\n", false);
-        DriverStation.reportError(Double.toString(ramp.potentiometerDistance()) + "\n", false);
+//    	DriverStation.reportError(Boolean.toString(isTooFar()) + "\n", false);
+//        DriverStation.reportError(Double.toString(ramp.potentiometerDistance()) + "\n", false);
+//;
+        System.out.println("Ramp Angle: " +  ramp.getCurrentAngle());
+
         if (dir == Direction.DOWN && !isTooFar())
             ramp.setMotorSpeed(1.0);
         else if (dir == Direction.UP && !isTooFar())
@@ -31,6 +36,7 @@ public class ChangeRampHeight extends CommandBase {
     }
 
     private boolean isTooFar() {
+
         if (dir == Direction.UP) {
             if (ramp.getCurrentAngle() < Constants.RAMP_UPPER_LIMIT)
                 return false;
