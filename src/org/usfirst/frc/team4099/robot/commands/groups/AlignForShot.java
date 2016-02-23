@@ -11,7 +11,7 @@ public class AlignForShot extends CommandGroup {
     public AlignForShot() {
         addSequential(new UpdateVision());
 
-        addSequential(new TurnAngleBangBang());
+       // addSequential(new TurnAngleBangBang());
         // false means that the angle is turn amount
         addSequential(new SetRampAngle());
     }

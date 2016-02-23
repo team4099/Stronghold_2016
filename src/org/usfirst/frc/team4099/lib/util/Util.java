@@ -8,6 +8,10 @@ public class Util {
     }
 
     public static double mod(double value, double modulus) {
-        return (((value % modulus) + modulus) % modulus);
+        double mod = value % modulus;
+        while (mod < 0)
+            mod += 360;
+
+        return mod;
     }
 }

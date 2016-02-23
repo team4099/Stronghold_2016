@@ -9,10 +9,6 @@ public class Constants {
     public static final double DPAD_TURN_SPEED = 0.7;
     public static final double ANGLE_TOLERANCE = 10.0;
 
-    public static final double ELEVATOR_P = 0.1;
-    public static final double ELEVATOR_I = 0.0;
-    public static final double ELEVATOR_D = 0.0;
-
     public static final double DEADBAND_LIMIT = 0.1;
     public static final double SLOW_GEAR_REDUCTION_FACTOR = 2;
     public static final double FAST_GEAR_REDUCTION_FACTOR = 1.05;
@@ -35,7 +31,7 @@ public class Constants {
     public static final double DISTANCE_ACTUATOR_SHOOTER = 3.0;
     public static final double MOTOR_LENGTH = 0.5;
 
-    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:5000/get_angle";
+    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:80/get_angle";
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
@@ -47,8 +43,11 @@ public class Constants {
     public static final int POTENTIOMETER_PORT = 2;
     public static final double RAMP_POT_SLOPE = -321.7675770722;
     public static final double RAMP_POT_CONSTANT = 232.1482053;
+//    public static final double RAMP_UPPER_LIMIT = 50;
+//    public static final double RAMP_LOWER_LIMIT = 2;
+
     public static final double RAMP_UPPER_LIMIT = 50;
-    public static final double RAMP_LOWER_LIMIT = 2;
+    public static final double RAMP_LOWER_LIMIT = 30;
 
 //    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 1; // TBD
 

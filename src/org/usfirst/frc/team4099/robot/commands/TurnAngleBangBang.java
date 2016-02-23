@@ -20,8 +20,8 @@ public class TurnAngleBangBang extends CommandBase {
 
     public TurnAngleBangBang(double angle, boolean isDestination) {
         destAngle = angle;
-        isDestination = isDestination;
-       requires(driveTrain);
+        this.isDestination = isDestination;
+        requires(driveTrain);
     }
 
     @Override

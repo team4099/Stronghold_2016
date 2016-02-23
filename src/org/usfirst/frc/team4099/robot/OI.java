@@ -58,10 +58,13 @@ public class OI {
 
         TRIPWIRE_BUTTON = new IOButton(new DigitalInput(Constants.INTAKE_TRIPWIRE_PORT), false);
 
+        RAISE_SHOOTER_BUTTON = new JoystickButton(flightStick, Attack3.BUTTON_3);
+        LOWER_SHOOTER_BUTTON = new JoystickButton(flightStick, Attack3.BUTTON_2);
+
         /** COMMANDS */
         // gamepad
         X_BUTTON.whenPressed(new AlignForShot());
-        B_BUTTON.whenPressed(new Shoot());
+        //B_BUTTON.whenPressed(new Shoot());
         Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
         START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
@@ -74,6 +77,10 @@ public class OI {
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
 
         // flight stick
+        RAISE_SHOOTER_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
+        LOWER_SHOOTER_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
+        SHOOT_BUTTON.whenPressed(new Shoot());
+
     }
 
     public Gamepad getGamepad() {

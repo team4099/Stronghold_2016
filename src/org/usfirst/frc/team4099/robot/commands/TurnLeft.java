@@ -12,7 +12,6 @@ public class TurnLeft extends CommandBase {
 
     @Override
     protected void initialize() {
-        setTimeout(0.1);
     }
 
     @Override
