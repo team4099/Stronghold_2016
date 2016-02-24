@@ -50,14 +50,15 @@ public class SetRampAngle extends CommandBase {
 
     @Override
     protected void initialize() {
-        this.destinationAngle = ramp.getCurrentAngle() + CommandBase.vision.getVerticalAngle();
+        if (aimassist) {
+            this.destinationAngle = ramp.getCurrentAngle() + CommandBase.vision.getVerticalAngle();
+        }
         this.goingUp = destinationAngle > ramp.getCurrentAngle();
     }
 
     @Override
     protected void execute() {
-        DriverStation.reportError("Going up: " + this.goingUp + "\n", false);
-        //System.out.println("Ramp Angle: " +  ramp.getCurrentAngle() + " Dest: " + destinationAngle);
+        System.out.println("Ramp Angle: " +  ramp.getCurrentAngle() + " Dest: " + destinationAngle);
 
 
         if (goingUp)
