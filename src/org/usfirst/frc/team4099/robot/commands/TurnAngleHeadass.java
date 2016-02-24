@@ -8,16 +8,25 @@ public class TurnAngleHeadass extends CommandBase {
     private double turnAngle;
     private double angleThreshold;
     private boolean turnRight;
+    private boolean aimassist = false;
 
+    public TurnAngleHeadass() {
+        this(0);
+        aimassist = true;
+
+    }
     public TurnAngleHeadass(double angle) {
         turnAngle = angle;
         angleThreshold = 10;
-        turnRight = angle > 0;
         requires(driveTrain);
     }
 
     @Override
     protected void initialize() {
+        if (aimassist)
+            this.turnAngle = CommandBase.vision.getLateralAngle();
+
+        turnRight = this.turnAngle > 0;
     	startingAngle = navX.getAngle();
     	if (turnRight) 
     		driveTrain.turnRight(0.5);
