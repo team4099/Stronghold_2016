@@ -10,5 +10,16 @@
     <orderEntry type="library" name="modules" level="project" />
     <orderEntry type="library" name="FRCUserProgram" level="project" />
     <orderEntry type="library" name="jars" level="project" />
+    <orderEntry type="module-library">
+      <library name="navx_frc">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/modules/navx_frc.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/modules/navx_frc.jar!/docs" />
+        </JAVADOC>
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

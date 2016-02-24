@@ -24,6 +24,7 @@ public class ChangeRampHeight extends CommandBase {
 
     @Override
     protected void execute() {
+        System.out.println("Ramp Angle: " +  ramp.getCurrentAngle());
 
         if (dir == Direction.Ramp.DOWN && !isTooFar())
             ramp.setMotorSpeed(1.0);
@@ -58,4 +59,3 @@ public class ChangeRampHeight extends CommandBase {
         ramp.setMotorSpeed(0);
     }
 }
-

@@ -8,13 +8,6 @@ import org.usfirst.frc.team4099.lib.util.Constants;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-/*
- * Interface to integrate with external imaging processing 
- */
 public class Vision extends Subsystem {
     private boolean acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
@@ -22,12 +15,6 @@ public class Vision extends Subsystem {
     public Vision() {
     }
 
-    @Override
-    protected void initDefaultCommand() {}
-
-    /* 
-     * Checks for new vision data from the vision processor 
-     * */ 
     public void updateVisionData() {
         try {
             URL udoo = new URL(Constants.UDOO_RESTFUL_ENDPOINT);
@@ -51,31 +38,32 @@ public class Vision extends Subsystem {
         }
     }
     
-    /*
-     * Returns true if the bot is in range to land a shot
+    /**
+     * @return true if the bot is in range to land a shot
      */
     public boolean getTargetAcquired() {
         return this.acquiredTarget;
     }
 
-    /*
-     * Returns the lateral angle the bot/shooter must rotate laterally to land the shot
+    /**
+     * @return the lateral angle the bot/shooter must rotate laterally to land the shot
      */
     public float getLateralAngle() {
         return this.lateralAngle;
     }
 
-    /*
-     * Returns the vertical angle the shooting arm must be in to land the shot
+    /**
+     * @return the vertical angle the shooting arm must be in to land the shot
      */
     public float getVerticalAngle() {
         return this.verticalAngle;
     }
 
-    /*
-     * Return the acceleration the shooter must shoot at to land the shot
+    /**
+     * @return the acceleration the shooter must shoot at to land the shot
      */
     public float getFiringAcceleration() {
         return this.firingAcceleration;
     }
+
 }
