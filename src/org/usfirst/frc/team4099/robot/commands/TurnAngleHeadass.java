@@ -1,7 +1,5 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import org.usfirst.frc.team4099.lib.util.Constants;
-import org.usfirst.frc.team4099.lib.util.Util;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class TurnAngleHeadass extends CommandBase {
@@ -13,25 +11,26 @@ public class TurnAngleHeadass extends CommandBase {
 
     public TurnAngleHeadass(double angle) {
         turnAngle = angle;
-        angleThreshold = 3;
-        startingAngle = navX.getAngle();
-        if (turnAngle>=0) 
-        	turnRight = true;
-        else
-        	turnRight = false;
+        angleThreshold = 10;
+        turnRight = angle > 0;
         requires(driveTrain);
     }
 
     @Override
     protected void initialize() {
+    	startingAngle = navX.getAngle();
+    	if (turnRight) 
+    		driveTrain.turnRight(0.5);
+    	else
+    		driveTrain.turnLeft(0.5);
     }
 
     @Override
     protected void execute() {
     	if (turnRight)
-    		driveTrain.turnRight(0.5);
+    		driveTrain.drive(0.5,0.5);
     	else
-    		driveTrain.turnLeft(0.5);
+    		driveTrain.drive(-0.5,-0.5);
     }
 
     @Override
