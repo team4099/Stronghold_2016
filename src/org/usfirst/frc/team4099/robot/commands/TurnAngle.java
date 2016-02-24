@@ -1,73 +1,51 @@
 package org.usfirst.frc.team4099.robot.commands;
 
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class TurnAngle extends CommandBase {
+public class TurnAngleHeadass extends CommandBase {
 
-    private double angle;
-    private double startingAngle;
-    private boolean turnRight;
-
-    private double encoderThreshold;
-    private double incrementAmount;
-    private boolean aimassist = false;
-    
+	private double startingAngle;
+    private double turnAngle;
     private double angleThreshold;
+    private boolean turnRight;
+    private boolean aimassist = false;
 
-    public TurnAngle() {
+    public TurnAngleHeadass() {
         this(0);
-        this.aimassist = true;
+        aimassist = true;
+
     }
-    /**
-     * @param angle The amount to turn in degrees
-     *              TODO: figure out if this is really degrees or it is radians
-     */
-    public TurnAngle(double angle) {
-        encoderThreshold = 2.5;
-        incrementAmount = 0.01;
-        angleThreshold = 3;
-        this.angle = angle;
+    public TurnAngleHeadass(double angle) {
+        turnAngle = angle;
+        angleThreshold = 10;
         requires(driveTrain);
     }
 
     @Override
     protected void initialize() {
-        if (aimassist) {
-            this.angle = CommandBase.vision.getLateralAngle();
-        }
-        System.out.println("trying to turn angle: " + angle);
-        startingAngle = navX.getAngle();
-        turnRight = angle > 0;
-        if (turnRight)
-            driveTrain.turnRight(0.5);
-        else
-            driveTrain.turnLeft(0.5);
+        if (aimassist)
+            this.turnAngle = CommandBase.vision.getLateralAngle();
+
+        turnRight = this.turnAngle > 0;
+    	startingAngle = navX.getAngle();
+    	if (turnRight) 
+    		driveTrain.turnRight(0.5);
+    	else
+    		driveTrain.turnLeft(0.5);
     }
 
     @Override
     protected void execute() {
-        System.out.println("Current angle: " + navX.getAngle() + " Dest: " + angle);
-        double x;
-        double leftEncoderSpeed = driveTrain.getLeftEncoderSpeed();
-        double rightEncoderSpeed = driveTrain.getRightEncoderSpeed();
-
-        if(Math.abs(x = Math.abs(leftEncoderSpeed) - Math.abs(rightEncoderSpeed)) > encoderThreshold) {
-            int leftDirection = (int) (leftEncoderSpeed / Math.abs(leftEncoderSpeed));
-            int rightDirection = (int) (rightEncoderSpeed / Math.abs(rightEncoderSpeed));
-
-            if(x < 0) {
-                driveTrain.drive(driveTrain.getLeftMotorSpeed() - leftDirection * incrementAmount, driveTrain.getRightMotorSpeed() + rightDirection * incrementAmount);
-            } else {
-                driveTrain.drive(driveTrain.getLeftMotorSpeed() + leftDirection * incrementAmount, driveTrain.getRightMotorSpeed() - rightDirection * incrementAmount);
-            }
-        }
+    	if (turnRight)
+    		driveTrain.drive(0.5,0.5);
+    	else
+    		driveTrain.drive(-0.5,-0.5);
     }
 
     @Override
     protected boolean isFinished() {
-    	return Math.abs(navX.getAngle() - (startingAngle + angle)%360) <= angleThreshold;
+        //return Util.withinRange(CommandBase.navX.getAngle(), destAngle, Constants.ANGLE_TOLERANCE);
+    	return Math.abs(navX.getAngle() - (startingAngle + turnAngle)%360) <= angleThreshold;
     }
 
     @Override
