@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team4099.robot.commands.TurnAngleBangBang;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class Robot extends IterativeRobot {
@@ -60,7 +59,6 @@ public class Robot extends IterativeRobot {
 
     public void testInit() {
         //runInitialCalibration();
-        Scheduler.getInstance().add(new TurnAngleBangBang(90, false));
     }
 
     private void runInitialCalibration() {

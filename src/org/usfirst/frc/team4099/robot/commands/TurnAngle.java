@@ -2,7 +2,7 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class TurnAngleHeadass extends CommandBase {
+public class TurnAngle extends CommandBase {
 
 	private double startingAngle;
     private double turnAngle;
@@ -10,12 +10,12 @@ public class TurnAngleHeadass extends CommandBase {
     private boolean turnRight;
     private boolean aimassist = false;
 
-    public TurnAngleHeadass() {
+    public TurnAngle() {
         this(0);
         aimassist = true;
 
     }
-    public TurnAngleHeadass(double angle) {
+    public TurnAngle(double angle) {
         turnAngle = angle;
         angleThreshold = 10;
         requires(driveTrain);

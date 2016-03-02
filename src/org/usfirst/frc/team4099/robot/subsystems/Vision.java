@@ -8,6 +8,11 @@ import org.usfirst.frc.team4099.lib.util.Constants;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.command.Command;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class Vision extends Subsystem {
     private boolean acquiredTarget;
     private float verticalAngle, firingAcceleration, lateralAngle;
@@ -36,6 +41,10 @@ public class Vision extends Subsystem {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void initDefaultCommand() {
     }
     
     /**

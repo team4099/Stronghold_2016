@@ -18,8 +18,11 @@ public class DriveTrain extends Subsystem {
     private double MID_GEAR_REDUCTION_FACTOR;
     private double FAST_GEAR_REDUCTION_FACTOR;
 
+    /*
     private Talon frontLeftMotor, rearLeftMotor;
     private Talon frontRightMotor, rearRightMotor;
+    */
+    private Talon leftMotors, rightMotors;
 
     public Encoder leftEncoder;
     public Encoder rightEncoder;
@@ -38,17 +41,22 @@ public class DriveTrain extends Subsystem {
         MID_GEAR_REDUCTION_FACTOR = Constants.MID_GEAR_REDUCTION_FACTOR;
         FAST_GEAR_REDUCTION_FACTOR = Constants.FAST_GEAR_REDUCTION_FACTOR;
 
+        leftMotors = new Talon(Constants.LEFT_MOTORS_PORT);
+        rightMotors = new Talon(Constants.RIGHT_MOTORS_PORT);
+        /*
         frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
         rearLeftMotor = new Talon(Constants.REAR_LEFT_MOTOR_PORT);
         frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
         rearRightMotor = new Talon(Constants.REAR_RIGHT_MOTOR_PORT);
+        */
 
         leftEncoder = new Encoder(Constants.LEFT_ENCODER_CHANNELS[0], Constants.LEFT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
         rightEncoder = new Encoder(Constants.RIGHT_ENCODER_CHANNELS[0], Constants.RIGHT_ENCODER_CHANNELS[1], true, CounterBase.EncodingType.k4X);
         leftEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
         rightEncoder.setDistancePerPulse(Constants.DISTANCE_PER_PULSE);
 
-        drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
+        drive = new RobotDrive(leftMotors, rightMotors);
+//        drive = new RobotDrive(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
 
         printTimer = new Timer();
         printTimer.start();
@@ -115,10 +123,8 @@ public class DriveTrain extends Subsystem {
     }
 
     public void drive(double leftSpeed, double rightSpeed) {
-        frontLeftMotor.set(leftSpeed);
-        rearLeftMotor.set(leftSpeed);
-        frontRightMotor.set(rightSpeed);
-        rearRightMotor.set(rightSpeed);
+        leftMotors.set(leftSpeed);
+        rightMotors.set(rightSpeed);
     }
 
     public void driveForward(double speed) {
@@ -154,11 +160,11 @@ public class DriveTrain extends Subsystem {
     }
 
     public double getLeftMotorSpeed() {
-        return frontLeftMotor.get();
+        return leftMotors.get();
     }
 
     public double getRightMotorSpeed() {
-        return frontRightMotor.get();
+        return rightMotors.get();
     }
 
     public void resetDistance() {
