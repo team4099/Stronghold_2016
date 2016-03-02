@@ -10,38 +10,39 @@ import org.usfirst.frc.team4099.robot.commands.SetIntakeSpeedManually;
 
 
 public class Intake extends Subsystem {
+    private Talon intakeArm;
     private Talon intakeMotor;
     private DigitalInput upperLimitSwitch;
     private DigitalInput lowerLimitSwitch;
 
     public Intake() {
+        intakeArm = new Talon(Constants.INTAKE_ARM_PORT);
         intakeMotor = new Talon(Constants.INTAKE_MOTOR_PORT);
-        //upperLimitSwitch = new DigitalInput(Constants.INTAKE_UPPER_LIMIT_SWITCH_PORT);
-        //lowerLimitSwitch = new DigitalInput(Constants.INTAKE_LOWER_LIMIT_SWITCH_PORT);
+        intakeMotor.set(0.25);
     }
 
     public void controlManually() {
         double speed = CommandBase.oi.getFlightStick().getYAxisValue();
         if (!hasHitLowerLimit() && !hasHitLowerLimit())
-            intakeMotor.set(speed);
+            intakeArm.set(speed);
         else
             stopIntake();
     }
 
     public void setMotorSpeed(double speed) {
-        intakeMotor.set(speed);
+        intakeArm.set(speed);
     }
 
     public void raiseIntake() {
-        intakeMotor.set(0.5);
+        intakeArm.set(0.5);
     }
 
     public void stopIntake() {
-        intakeMotor.set(0);
+        intakeArm.set(0);
     }
 
     public void lowerIntake() {
-        intakeMotor.set(-0.05);
+        intakeArm.set(-0.05);
     }
 
     public boolean hasHitUpperLimit() {

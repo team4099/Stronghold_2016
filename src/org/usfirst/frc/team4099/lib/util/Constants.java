@@ -14,14 +14,25 @@ public class Constants {
     public static final double FAST_GEAR_REDUCTION_FACTOR = 1.05;
     public static final double MID_GEAR_REDUCTION_FACTOR = 1.5;
 
+    /*
     public static final int FRONT_LEFT_MOTOR_PORT = 0;
     public static final int REAR_LEFT_MOTOR_PORT = 1;
+
     public static final int FRONT_RIGHT_MOTOR_PORT = 2;
     public static final int REAR_RIGHT_MOTOR_PORT = 3;
+    */
+    public static final int LEFT_MOTORS_PORT = 0;
+    public static final int RIGHT_MOTORS_PORT = 1;
+
+//    public static final int ;
+
+    public static final int INTAKE_ARM_PORT = 2;
+    public static final int INTAKE_MOTOR_PORT = 3;
+
     public static final int LEFT_SHOOTER_MOTOR_PORT = 4;
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 5;
     public static final int KICKER_PORT = 6;
-    public static final int INTAKE_MOTOR_PORT = 7;
+    // 7 and 8 are for climbers
     public static final int LINEAR_ACTUATOR_PORT = 9;
 
     public static final double GYRO_GAIN_LEFT = 0.1;
