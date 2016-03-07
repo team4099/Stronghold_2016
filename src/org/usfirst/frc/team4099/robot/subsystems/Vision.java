@@ -20,7 +20,7 @@ public class Vision extends Subsystem {
     public Vision() {
     }
 
-    public void updateVisionData() {
+    public void pointToGoal() {
         try {
             URL udoo = new URL(Constants.UDOO_RESTFUL_ENDPOINT);
             HttpURLConnection connection = (HttpURLConnection) udoo.openConnection();

@@ -1,9 +1,6 @@
 package org.usfirst.frc.team4099.lib.util;
 
 public class Constants {
-
-
-
     private Constants() {}
     public static final double DPAD_MOVE_SPEED = 0.7;
     public static final double DPAD_TURN_SPEED = 0.7;

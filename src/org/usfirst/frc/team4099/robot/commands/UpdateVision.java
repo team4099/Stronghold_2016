@@ -14,7 +14,7 @@ public class UpdateVision extends CommandBase {
 
     @Override
     protected void execute() {
-        vision.updateVisionData();
+        vision.pointToGoal();
         finish = true;
     }
 
