@@ -8,22 +8,34 @@ public class TurnAngle extends CommandBase {
     private double turnAngle;
     private double angleThreshold;
     private boolean turnRight;
-    private boolean aimassist = false;
+    private boolean aimAssist;
+    private boolean turnToAngle;
 
     public TurnAngle() {
+        this(true);
+    }
+
+    public TurnAngle(boolean aimAssist) {
         this(0);
-        aimassist = true;
+        this.aimAssist = aimAssist;
 
     }
+
     public TurnAngle(double angle) {
-        turnAngle = angle;
-        angleThreshold = 10;
+        this.aimAssist = false;
+        this.turnAngle = angle;
+        this.angleThreshold = 10;
         requires(driveTrain);
+    }
+
+    public TurnAngle(boolean turnToAngle, double angle) {
+        this(angle);
+        this.turnToAngle = turnToAngle;
     }
 
     @Override
     protected void initialize() {
-        if (aimassist)
+        if (aimAssist)
             this.turnAngle = CommandBase.vision.getLateralAngle();
 
         turnRight = this.turnAngle > 0;
@@ -45,7 +57,10 @@ public class TurnAngle extends CommandBase {
     @Override
     protected boolean isFinished() {
         //return Util.withinRange(CommandBase.navX.getAngle(), destAngle, Constants.ANGLE_TOLERANCE);
-    	return Math.abs(navX.getAngle() - (startingAngle + turnAngle)%360) <= angleThreshold;
+        if(!turnToAngle)
+    	    return Math.abs(navX.getAngle() - (startingAngle + turnAngle)%360) <= angleThreshold;
+        else
+            return Math.abs(navX.getAngle() - (turnAngle)%360) <= angleThreshold;
     }
 
     @Override

@@ -103,6 +103,10 @@ public class DriveTrain extends Subsystem {
         return reversed;
     }
 
+    public void reverse() {
+        reversed = !reversed;
+    }
+
     private double modifySpeed(double speed) {
         boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
         boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
