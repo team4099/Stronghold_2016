@@ -18,7 +18,7 @@ public class Intake extends Subsystem {
     public Intake() {
         intakeArm = new Talon(Constants.INTAKE_ARM_PORT);
         intakeMotor = new Talon(Constants.INTAKE_MOTOR_PORT);
-        intakeMotor.set(0.25);
+//        intakeMotor.set(0.25);
     }
 
     public void controlManually() {
