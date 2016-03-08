@@ -140,6 +140,9 @@ public class DriveTrain extends Subsystem {
     public void driveWithFlightstick(Extreme3DJoystick flightStick) {
         double turn = GamepadUtil.deadband(flightStick.getSpinAxisValue());
         double forward = GamepadUtil.deadband(modifySpeedByMode(flightStick.getYAxisValue(), this.gearMode));
+        if (!reversed) {
+            forward *= -1;
+        }
         drive.arcadeDrive(modifySpeedByMode(forward, this.gearMode), turn);
     }
 

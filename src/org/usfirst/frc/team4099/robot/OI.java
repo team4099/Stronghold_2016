@@ -48,7 +48,7 @@ public class OI {
     private Button EDGY_BUTTON7;
     private Button EDGY_BUTTON9;
     private Button EDGY_BUTTON11;
-
+    private Button EDGY_BUTTON12;
 
     public OI() {
         gamepad = new Gamepad(2);
@@ -79,6 +79,8 @@ public class OI {
         EDGY_BUTTON7 = new JoystickButton(edgyStick, 7);
         EDGY_BUTTON9 = new JoystickButton(edgyStick, 9);
         EDGY_BUTTON11 = new JoystickButton(edgyStick, 11);
+        EDGY_BUTTON12 = new JoystickButton(edgyStick, 12);
+
 
 
         TRIPWIRE_BUTTON = new IOButton(new DigitalInput(Constants.INTAKE_TRIPWIRE_PORT), false);
@@ -108,13 +110,14 @@ public class OI {
         EDGY_BUTTON7.whenPressed(new SetGearMode(0));
         EDGY_BUTTON9.whenPressed(new SetGearMode(1));
         EDGY_BUTTON11.whenPressed(new SetGearMode(2));
+        EDGY_BUTTON12.whenPressed(new ReverseOrientation());
 
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
 
         // flight stick
         ATTACK3_BUTTON3.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
         ATTACK3_BUTTON2.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
-        SHOOT_BUTTON.whenPressed(new Shoot());
+//        ATTACK3_.whenPressed(new Shoot());
 
     }
 
