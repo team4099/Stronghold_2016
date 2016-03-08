@@ -8,7 +8,7 @@ public class TurnAngle extends CommandBase {
     private double turnAngle;
     private double angleThreshold;
     private boolean turnRight;
-    private boolean aimAssist;
+    private boolean aimAssist = false;
     private boolean turnToAngle;
 
     public TurnAngle() {
@@ -18,11 +18,9 @@ public class TurnAngle extends CommandBase {
     public TurnAngle(boolean aimAssist) {
         this(0);
         this.aimAssist = aimAssist;
-
     }
 
     public TurnAngle(double angle) {
-        this.aimAssist = false;
         this.turnAngle = angle;
         this.angleThreshold = 10;
         requires(driveTrain);

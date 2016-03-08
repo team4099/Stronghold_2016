@@ -20,9 +20,12 @@ public class SetRampAngle extends CommandBase {
      * Grabbing vision data
      */
     public SetRampAngle() {
-        this.aimassist = true;
         this.maxSpeed = 0.5;
         requires(ramp);
+    }
+    public SetRampAngle(boolean aimAssist) {
+        this(0);
+        this.aimassist = aimassist;
     }
         
 

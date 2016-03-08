@@ -39,7 +39,9 @@ public class Constants {
     public static final double DISTANCE_ACTUATOR_SHOOTER = 3.0;
     public static final double MOTOR_LENGTH = 0.5;
 
-    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:80/get_angle";
+//    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:80/get_angle";
+    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.210:5000/get_angle";
+
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
