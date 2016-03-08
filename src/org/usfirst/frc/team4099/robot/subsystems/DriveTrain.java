@@ -80,7 +80,6 @@ public class DriveTrain extends Subsystem {
 
     public void reverse() {
         reversed = !reversed;
-        System.out.println("" + reversed);
     }
 
     public void setGearMode(int gearMode) {
