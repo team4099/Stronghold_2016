@@ -24,6 +24,9 @@ public class Vision extends Subsystem {
         distanceSensor = new AnalogInput(3);
     }
 
+    /**
+     * Requests udoo vision for the angle needed to land a shot
+     */
     public void pointToGoal() {
         this.verticalAngle = 0;
         this.lateralAngle = 0;
@@ -51,21 +54,35 @@ public class Vision extends Subsystem {
         }
     }
 
-    /* 
+    /**
+     * Calculates the necessary angle to land a goal. Assumes the ramp is 
+     * currently lined up to face the center of the goal
+     *
      * See https://en.wikipedia.org/wiki/Trajectory_of_a_projectile#Angle_required_to_hit_coordinate_.28x.2Cy.29
      *
+     * @return If the bot can even make the shot at that distance
      */
     public boolean aimShot() {
-        double distance = (distanceSensor.getAverageValue() / 10) * 2.54 / 100.0;// / (5.0 / 1024.0)) * 2.0;
+        // The distance sensor seems to return in values of tenths of an inch
+        double distance = (distanceSensor.getAverageValue() / 10) * 2.54 / 100.0;
 
-        double height = Math.sin(CommandBase.ramp.getCurrentAngle()) * distance;
-        double range = Math.sqrt(distance*distance - height*height);
+        // TODO:Find this experimentally
         double initialvelocity = 2;
+
+        /* 
+         * The height will be hard-coded instead of calculated for competition> 
+         * We're including this calculation for the future if anyone wants to 
+         * shoot to an arbitrary goal
+         */
+        double height = Math.sin(CommandBase.ramp.getCurrentAngle()) * distance;  
+
+        double range = Math.sqrt(distance*distance - height*height);
 
         double determinant = Math.pow(initialvelocity, 4) - 9.8*(9.8 * Math.pow(range, 2) + 2 * height * Math.pow(initialvelocity, 2));
         this.canShoot = false;
 
         if (determinant < 0) {
+            this.verticalAngle = 0;
             return false;
         }
 
