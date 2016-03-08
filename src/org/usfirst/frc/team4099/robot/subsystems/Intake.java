@@ -22,7 +22,7 @@ public class Intake extends Subsystem {
     }
 
     public void controlManually() {
-        double speed = CommandBase.oi.getFlightStick().getYAxisValue();
+        double speed = CommandBase.oi.getAttack3().getYAxisValue();
         if (!hasHitLowerLimit() && !hasHitLowerLimit())
             intakeArm.set(speed);
         else
