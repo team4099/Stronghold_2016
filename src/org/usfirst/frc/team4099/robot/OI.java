@@ -47,8 +47,8 @@ public class OI {
     private Button EDGY_BUTTON6;
     private Button EDGY_BUTTON7;
     private Button EDGY_BUTTON9;
+    private Button EDGY_BUTTON10;
     private Button EDGY_BUTTON11;
-    private Button EDGY_BUTTON12;
 
     public OI() {
         gamepad = new Gamepad(2);
@@ -78,8 +78,8 @@ public class OI {
         EDGY_BUTTON6 = new JoystickButton(edgyStick, 6);
         EDGY_BUTTON7 = new JoystickButton(edgyStick, 7);
         EDGY_BUTTON9 = new JoystickButton(edgyStick, 9);
+        EDGY_BUTTON10 = new JoystickButton(edgyStick, 10);
         EDGY_BUTTON11 = new JoystickButton(edgyStick, 11);
-        EDGY_BUTTON12 = new JoystickButton(edgyStick, 12);
 
 
 
@@ -109,8 +109,8 @@ public class OI {
         EDGY_BUTTON6.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
         EDGY_BUTTON7.whenPressed(new SetGearMode(0));
         EDGY_BUTTON9.whenPressed(new SetGearMode(1));
+        EDGY_BUTTON10.whenPressed(new ReverseOrientation());
         EDGY_BUTTON11.whenPressed(new SetGearMode(2));
-        EDGY_BUTTON12.whenPressed(new ReverseOrientation());
 
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
 

@@ -10,11 +10,11 @@ public class ReverseOrientation extends CommandBase {
 
     @Override
     protected void initialize() {
-        driveTrain.reverse();
     }
 
     @Override
     protected void execute() {
+        driveTrain.reverse();
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.GamepadUtil;
 import org.usfirst.frc.team4099.robot.commands.FlightstickDrive;
 import org.usfirst.frc.team4099.robot.commands.GamepadDrive;
+import edu.wpi.first.wpilibj.DriverStation;
 
 public class DriveTrain extends Subsystem {
 
@@ -18,7 +19,7 @@ public class DriveTrain extends Subsystem {
     private double MID_GEAR_REDUCTION_FACTOR;
     private double FAST_GEAR_REDUCTION_FACTOR;
 
-    private int gearMode;
+    private int gearMode = 1;
 
     /*
     private Talon frontLeftMotor, rearLeftMotor;
@@ -79,6 +80,7 @@ public class DriveTrain extends Subsystem {
 
     public void reverse() {
         reversed = !reversed;
+        System.out.println("" + reversed);
     }
 
     public void setGearMode(int gearMode) {
@@ -142,6 +144,7 @@ public class DriveTrain extends Subsystem {
         double forward = GamepadUtil.deadband(modifySpeedByMode(flightStick.getYAxisValue(), this.gearMode));
         if (!reversed) {
             forward *= -1;
+            turn *= -1;
         }
         drive.arcadeDrive(modifySpeedByMode(forward, this.gearMode), turn);
     }
