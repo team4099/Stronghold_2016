@@ -1,13 +1,13 @@
 package org.usfirst.frc.team4099.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team4099.lib.input.Extreme3DJoystick;
 import org.usfirst.frc.team4099.lib.input.Gamepad;
 import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.lib.util.GamepadUtil;
-import org.usfirst.frc.team4099.robot.commands.JoystickDrive;
+import org.usfirst.frc.team4099.robot.commands.FlightstickDrive;
+import org.usfirst.frc.team4099.robot.commands.GamepadDrive;
 
 public class DriveTrain extends Subsystem {
 
@@ -17,6 +17,8 @@ public class DriveTrain extends Subsystem {
     private double SLOW_GEAR_REDUCTION_FACTOR;
     private double MID_GEAR_REDUCTION_FACTOR;
     private double FAST_GEAR_REDUCTION_FACTOR;
+
+    private int gearMode;
 
     /*
     private Talon frontLeftMotor, rearLeftMotor;
@@ -64,11 +66,47 @@ public class DriveTrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new JoystickDrive());
+        setDefaultCommand(new FlightstickDrive());
     }
 
     public void setSafety(boolean safety) {
         drive.setSafetyEnabled(safety);
+    }
+
+    public boolean isInReverse() {
+        return reversed;
+    }
+
+    public void reverse() {
+        reversed = !reversed;
+    }
+
+    public void setGearMode(int gearMode) {
+        this.gearMode = gearMode;
+    }
+
+    private double modifySpeed(double speed) {
+        boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
+        boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
+
+        int gearMode = 0;
+
+        if (leftTriggerPressed)
+            gearMode++;
+        if (rightTriggerPressed)
+            gearMode++;
+
+        return modifySpeedByMode(speed, gearMode);
+
+    }
+
+    private double modifySpeedByMode(double speed, int gearMode) {
+        if (gearMode == 0)
+            return speed / SLOW_GEAR_REDUCTION_FACTOR;
+        else if (gearMode == 1)
+            return speed / MID_GEAR_REDUCTION_FACTOR;
+        else
+            return speed / FAST_GEAR_REDUCTION_FACTOR;
     }
 
     public void driveWithGamepad(Gamepad gamepad) {
@@ -94,37 +132,17 @@ public class DriveTrain extends Subsystem {
         else
             drive.tankDrive(m_right, m_left);
     }
-    
+
     public void arcadeDrive(Gamepad gamepad) {
-    	drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()) / 1.5, -0.2 * GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
+        drive.arcadeDrive(GamepadUtil.deadband(gamepad.getLeftVerticalAxis()) / 1.5, -0.2 * GamepadUtil.deadband(gamepad.getLeftHorizontalAxis()));
     }
 
-    public boolean isInReverse() {
-        return reversed;
+    public void driveWithFlightstick(Extreme3DJoystick flightStick) {
+        double turn = GamepadUtil.deadband(flightStick.getSpinAxisValue());
+        double forward = GamepadUtil.deadband(modifySpeedByMode(flightStick.getYAxisValue(), this.gearMode));
+        drive.arcadeDrive(modifySpeedByMode(forward, this.gearMode), turn);
     }
 
-    public void reverse() {
-        reversed = !reversed;
-    }
-
-    private double modifySpeed(double speed) {
-        boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
-        boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
-
-        int gearMode = 0;
-
-        if (leftTriggerPressed)
-            gearMode++;
-        if (rightTriggerPressed)
-            gearMode++;
-
-        if (gearMode == 0)
-            return speed / SLOW_GEAR_REDUCTION_FACTOR;
-        else if (gearMode == 1)
-            return speed / MID_GEAR_REDUCTION_FACTOR;
-        else
-            return speed / FAST_GEAR_REDUCTION_FACTOR;
-    }
 
     public void drive(double leftSpeed, double rightSpeed) {
         leftMotors.set(leftSpeed);

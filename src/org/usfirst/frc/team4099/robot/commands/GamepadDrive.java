@@ -6,9 +6,9 @@ import org.usfirst.frc.team4099.robot.OI;
 import org.usfirst.frc.team4099.robot.Robot;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class JoystickDrive extends CommandBase {
+public class GamepadDrive extends CommandBase {
 
-    public JoystickDrive() {
+    public GamepadDrive() {
         requires(driveTrain);
     }
 
