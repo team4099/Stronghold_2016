@@ -55,8 +55,11 @@ public class Vision extends Subsystem {
     }
 
     /**
-     * Calculates the necessary angle to land a goal. Assumes the ramp is 
-     * currently lined up to face the center of the goal
+     * Calculates the necessary angle to land a goal. 
+     * Assumes the ramp is currently lined up to face the center of the goal
+     *
+     * The distance sensor will return 20 CM if there is a target directly in front of the goal.
+     * Distance sensor datasheet (MB1220): http://www.maxbotix.com/documents/XL-MaxSonar-EZ_Datasheet.pdf
      *
      * See https://en.wikipedia.org/wiki/Trajectory_of_a_projectile#Angle_required_to_hit_coordinate_.28x.2Cy.29
      *
