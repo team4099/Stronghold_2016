@@ -23,8 +23,8 @@ public class Constants {
 
 //    public static final int ;
 
-    public static final int INTAKE_ARM_PORT = 2;
-    public static final int INTAKE_MOTOR_PORT = 3;
+    public static final int INTAKE_ARM_PORT = 3;
+    public static final int INTAKE_MOTOR_PORT = 2;
 
     public static final int LEFT_SHOOTER_MOTOR_PORT = 4;
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 5;
@@ -40,7 +40,7 @@ public class Constants {
     public static final double MOTOR_LENGTH = 0.5;
 
 //    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:80/get_angle";
-    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.210:5000/get_angle";
+    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.65:5000/get_angle";
 
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
@@ -51,13 +51,13 @@ public class Constants {
     public static final int INTAKE_TRIPWIRE_PORT = 9;
     
     public static final int POTENTIOMETER_PORT = 2;
-    public static final double RAMP_POT_SLOPE = -321.7675770722;
-    public static final double RAMP_POT_CONSTANT = 232.1482053;
+    public static final double RAMP_POT_SLOPE = -205.8733749;//1;//-321.7675770722;
+    public static final double RAMP_POT_CONSTANT = 151.0816574;// 232.1482053;
 //    public static final double RAMP_UPPER_LIMIT = 50;
 //    public static final double RAMP_LOWER_LIMIT = 2;
 
-    public static final double RAMP_UPPER_LIMIT = 50;
-    public static final double RAMP_LOWER_LIMIT = 30;
+    public static final double RAMP_UPPER_LIMIT = 58;
+    public static final double RAMP_LOWER_LIMIT = 6;
 
 //    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 1; // TBD
 

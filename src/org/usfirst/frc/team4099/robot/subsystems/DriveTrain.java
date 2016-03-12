@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new FlightstickDrive());
+        setDefaultCommand(/new FlightstickDrive());
     }
 
     public void setSafety(boolean safety) {
