@@ -1,4 +1,5 @@
 package org.usfirst.frc.team4099.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -8,11 +9,11 @@ import org.usfirst.frc.team4099.robot.OI;
 import org.usfirst.frc.team4099.robot.Robot;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class IntakeUp extends CommandBase {
+public class IntakeDown extends CommandBase {
 
     private boolean shouldRun = true;
 
-    public IntakeUp() {
+    public IntakeDown() {
         requires(intake);
     }
 
@@ -24,7 +25,7 @@ public class IntakeUp extends CommandBase {
     @Override
     protected void execute() {
         if (shouldRun)
-            intake.setMotorSpeed(-.40);
+            intake.setMotorSpeed(.40);
     }
 
     @Override

@@ -89,10 +89,10 @@ public class DriveTrain extends Subsystem {
         //m_left += gyro_angle * 0.1;//Constants.GYRO_GAIN_LEFT;
         //m_right -= gyro_angle * 0.1;//Constants.GYRO_GAIN_RIGHT;
 
-        if (isInReverse())
-            drive.tankDrive(-m_left, -m_right);
+        if (!isInReverse())
+            drive.tankDrive(m_left, m_right);
         else
-            drive.tankDrive(m_right, m_left);
+            drive.tankDrive(-m_right, -m_left);
     }
     
     public void arcadeDrive(Gamepad gamepad) {
@@ -107,7 +107,7 @@ public class DriveTrain extends Subsystem {
         boolean leftTriggerPressed = CommandBase.oi.getGamepad().isLeftTriggerPressed();
         boolean rightTriggerPressed = CommandBase.oi.getGamepad().isRightTriggerPressed();
 
-        int gearMode = 0;
+        int gearMode = 1;
 
         if (leftTriggerPressed)
             gearMode++;
@@ -128,7 +128,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveForward(double speed) {
-        drive.tankDrive(speed, speed);
+        drive.tankDrive(speed, speed + .07);
     }
 
     public void driveBackward(double speed) {

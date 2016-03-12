@@ -14,12 +14,14 @@ public class IOButton extends Button {
     private boolean inverted;
     
     public IOButton(DigitalInput input, boolean inverted) {
+    	
         this.input = input;
         this.inverted = inverted;
     }
 
     @Override
     public boolean get() {
+    	System.out.println("" + input.get());
         return input.get();
     }
 }

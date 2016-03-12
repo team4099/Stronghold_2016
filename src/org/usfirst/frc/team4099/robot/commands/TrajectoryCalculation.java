@@ -2,9 +2,9 @@ package org.usfirst.frc.team4099.robot.commands;
 
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
-public class UpdateVision extends CommandBase {
+public class TrajectoryCalculation extends CommandBase {
     private boolean finish = false;
-    public UpdateVision() {
+    public TrajectoryCalculation() {
         requires(vision);
     }
 
@@ -14,7 +14,7 @@ public class UpdateVision extends CommandBase {
 
     @Override
     protected void execute() {
-        vision.pointToGoal();
+        vision.aimShot();
         finish = true;
     }
 

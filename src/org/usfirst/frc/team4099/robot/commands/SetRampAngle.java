@@ -10,7 +10,6 @@ import org.usfirst.frc.team4099.lib.util.Util;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class SetRampAngle extends CommandBase {
-
     double destinationAngle;
     boolean goingUp;
     double maxSpeed;
@@ -20,11 +19,13 @@ public class SetRampAngle extends CommandBase {
      * Grabbing vision data
      */
     public SetRampAngle() {
-        this.aimassist = true;
         this.maxSpeed = 0.5;
         requires(ramp);
     }
-        
+    public SetRampAngle(boolean aimAssist) {
+        this(0);
+        this.aimassist = aimassist;
+    }
 
     /**
      * @param angleToSetTo The angle at which to set the ramp to
@@ -62,9 +63,9 @@ public class SetRampAngle extends CommandBase {
 
 
         if (goingUp)
-            ramp.setMotorSpeed(-1.0);
-        else
             ramp.setMotorSpeed(1.0);
+        else
+            ramp.setMotorSpeed(-1.0);
     }
     
     private boolean isTooFar() {
@@ -95,10 +96,10 @@ public class SetRampAngle extends CommandBase {
     }
 
     @Override
-    protected void end() {
+    protected void end() {/*
         if(!goingUp) {
             Scheduler.getInstance().add(new BurstUp());
-        }
+        }*/
         ramp.setMotorSpeed(0);
     }
 

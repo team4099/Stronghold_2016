@@ -35,6 +35,7 @@ public class OI {
     private Attack3 flightStick;
     private Button RAISE_SHOOTER_BUTTON;
     private Button LOWER_SHOOTER_BUTTON;
+    private Button ttck3button, ttck3button2;
 
 
     public OI() {
@@ -45,6 +46,11 @@ public class OI {
         B_BUTTON = new JoystickButton(gamepad, Gamepad.B_BUTTON);
         X_BUTTON = new JoystickButton(gamepad, Gamepad.X_BUTTON);
         Y_BUTTON = new JoystickButton(gamepad, Gamepad.Y_BUTTON);
+        ttck3button = new JoystickButton(flightStick, Attack3.BUTTON_4);
+        ttck3button.whenPressed(new IntakeDown());
+        ttck3button2 = new JoystickButton(flightStick, Attack3.BUTTON_5);
+        ttck3button2.whenPressed(new IntakeUp());
+        
         RIGHT_BUTTON = new JoystickButton(gamepad, Gamepad.RIGHT_SHOULDER_BUTTON);
 
         NORTH_BUTTON = new DPadButton(gamepad, Gamepad.DPAD_NORTH);
@@ -58,12 +64,13 @@ public class OI {
 
         TRIPWIRE_BUTTON = new IOButton(new DigitalInput(Constants.INTAKE_TRIPWIRE_PORT), false);
 
+        
         RAISE_SHOOTER_BUTTON = new JoystickButton(flightStick, Attack3.BUTTON_3);
         LOWER_SHOOTER_BUTTON = new JoystickButton(flightStick, Attack3.BUTTON_2);
 
         /** COMMANDS */
         // gamepad
-        X_BUTTON.whenPressed(new AlignForShot());
+        X_BUTTON.whenPressed(new AlignForShot());//);
         //B_BUTTON.whenPressed(new Shoot());
         Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
         A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
@@ -74,11 +81,12 @@ public class OI {
         NORTH_BUTTON.whileHeld(new DriveForward(Constants.DPAD_MOVE_SPEED));
         SOUTH_BUTTON.whileHeld(new DriveBackward(Constants.DPAD_MOVE_SPEED));
 
-        TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
+//        TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
 
         // flight stick
         RAISE_SHOOTER_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
         LOWER_SHOOTER_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
+        
         SHOOT_BUTTON.whenPressed(new Shoot());
 
     }

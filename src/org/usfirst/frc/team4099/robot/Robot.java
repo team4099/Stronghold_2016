@@ -2,9 +2,16 @@ package org.usfirst.frc.team4099.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.WaitCommand;
+
+import org.usfirst.frc.team4099.lib.util.Constants;
+import org.usfirst.frc.team4099.robot.commands.*;
+import org.usfirst.frc.team4099.robot.commands.groups.AutonomousPls;
+
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class Robot extends IterativeRobot {
@@ -14,6 +21,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
         CommandBase.init();
+        autonomousCommand = new AutonomousPls();
     }
 
     public void resetValues() {
@@ -31,6 +39,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         CommandBase.driveTrain.setSafety(false);
+        autonomousCommand.start();
     }
 
     public void autonomousPeriodic() {

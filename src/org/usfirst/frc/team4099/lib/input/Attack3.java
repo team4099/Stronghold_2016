@@ -11,6 +11,7 @@ public class Attack3 extends Joystick {
     public static final int BUTTON_2 = 2;
     public static final int BUTTON_3 = 3;
     public static final int BUTTON_4 = 4;
+    public static final int BUTTON_5 = 5;
 
     public Attack3(int port) {
         super(port);
