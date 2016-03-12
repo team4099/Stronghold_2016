@@ -11,7 +11,7 @@ import org.usfirst.frc.team4099.robot.commands.BurstUp;
 
 public class Ramp extends Subsystem {
 
-    private AnalogPotentiometer potentiometer;
+    public AnalogPotentiometer potentiometer;
     private Talon actuatorMotor;
 
     public Ramp() {

@@ -30,6 +30,8 @@ public class ChangeRampHeight extends CommandBase {
             ramp.setMotorSpeed(1.0);
         else if (dir == Direction.Ramp.UP && !isTooFar())
             ramp.setMotorSpeed(-1.0);
+
+        SmartDashboard.putNumber("Pot", ramp.potentiometer.get());
     }
 
     private boolean isTooFar() {
@@ -40,7 +42,6 @@ public class ChangeRampHeight extends CommandBase {
             if (ramp.getCurrentAngle() > Constants.RAMP_LOWER_LIMIT)
                 return false;
         }
-
         return true;
     }
 

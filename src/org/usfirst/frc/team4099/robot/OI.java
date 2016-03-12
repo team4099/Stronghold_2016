@@ -90,17 +90,22 @@ public class OI {
 
         /** COMMANDS */
         // gamepad
-//        X_BUTTON.whenPressed(new AlignForShot());
-//        //B_BUTTON.whenPressed(new Shoot());
-//        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
-//        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
-//        START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
-//        BACK_BUTTON.whenPressed(new TurnAngle(90));
-//        EAST_BUTTON.whileHeld(new TurnRight(Constants.DPAD_TURN_SPEED));
-//        WEST_BUTTON.whileHeld(new TurnLeft(Constants.DPAD_TURN_SPEED));
-//        NORTH_BUTTON.whileHeld(new DriveForward(Constants.DPAD_MOVE_SPEED));
-//        SOUTH_BUTTON.whileHeld(new DriveBackward(Constants.DPAD_MOVE_SPEED));
+        // */
+        X_BUTTON.whenPressed(new AlignForShot());
+        B_BUTTON.whenPressed(new Shoot());
+        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
+        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
+        START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
+        BACK_BUTTON.whenPressed(new TurnAngle(90));
+/*
+        EAST_BUTTON.whileHeld(new TurnRight(Constants.DPAD_TURN_SPEED));
+        WEST_BUTTON.whileHeld(new TurnLeft(Constants.DPAD_TURN_SPEED));
+        NORTH_BUTTON.whileHeld(new DriveForward(Constants.DPAD_MOVE_SPEED));
+        SOUTH_BUTTON.whileHeld(new DriveBackward(Constants.DPAD_MOVE_SPEED));
+        */
 //
+//
+
         EDGY_BUTTON1.whenPressed(new Shoot());
         EDGY_BUTTON2.whenPressed(new AlignForShot());
         EDGY_BUTTON3.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
@@ -111,12 +116,15 @@ public class OI {
         EDGY_BUTTON9.whenPressed(new SetGearMode(1));
         EDGY_BUTTON10.whenPressed(new ReverseOrientation());
         EDGY_BUTTON11.whenPressed(new SetGearMode(2));
+        
 
         TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
 
         // flight stick
+         /*
         ATTACK3_BUTTON3.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
         ATTACK3_BUTTON2.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
+        */
 //        ATTACK3_.whenPressed(new Shoot());
 
     }
