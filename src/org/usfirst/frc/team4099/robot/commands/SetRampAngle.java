@@ -25,7 +25,7 @@ public class SetRampAngle extends CommandBase {
     public SetRampAngle(boolean aimAssist) {
         this(0);
         this.aimassist = aimassist;
-        setTimeout(14);
+        setTimeout(14); //timeout intended for auto mode
     }
 
     /**
@@ -93,7 +93,11 @@ public class SetRampAngle extends CommandBase {
     protected boolean isFinished() {
         //return Util.withinRange(ramp.getCurrentAngle(), destinationAngle, Constants.RAMP_ANGLE_TOLERANCE);
     	
-    	return isTimedOut() ||reachedAngle() || isTooFar();
+    	if (isTimedOut()) {
+    		Constants.abort = true;
+    	}
+    	
+    	return Constants.abort ||reachedAngle() || isTooFar();
     }
 
     @Override

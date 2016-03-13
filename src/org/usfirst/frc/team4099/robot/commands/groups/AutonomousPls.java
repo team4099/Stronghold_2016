@@ -7,10 +7,10 @@ public class AutonomousPls extends CommandGroup {
 	public AutonomousPls() {
 		addParallel(new IntakeDown());
 		addSequential(new SetRampAngle(Constants.RAMP_LOWER_LIMIT));
-		addSequential(new DriveForward(0.75, 5));
-		/*
+		addSequential(new DriveForward(0.75, 4));
+		
+		//added for auto aim assist
 		addSequential(new AlignForShot());
 		addSequential(new Shoot());
-		*/
 	}
 }

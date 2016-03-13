@@ -5,6 +5,10 @@ public class Constants {
 
 
     private Constants() {}
+    
+    //crusty
+    public static boolean abort = false;
+    
     public static final double DPAD_MOVE_SPEED = 0.7;
     		;
     public static final double DPAD_TURN_SPEED = 0.7;

@@ -13,11 +13,11 @@ public class AlignForShot extends CommandGroup {
         addSequential(new UpdateVision());
 
         addSequential(new TurnAngle(true));
-        /*
+       
+        //ramp adjustment aimassist
         // false means that the angle is turn amount
         addSequential(new SetRampAngle(true));
         addSequential(new TrajectoryCalculation());
         addSequential(new SetRampAngle(true));
-        */
     }
 }

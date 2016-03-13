@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot.commands;
 
+import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class RunShooterFullSpeed extends CommandBase {
@@ -22,7 +23,7 @@ public class RunShooterFullSpeed extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return Constants.abort || isTimedOut();
     }
 
     @Override

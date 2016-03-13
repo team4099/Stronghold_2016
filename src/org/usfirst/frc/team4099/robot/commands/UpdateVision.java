@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot.commands;
 
+import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class UpdateVision extends CommandBase {
@@ -20,6 +21,9 @@ public class UpdateVision extends CommandBase {
 
     @Override
     protected boolean isFinished() {
+    	if (isTimedOut()) {
+    		Constants.abort = true;
+    	}
         return finish;
     }
 

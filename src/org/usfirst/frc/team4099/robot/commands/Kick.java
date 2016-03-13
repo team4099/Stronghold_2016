@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4099.robot.commands;
 
+import org.usfirst.frc.team4099.lib.util.Constants;
 import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class Kick extends CommandBase {
@@ -18,7 +19,7 @@ public class Kick extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return Constants.abort || isTimedOut();
     }
 
     @Override

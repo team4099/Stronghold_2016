@@ -43,12 +43,12 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousPeriodic() {
-   
         Scheduler.getInstance().run();
         
     }
 
     public void teleopInit() {
+    	Constants.abort = false; //resets auto mode abort setting
         CommandBase.driveTrain.setSafety(false);
         // cancel any current autonomous
         if (autonomousCommand != null) autonomousCommand.cancel();
