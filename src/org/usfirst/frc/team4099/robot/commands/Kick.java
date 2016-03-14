@@ -24,6 +24,7 @@ public class Kick extends CommandBase {
 
     @Override
     protected void end() {
+    	Constants.abort = false;
         kicker.resetKicker();
     }
 

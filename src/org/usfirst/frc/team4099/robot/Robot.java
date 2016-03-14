@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-    	Constants.abort = false; //resets auto mode abort setting
+    	//Constants.abort = false; //resets auto mode abort setting
         CommandBase.driveTrain.setSafety(false);
         // cancel any current autonomous
         if (autonomousCommand != null) autonomousCommand.cancel();
@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("right encoder", CommandBase.driveTrain.rightEncoder.get());
         SmartDashboard.putNumber("left encoder", CommandBase.driveTrain.leftEncoder.get());
         SmartDashboard.putNumber("ramp angle", CommandBase.ramp.getCurrentAngle());
+        //Constants.abort = false;
     }
     
     public void testPeriodic() {

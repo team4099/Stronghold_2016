@@ -148,7 +148,7 @@ public class DriveTrain extends Subsystem {
             forward *= -1;
             turn *= -1;
         }
-        drive.arcadeDrive(modifySpeedByMode(forward, this.gearMode), turn);
+        drive.arcadeDrive(modifySpeedByMode(forward, this.gearMode), modifySpeedByMode(turn, this.gearMode));
     }
 
 
@@ -158,7 +158,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveForward(double speed) {
-        drive.tankDrive(speed, speed);
+        drive.tankDrive(speed, speed + 0.07);
     }
 
     public void driveBackward(double speed) {

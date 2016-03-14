@@ -25,7 +25,6 @@ public class SetRampAngle extends CommandBase {
     public SetRampAngle(boolean aimAssist) {
         this(0);
         this.aimassist = aimassist;
-        setTimeout(14); //timeout intended for auto mode
     }
 
     /**
@@ -53,9 +52,11 @@ public class SetRampAngle extends CommandBase {
     @Override
     protected void initialize() {
         if (aimassist) {
-            this.destinationAngle = ramp.getCurrentAngle() + CommandBase.vision.getVerticalAngle();
+            setTimeout(14); //timeout intended for auto mode
+        	this.destinationAngle = ramp.getCurrentAngle() + CommandBase.vision.getVerticalAngle();
         }
         this.goingUp = destinationAngle > ramp.getCurrentAngle();
+        
     }
 
     @Override

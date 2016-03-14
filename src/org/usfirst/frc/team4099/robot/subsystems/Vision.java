@@ -35,6 +35,7 @@ public class Vision extends Subsystem {
         try {
             URL udoo = new URL(Constants.UDOO_RESTFUL_ENDPOINT);
             HttpURLConnection connection = (HttpURLConnection) udoo.openConnection();
+            connection.setConnectTimeout(5000);
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
 
@@ -49,6 +50,8 @@ public class Vision extends Subsystem {
                 System.out.println("Vision angles: " + this.lateralAngle + " " + this.verticalAngle);
             }
             in.close();
+        } catch (java.net.SocketTimeoutException e) {  
+        	this.acquiredTarget = false;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,7 +73,7 @@ public class Vision extends Subsystem {
         double distance = (distanceSensor.getAverageValue() / 10) * 2.54 / 100.0;
 
         // TODO:Find this experimentally
-        double initialvelocity = 2;
+        double initialvelocity = 7.181;
 
         /* 
          * The height will be hard-coded instead of calculated for competition> 

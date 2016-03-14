@@ -8,13 +8,9 @@ import org.usfirst.frc.team4099.lib.util.DPadButton;
 import org.usfirst.frc.team4099.lib.util.Direction;
 import org.usfirst.frc.team4099.lib.util.IOButton;
 import org.usfirst.frc.team4099.robot.commands.ChangeRampHeight;
-import org.usfirst.frc.team4099.robot.commands.DriveBackward;
-import org.usfirst.frc.team4099.robot.commands.DriveForward;
 import org.usfirst.frc.team4099.robot.commands.IntakeDown;
 import org.usfirst.frc.team4099.robot.commands.IntakeUp;
-import org.usfirst.frc.team4099.robot.commands.SetRampAngle;
-import org.usfirst.frc.team4099.robot.commands.TurnLeft;
-import org.usfirst.frc.team4099.robot.commands.TurnRight;
+import org.usfirst.frc.team4099.robot.commands.SetGearMode;
 import org.usfirst.frc.team4099.robot.commands.groups.AlignForShot;
 import org.usfirst.frc.team4099.robot.commands.groups.Shoot;
 
@@ -59,7 +55,8 @@ public class OI {
 
 
     public OI() {
-        gamepad = new Gamepad(0);
+//        gamepad = new Gamepad(0);
+    	edgyStick = new Extreme3DJoystick(0);
         flightStick = new Attack3(1);
 
         A_BUTTON = new JoystickButton(gamepad, Gamepad.A_BUTTON);
@@ -102,28 +99,28 @@ public class OI {
 
         /** COMMANDS */
         // gamepad
-        X_BUTTON.whenPressed(new AlignForShot());//);
-        //B_BUTTON.whenPressed(new Shoot());
-        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
-        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
-        START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
-//        BACK_BUTTON.whenPressed(new TurnAngle(90));
-        EAST_BUTTON.whileHeld(new TurnRight(Constants.DPAD_TURN_SPEED));
-        WEST_BUTTON.whileHeld(new TurnLeft(Constants.DPAD_TURN_SPEED));
-        NORTH_BUTTON.whileHeld(new DriveForward(Constants.DPAD_MOVE_SPEED));
-        SOUTH_BUTTON.whileHeld(new DriveBackward(Constants.DPAD_MOVE_SPEED));
+//        X_BUTTON.whenPressed(new AlignForShot());//);
+//        //B_BUTTON.whenPressed(new Shoot());
+//        Y_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
+//        A_BUTTON.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
+//        START_BUTTON.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
+////        BACK_BUTTON.whenPressed(new TurnAngle(90));
+//        EAST_BUTTON.whileHeld(new TurnRight(Constants.DPAD_TURN_SPEED));
+//        WEST_BUTTON.whileHeld(new TurnLeft(Constants.DPAD_TURN_SPEED));
+//        NORTH_BUTTON.whileHeld(new DriveForward(Constants.DPAD_MOVE_SPEED));
+//        SOUTH_BUTTON.whileHeld(new DriveBackward(Constants.DPAD_MOVE_SPEED));
         
         
 //        EDGY_BUTTON1.whenPressed(new Shoot());
-//        EDGY_BUTTON2.whenPressed(new AlignForShot());
+        EDGY_BUTTON2.whenPressed(new AlignForShot());
 //        EDGY_BUTTON3.whenPressed(new SetRampAngle(Constants.DEFAULT_RAMP_ANGLE));
 //        EDGY_BUTTON4.whileHeld(new ChangeRampHeight(Direction.Ramp.DOWN));
 //        EDGY_BUTTON5.whenPressed(new TurnToAngle(0));
 //        EDGY_BUTTON6.whileHeld(new ChangeRampHeight(Direction.Ramp.UP));
-//        EDGY_BUTTON7.whenPressed(new SetGearMode(0));
-//        EDGY_BUTTON9.whenPressed(new SetGearMode(1));
+        EDGY_BUTTON7.whenPressed(new SetGearMode(0));
+        EDGY_BUTTON9.whenPressed(new SetGearMode(1));
 //        EDGY_BUTTON10.whenPressed(new ReverseOrientation());
-//        EDGY_BUTTON11.whenPressed(new SetGearMode(2));
+        EDGY_BUTTON11.whenPressed(new SetGearMode(2));
         
 
 //        TRIPWIRE_BUTTON.whenPressed(new IntakeUp());
