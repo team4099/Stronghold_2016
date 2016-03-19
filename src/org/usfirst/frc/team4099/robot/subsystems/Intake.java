@@ -11,13 +11,16 @@ import org.usfirst.frc.team4099.robot.commands.SetIntakeSpeedManually;
 
 public class Intake extends Subsystem {
     private Talon intakeMotor;
+    private Talon roller;
     private DigitalInput upperLimitSwitch;
     private DigitalInput lowerLimitSwitch;
 
     public Intake() {
-        intakeMotor = new Talon(Constants.INTAKE_MOTOR_PORT);
-        //upperLimitSwitch = new DigitalInput(Constants.INTAKE_UPPER_LIMIT_SWITCH_PORT);
-        //lowerLimitSwitch = new DigitalInput(Constants.INTAKE_LOWER_LIMIT_SWITCH_PORT);
+        roller = new Talon(Constants.INTAKE_MOTOR_PORT);
+        roller.set(0.9);
+        intakeMotor = new Talon(Constants.INTAKE_ARM_PORT);
+        upperLimitSwitch = new DigitalInput(Constants.INTAKE_UPPER_LIMIT_SWITCH_PORT);
+        lowerLimitSwitch = new DigitalInput(Constants.INTAKE_LOWER_LIMIT_SWITCH_PORT);
     }
 
     public void controlManually() {
@@ -45,13 +48,11 @@ public class Intake extends Subsystem {
     }
 
     public boolean hasHitUpperLimit() {
-        return false;
-//        return upperLimitSwitch.get();
+        return upperLimitSwitch.get();
     }
 
     public boolean hasHitLowerLimit() {
-        return false;
-//        return lowerLimitSwitch.get();
+        return lowerLimitSwitch.get();
     }
 
     @Override

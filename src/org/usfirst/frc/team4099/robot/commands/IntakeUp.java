@@ -10,8 +10,6 @@ import org.usfirst.frc.team4099.robot.subsystems.CommandBase;
 
 public class IntakeUp extends CommandBase {
 
-    private boolean shouldRun = true;
-
     public IntakeUp() {
         requires(intake);
     }
@@ -23,13 +21,12 @@ public class IntakeUp extends CommandBase {
 
     @Override
     protected void execute() {
-        if (shouldRun)
-            intake.setMotorSpeed(-.40);
+        intake.setMotorSpeed(-.10);
     }
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut();
+        return intake.hasHitUpperLimit() || isTimedOut();
     }
 
     @Override

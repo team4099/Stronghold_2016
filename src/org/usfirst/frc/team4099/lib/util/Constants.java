@@ -1,9 +1,6 @@
 package org.usfirst.frc.team4099.lib.util;
 
 public class Constants {
-
-
-
     private Constants() {}
     
     //crusty
@@ -31,6 +28,7 @@ public class Constants {
     public static final int RIGHT_SHOOTER_MOTOR_PORT = 5;
     public static final int KICKER_PORT = 6;
     public static final int INTAKE_MOTOR_PORT = 3;
+    public static final int INTAKE_ARM_PORT = 8;
     public static final int LINEAR_ACTUATOR_PORT = 9;
 
     public static final double GYRO_GAIN_LEFT = 0.1;
@@ -40,7 +38,8 @@ public class Constants {
     public static final double DISTANCE_ACTUATOR_SHOOTER = 3.0;
     public static final double MOTOR_LENGTH = 0.5;
 
-    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.21:80/get_angle";
+//    public static final String UDOO_RESTFUL_ENDPOINT = "http://10.40.99.21:80/get_angle";
+    public static final String UDOO_RESTFUL_ENDPOINT = "http://alarm.local:80/get_angle";
 
     public static final int[] LEFT_ENCODER_CHANNELS = {2, 3};
     public static final int[] RIGHT_ENCODER_CHANNELS = {6, 7};
@@ -58,7 +57,8 @@ public class Constants {
     public static final double RAMP_UPPER_LIMIT = 57;
     public static final double RAMP_LOWER_LIMIT = 5;
 
-//    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 1; // TBD
+    public static final int INTAKE_UPPER_LIMIT_SWITCH_PORT = 5; // TBD
+    public static final int INTAKE_LOWER_LIMIT_SWITCH_PORT = 4;
 
     public static final double RAMP_ANGLE_TOLERANCE = 0.1;
 

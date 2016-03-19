@@ -74,17 +74,20 @@ public class Vision extends Subsystem {
 
         // TODO:Find this experimentally
         double initialvelocity = 7.181;
+        double ramp_length = .96;
+        double bot_height = .37;
 
         /* 
          * The height will be hard-coded instead of calculated for competition> 
          * We're including this calculation for the future if anyone wants to 
          * shoot to an arbitrary goal
          */
-        double height = Math.sin(CommandBase.ramp.getCurrentAngle()) * distance;  
+        double height = Math.sin(Math.toRadians(CommandBase.ramp.getCurrentAngle())) * distance;  
 
         double range = Math.sqrt(distance*distance - height*height);
+        double ramp_height = Math.sin(Math.toRadians(CommandBase.ramp.getCurrentAngle())) * ramp_length + bot_height;
 
-        double determinant = Math.pow(initialvelocity, 4) - 9.8*(9.8 * Math.pow(range, 2) + 2 * height * Math.pow(initialvelocity, 2));
+        double determinant = Math.pow(initialvelocity, 4) - 9.8*(9.8 * Math.pow(range, 2) + 2 * height * Math.pow(initialvelocity, 2) - 2 * ramp_height* Math.pow(initialvelocity, 2));
         this.canShoot = false;
 
         if (determinant < 0) {
